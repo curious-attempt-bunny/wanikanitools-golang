@@ -15,6 +15,7 @@ Experimental alternate implementation of https://github.com/curious-attempt-bunn
 ### On your Dokku server
 
   dokku apps:create wanikanitools-golang
+  dokku config:set --no-restart wanikanitools-golang WANIKANI_V2_API_KEY=xxx
 
 ### Locally
 
