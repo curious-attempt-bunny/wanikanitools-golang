@@ -1,6 +1,8 @@
 
 # wanikanitools-golang
 
+Experimental alternate implementation of https://github.com/curious-attempt-bunny/wanikanitools.
+
 ## Deploying to Dokku
 
 ### On your Dokku server
