@@ -3,6 +3,13 @@
 
 Experimental alternate implementation of https://github.com/curious-attempt-bunny/wanikanitools.
 
+## Running locally
+
+  go get github.com/curious-attempt-bunny/wanikanitools-golang
+  cd $GOPATH/src/github.com/curious-attempt-bunny/wanikanitools-golang
+  go build main.go
+  PORT=5000 ./main
+
 ## Deploying to Dokku
 
 ### On your Dokku server
@@ -13,3 +20,10 @@ Experimental alternate implementation of https://github.com/curious-attempt-bunn
 
   git remote add dokku dokku@YOUR_HOST_IP:wanikanitools-golang
   git push dokku head
+
+### Adding HTTPS (on Dokku server)
+
+  sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+  dokku config:set --no-restart wanikanitools-golang DOKKU_LETSENCRYPT_EMAIL=yourregistrationemail.com
+  dokku letsencrypt wanikanitools-golang
+  dokku letsencrypt:cron-job --add    
