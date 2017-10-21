@@ -19,7 +19,6 @@ type Dashboard struct {
 type Level struct {
     LeechesTotal          int   `json:"leeches_total"`
     SrsLevelLeechTotal    int   `json:"srs_level_leech_total"`
-    SrsLevelLeechTrends   []int `json:"srs_level_leech_trends"`
     SrsLevelLeechesTotals []int `json:"srs_level_leeches_totals"`
     SrsLevelTotals        []int `json:"srs_level_totals"`
     Total                 int   `json:"total"`

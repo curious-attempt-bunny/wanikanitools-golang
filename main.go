@@ -72,9 +72,8 @@ func main() {
 		dashboard := Dashboard{}
 		dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
 
-		// leeches := []Leech{}
-		reviewOrderLeechList := make(ReviewOrderLeechList, 0)
-
+		leeches := make(LeechList, 0)
+		
 		for i := 0; i<len(reviewStatistics.Data); i++ {
 			reviewStatistic := reviewStatistics.Data[i]
 			if reviewStatistic.Data.SubjectType == "radical" {
@@ -140,14 +139,6 @@ func main() {
 				leech.WorstIncorrect = reviewStatistic.Data.ReadingIncorrect
 			}
 
-			if leech.WorstCurrentStreak > 1 {
-                leech.Trend = -1 
-			} else if leech.WorstIncorrect > 1 {
-                leech.Trend = 1
-			} else {
-            	leech.Trend = 0
-            }
-    
     		leech.SubjectID = subject.ID
 			leech.SubjectType = subject.Object
 
@@ -156,22 +147,17 @@ func main() {
 			if !isComingUpForReview {
 				leech.ReviewOrder = 1000
 			}
-			reviewOrderLeechList = append(reviewOrderLeechList, ReviewOrderLeech{ReviewOrder:leech.ReviewOrder, Leech: leech})
-			// leeches = append(leeches, leech)
+			leeches = append(leeches, leech)
 			fmt.Printf("%-v\n", leech)
 		}
 
-		sort.Sort(reviewOrderLeechList)
-		retainedSlices := 10
-		if retainedSlices > len(reviewOrderLeechList) {
-			retainedSlices = len(reviewOrderLeechList)
+		sort.Sort(leeches)
+		retainedLeeches := 10
+		if retainedLeeches > len(leeches) {
+			retainedLeeches = len(leeches)
 		}
 
-		dashboard.ReviewOrder = make([]Leech, retainedSlices)
-
-		for i := 0; i<retainedSlices; i++ {
-			dashboard.ReviewOrder[i] = reviewOrderLeechList[i].Leech
-		}
+		dashboard.ReviewOrder = leeches[0:retainedLeeches]
 
 		c.JSON(200, dashboard)
 	})
@@ -179,13 +165,8 @@ func main() {
 	router.Run(":" + port)
 }
 
-type ReviewOrderLeech struct {
-  ReviewOrder int
-  Leech Leech
-}
+type LeechList []Leech
 
-type ReviewOrderLeechList []ReviewOrderLeech
-
-func (p ReviewOrderLeechList) Len() int { return len(p) }
-func (p ReviewOrderLeechList) Less(i, j int) bool { return p[i].ReviewOrder < p[j].ReviewOrder }
-func (p ReviewOrderLeechList) Swap(i, j int){ p[i], p[j] = p[j], p[i] }
+func (p LeechList) Len() int { return len(p) }
+func (p LeechList) Less(i, j int) bool { return p[i].ReviewOrder < p[j].ReviewOrder }
+func (p LeechList) Swap(i, j int){ p[i], p[j] = p[j], p[i] }

@@ -8,10 +8,9 @@ type Leech struct {
     SrsStageName       string  `json:"srs_stage_name"`
     SubjectID          int     `json:"subject_id"`
     SubjectType        string  `json:"subject_type"`
-    Trend              int     `json:"trend"`
     WorstCurrentStreak int     `json:"worst_current_streak"`
     WorstIncorrect     int     `json:"worst_incorrect"`
     WorstScore         float64 `json:"worst_score"`
     WorstType          string  `json:"worst_type"`
-    ReviewOrder        int     `json:"review_order"`
+    ReviewOrder        int     `json:"-"`
 }
