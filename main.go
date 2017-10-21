@@ -42,7 +42,7 @@ func main() {
 
 func getSubjects() *Subjects {
 	ch := make(chan Subjects)
-	maxPages := 5
+	maxPages := 18
 	for page := 1; page <= maxPages; page++ {
 		go getSubjectsPage(page, ch)
 	}
@@ -57,7 +57,6 @@ func getSubjects() *Subjects {
 
 	for page := 2; page <= maxPages; page++ {
 		subjectsPage := <-ch
-		// fmt.Printf("%d/%d: Appending page %d to page %d\n", page, maxPages, subjectsPage.Pages.Current, subjects.Pages.Current)
 		subjects.Data = append(subjects.Data, subjectsPage.Data...)
 	}
 
@@ -73,7 +72,6 @@ func getUrl(url string) []byte {
 	req.Header.Add("Authorization", "Token token=" + os.Getenv("WANIKANI_V2_API_KEY"))
 	resp, _ := client.Do(req)
 	defer resp.Body.Close()
-	// secs1 := time.Since(start).Seconds()
 	body, _ := ioutil.ReadAll(resp.Body)
 	secs2 := time.Since(start).Seconds()
   
@@ -85,16 +83,11 @@ func getUrl(url string) []byte {
 func getSubjectsPage(page int, ch chan Subjects) {
 	body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
 	var subjects Subjects
-	// start := time.Now()
 	
 	err := json.Unmarshal(body, &subjects)
 	if err != nil {
 		log.Fatal("error:", err, string(body))
 	}
-	// secs := time.Since(start).Seconds()
 
-	// fmt.Printf("%f: JSON %d\n", secs, page)
-
-	// fmt.Printf("Got subject page %d\n", page)	
 	ch <- subjects
 }
