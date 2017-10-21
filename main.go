@@ -32,6 +32,7 @@ func main() {
 	}
 
 	router.Use(gin.Logger())
+	router.Use(CORSMiddleware())
 	router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
 
