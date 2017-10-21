@@ -13,4 +13,5 @@ type Leech struct {
     WorstIncorrect     int     `json:"worst_incorrect"`
     WorstScore         float64 `json:"worst_score"`
     WorstType          string  `json:"worst_type"`
+    ReviewOrder        int     `json:"review_order"`
 }

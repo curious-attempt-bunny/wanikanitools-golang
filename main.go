@@ -6,6 +6,7 @@ import (
     "fmt"
     "net/http"
     "math"
+    "sort"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
@@ -71,7 +72,8 @@ func main() {
 		dashboard := Dashboard{}
 		dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
 
-		leeches := []Leech{}
+		// leeches := []Leech{}
+		reviewOrderLeechList := make(ReviewOrderLeechList, 0)
 
 		for i := 0; i<len(reviewStatistics.Data); i++ {
 			reviewStatistic := reviewStatistics.Data[i]
@@ -149,13 +151,41 @@ func main() {
     		leech.SubjectID = subject.ID
 			leech.SubjectType = subject.Object
 
-			leeches = append(leeches, leech)
+			var isComingUpForReview bool
+			leech.ReviewOrder, isComingUpForReview = subjectReviewOrder[leech.SubjectID]
+			if !isComingUpForReview {
+				leech.ReviewOrder = 1000
+			}
+			reviewOrderLeechList = append(reviewOrderLeechList, ReviewOrderLeech{ReviewOrder:leech.ReviewOrder, Leech: leech})
+			// leeches = append(leeches, leech)
 			fmt.Printf("%-v\n", leech)
 		}
 
-		dashboard.ReviewOrder = leeches
+		sort.Sort(reviewOrderLeechList)
+		retainedSlices := 10
+		if retainedSlices > len(reviewOrderLeechList) {
+			retainedSlices = len(reviewOrderLeechList)
+		}
+
+		dashboard.ReviewOrder = make([]Leech, retainedSlices)
+
+		for i := 0; i<retainedSlices; i++ {
+			dashboard.ReviewOrder[i] = reviewOrderLeechList[i].Leech
+		}
+
 		c.JSON(200, dashboard)
 	})
 
 	router.Run(":" + port)
 }
+
+type ReviewOrderLeech struct {
+  ReviewOrder int
+  Leech Leech
+}
+
+type ReviewOrderLeechList []ReviewOrderLeech
+
+func (p ReviewOrderLeechList) Len() int { return len(p) }
+func (p ReviewOrderLeechList) Less(i, j int) bool { return p[i].ReviewOrder < p[j].ReviewOrder }
+func (p ReviewOrderLeechList) Swap(i, j int){ p[i], p[j] = p[j], p[i] }
