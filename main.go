@@ -86,6 +86,13 @@ func main() {
 
 		leeches := make(LeechList, 0)
 		
+		srsLevelTotals := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        leechTotals := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        
+        for i := 0; i<len(assignments.Data); i++ {
+        	srsLevelTotals[assignments.Data[i].Data.SrsStage] += 1
+        }
+
 		for i := 0; i<len(reviewStatistics.Data); i++ {
 			reviewStatistic := reviewStatistics.Data[i]
 			if reviewStatistic.Data.SubjectType == "radical" {
@@ -160,7 +167,8 @@ func main() {
 				leech.ReviewOrder = 1000
 			}
 			leeches = append(leeches, leech)
-			fmt.Printf("%-v\n", leech)
+			leechTotals[leech.SrsStage] += 1
+			// fmt.Printf("%-v\n", leech)
 		}
 
 		sort.Sort(leeches)
@@ -170,6 +178,33 @@ func main() {
 		}
 
 		dashboard.ReviewOrder = leeches[0:retainedLeeches]
+		dashboard.SrsLevelTotals = srsLevelTotals
+        dashboard.SrsLevelLeechesTotals = leechTotals
+		
+		dashboard.Levels.Apprentice. SrsLevelTotals = srsLevelTotals[1:5]
+		dashboard.Levels.Guru.       SrsLevelTotals = srsLevelTotals[5:7]
+		dashboard.Levels.Master.     SrsLevelTotals = srsLevelTotals[7:8]
+		dashboard.Levels.Enlightened.SrsLevelTotals = srsLevelTotals[8:9]
+		dashboard.Levels.Burned.     SrsLevelTotals = srsLevelTotals[9:10]
+
+		dashboard.Levels.Apprentice. Total = srsLevelTotals[1] + srsLevelTotals[2] + srsLevelTotals[3] + srsLevelTotals[4]
+		dashboard.Levels.Guru.       Total = srsLevelTotals[5] + srsLevelTotals[6]
+		dashboard.Levels.Master.     Total = srsLevelTotals[7]
+		dashboard.Levels.Enlightened.Total = srsLevelTotals[8]
+		dashboard.Levels.Burned.     Total = srsLevelTotals[9]
+
+		dashboard.Levels.Apprentice. SrsLevelLeechesTotals = leechTotals[1:5]
+		dashboard.Levels.Guru.       SrsLevelLeechesTotals = leechTotals[5:7]
+		dashboard.Levels.Master.     SrsLevelLeechesTotals = leechTotals[7:8]
+		dashboard.Levels.Enlightened.SrsLevelLeechesTotals = leechTotals[8:9]
+		dashboard.Levels.Burned.     SrsLevelLeechesTotals = leechTotals[9:10]
+
+
+		dashboard.Levels.Apprentice. LeechesTotal = leechTotals[1] + leechTotals[2] + leechTotals[3] + leechTotals[4]
+		dashboard.Levels.Guru.       LeechesTotal = leechTotals[5] + leechTotals[6]
+		dashboard.Levels.Master.     LeechesTotal = leechTotals[7]
+		dashboard.Levels.Enlightened.LeechesTotal = leechTotals[8]
+		dashboard.Levels.Burned.     LeechesTotal = leechTotals[9]
 
 		c.JSON(200, dashboard)
 	})

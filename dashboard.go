@@ -4,7 +4,6 @@ type Dashboard struct {
     LeechesTotal int `json:"leeches_total"`
     Levels       struct {
         Order     []string `json:"order"`
-        Unstarted Level `json:"unstarted"`
         Apprentice Level `json:"apprentice"`
         Guru Level `json:"guru"`
         Master Level `json:"master"`
@@ -18,7 +17,6 @@ type Dashboard struct {
 
 type Level struct {
     LeechesTotal          int   `json:"leeches_total"`
-    SrsLevelLeechTotal    int   `json:"srs_level_leech_total"`
     SrsLevelLeechesTotals []int `json:"srs_level_leeches_totals"`
     SrsLevelTotals        []int `json:"srs_level_totals"`
     Total                 int   `json:"total"`
