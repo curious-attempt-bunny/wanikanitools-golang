@@ -51,6 +51,15 @@ func main() {
 		chSummary := make(chan *Summary)
 		go getSummary(chSummary)
 		
+		summary := <-chSummary
+		subjectReviewOrder := make(map[int]int)
+		for i := 0; i<len(summary.Data.ReviewsPerHour); i++ {
+			reviewsPerHour := summary.Data.ReviewsPerHour[i]
+			for j := 0; j<len(reviewsPerHour.SubjectIds); j++ {
+				subjectReviewOrder[reviewsPerHour.SubjectIds[j]] = i
+			}
+		}
+
 		assignments := <-chAssignments
 		assignmentsDataMap := make(map[int]AssignmentsData)
 		for i := 0; i<len(assignments.Data); i++ {
@@ -58,7 +67,6 @@ func main() {
 	    }
 		<-chSubjects
 		reviewStatistics := <-chReviewStatistics
-		<-chSummary
 
 		dashboard := Dashboard{}
 		dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
@@ -78,18 +86,18 @@ func main() {
 				continue;
 			}
 
-			assignment := assignmentsDataMap[reviewStatistic.Data.SubjectID]
-
-			if (len(assignment.Data.BurnedAt) > 0) {
-				continue;
-			}
-
             meaningScore := float64(reviewStatistic.Data.MeaningIncorrect) / math.Pow(float64(reviewStatistic.Data.MeaningCurrentStreak), 1.5)
             readingScore := float64(reviewStatistic.Data.ReadingIncorrect) / math.Pow(float64(reviewStatistic.Data.ReadingCurrentStreak), 1.5)
             
             if (meaningScore < 1.0 && readingScore < 1.0) {
             	continue;
             }
+
+			assignment := assignmentsDataMap[reviewStatistic.Data.SubjectID]
+
+			if (len(assignment.Data.BurnedAt) > 0) {
+				continue;
+			}
 
 			subject := subjectsDataMap[reviewStatistic.Data.SubjectID]
 
