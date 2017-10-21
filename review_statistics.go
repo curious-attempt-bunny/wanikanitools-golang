@@ -1,5 +1,9 @@
 package main
 
+import "encoding/json"
+import "log"
+import "fmt"
+
 type ReviewStatistics struct {
     Data []ReviewStatisticsData `json:"data"`
     DataUpdatedAt string `json:"data_updated_at"`
@@ -28,4 +32,42 @@ type ReviewStatisticsData struct {
     ID            int    `json:"id"`
     Object        string `json:"object"`
     URL           string `json:"url"`
+}
+
+func getReviewStatistics(chResult chan *ReviewStatistics) {
+    ch := make(chan *ReviewStatistics)
+    maxPages := 1
+    for page := 1; page <= maxPages; page++ {
+        go getReviewStatisticsPage(page, ch)
+    }
+    
+    results := <-ch
+    if (int(results.Pages.Last) > maxPages) {
+        for page := maxPages+1; page <= int(results.Pages.Last); page++ {
+            go getReviewStatisticsPage(page, ch)
+        }
+        maxPages = int(results.Pages.Last)
+    }
+
+    for page := 2; page <= maxPages; page++ {
+        resultsPage := <-ch
+        results.Data = append(results.Data, resultsPage.Data...)
+    }
+
+    results.Pages.Current = 1
+
+    chResult <- results
+}
+
+
+func getReviewStatisticsPage(page int, ch chan *ReviewStatistics) {
+    body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
+    var results ReviewStatistics
+    
+    err := json.Unmarshal(body, &results)
+    if err != nil {
+        log.Fatal("error:", err, string(body))
+    }
+
+    ch <- &results
 }

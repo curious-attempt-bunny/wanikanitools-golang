@@ -1,5 +1,12 @@
 package main
 
+import "encoding/json"
+import "log"
+import "fmt"
+
+var subjectsCache *Subjects
+var subjectsDataMap map[int]SubjectsData = make(map[int]SubjectsData)
+
 type Subjects struct {
     Data []SubjectsData `json:"data"`
     DataUpdatedAt string `json:"data_updated_at"`
@@ -38,3 +45,51 @@ type SubjectsData struct {
     Object        string `json:"object"`
     URL           string `json:"url"`
 } 
+
+func getSubjects(chResult chan *Subjects) {
+    if subjectsCache != nil {
+        chResult <- subjectsCache
+        return
+    }
+
+    ch := make(chan *Subjects)
+
+    maxPages := 18
+    for page := 1; page <= maxPages; page++ {
+        go getSubjectsPage(page, ch)
+    }
+    
+    subjects := <-ch
+    if (int(subjects.Pages.Last) > maxPages) {
+        for page := maxPages+1; page <= int(subjects.Pages.Last); page++ {
+            go getSubjectsPage(page, ch)
+        }
+        maxPages = int(subjects.Pages.Last)
+    }
+
+    for page := 2; page <= maxPages; page++ {
+        subjectsPage := <-ch
+        subjects.Data = append(subjects.Data, subjectsPage.Data...)
+    }
+
+    subjects.Pages.Current = 1
+
+    for i := 0; i<len(subjects.Data); i++ {
+        subjectsDataMap[subjects.Data[i].ID] = subjects.Data[i]
+    }
+    subjectsCache = subjects
+    
+    chResult <- subjects
+}
+
+func getSubjectsPage(page int, ch chan *Subjects) {
+    body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+    var subjects Subjects
+    
+    err := json.Unmarshal(body, &subjects)
+    if err != nil {
+        log.Fatal("error:", err, string(body))
+    }
+
+    ch <- &subjects
+}
