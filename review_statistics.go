@@ -42,11 +42,11 @@ func getReviewStatistics(chResult chan *ReviewStatistics) {
     }
     
     results := <-ch
-    if (int(results.Pages.Last) > maxPages) {
-        for page := maxPages+1; page <= int(results.Pages.Last); page++ {
+    if (results.Pages.Last) > maxPages {
+        for page := maxPages+1; page <= results.Pages.Last; page++ {
             go getReviewStatisticsPage(page, ch)
         }
-        maxPages = int(results.Pages.Last)
+        maxPages = results.Pages.Last
     }
 
     for page := 2; page <= maxPages; page++ {

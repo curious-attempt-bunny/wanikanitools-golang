@@ -43,9 +43,13 @@ func main() {
 
 		chReviewStatistics := make(chan *ReviewStatistics)
 		go getReviewStatistics(chReviewStatistics)
+
+		chAssignments := make(chan *Assignments)
+		go getAssignments(chAssignments)
 		
 		<-chSubjects
 		reviewStatistics := <-chReviewStatistics
+		<-chAssignments
 
 		// get assignments
 		// get review statistics
