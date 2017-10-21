@@ -4,12 +4,7 @@ type Subjects struct {
     Data []SubjectsData `json:"data"`
     DataUpdatedAt string `json:"data_updated_at"`
     Object        string `json:"object"`
-    Pages         struct {
-        Current     int       `json:"current"`
-        Last        int       `json:"last"`
-        NextURL     string      `json:"next_url"`
-        PreviousURL interface{} `json:"previous_url"`
-    } `json:"pages"`
+    Pages         Pages `json:"pages"`
     TotalCount int64  `json:"total_count"`
     URL        string `json:"url"`
 }

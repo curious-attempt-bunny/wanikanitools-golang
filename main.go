@@ -34,7 +34,9 @@ func main() {
 
 	router.GET("/api/v2/subjects", func(c *gin.Context) {
 		if subjects == nil {
-			subjects = getSubjects()
+			ch := make(chan *Subjects)
+			go getSubjects(ch)
+			subjects = <-ch
 			for i := 0; i<len(subjects.Data); i++ {
 				subjectsDataMap[subjects.Data[i].ID] = subjects.Data[i]
 			}
@@ -89,8 +91,9 @@ func getUrl(url string) []byte {
 	return body
 }
 
-func getSubjects() *Subjects {
+func getSubjects(chResult chan *Subjects) {
 	ch := make(chan *Subjects)
+
 	maxPages := 18
 	for page := 1; page <= maxPages; page++ {
 		go getSubjectsPage(page, ch)
@@ -111,7 +114,7 @@ func getSubjects() *Subjects {
 
 	subjects.Pages.Current = 1
 
-	return subjects
+	chResult <- subjects
 }
 
 func getSubjectsPage(page int, ch chan *Subjects) {
