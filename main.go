@@ -35,7 +35,14 @@ func main() {
 		if err != nil {
 			fmt.Println("error:", err)
 		}
-		fmt.Printf("%d subjects pages in total", subjects.Pages.Last)
+		
+		body = getUrl("https://wanikani.com/api/v2/subjects?page=2")
+		var subjects2 Subjects
+		json.Unmarshal(body, &subjects2)
+
+		subjects.Data = append(subjects.Data, subjects2.Data...)
+		fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
+		fmt.Printf("data has length %d\n", len(subjects.Data))
 		c.JSON(200, subjects)
 	})
 
