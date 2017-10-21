@@ -7,6 +7,7 @@ import (
     "io/ioutil"
     "encoding/json"
     "fmt"
+    "time"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
@@ -29,18 +30,26 @@ func main() {
 	})
 
 	router.GET("/api/v2/subjects", func(c *gin.Context) {
-		body := getUrl("https://wanikani.com/api/v2/subjects")
-		var subjects Subjects
-		err := json.Unmarshal(body, &subjects)
-		if err != nil {
-			fmt.Println("error:", err)
+		ch := make(chan Subjects)
+		maxPages := 5
+		for page := 1; page <= maxPages; page++ {
+			go getSubjects(page, ch)
 		}
 		
-		body = getUrl("https://wanikani.com/api/v2/subjects?page=2")
-		var subjects2 Subjects
-		json.Unmarshal(body, &subjects2)
+		subjects := <-ch
+		if (int(subjects.Pages.Last) > maxPages) {
+			for page := maxPages+1; page <= int(subjects.Pages.Last); page++ {
+				go getSubjects(page, ch)
+			}
+			maxPages = int(subjects.Pages.Last)
+		}
 
-		subjects.Data = append(subjects.Data, subjects2.Data...)
+		for page := 2; page <= maxPages; page++ {
+			subjectsPage := <-ch
+			// fmt.Printf("%d/%d: Appending page %d to page %d\n", page, maxPages, subjectsPage.Pages.Current, subjects.Pages.Current)
+			subjects.Data = append(subjects.Data, subjectsPage.Data...)
+		}
+
 		fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
 		fmt.Printf("data has length %d\n", len(subjects.Data))
 		c.JSON(200, subjects)
@@ -50,11 +59,34 @@ func main() {
 }
 
 func getUrl(url string) []byte {
+	start := time.Now()
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Authorization", "Token token=" + os.Getenv("WANIKANI_V2_API_KEY"))
 	resp, _ := client.Do(req)
 	defer resp.Body.Close()
+	secs1 := time.Since(start).Seconds()
 	body, _ := ioutil.ReadAll(resp.Body)
+	secs2 := time.Since(start).Seconds()
+  
+	fmt.Printf("%f %f: %s\n", secs1, secs2, url)
+
 	return body
+}
+
+func getSubjects(page int, ch chan Subjects) {
+	body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+	var subjects Subjects
+	start := time.Now()
+	
+	err := json.Unmarshal(body, &subjects)
+	if err != nil {
+		log.Fatal("error:", err, string(body))
+	}
+	secs := time.Since(start).Seconds()
+
+	fmt.Printf("%f: JSON %d\n", secs, page)
+
+	// fmt.Printf("Got subject page %d\n", page)	
+	ch <- subjects
 }
