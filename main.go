@@ -13,6 +13,8 @@ import (
 	_ "github.com/heroku/x/hmetrics/onload"
 )
 
+var subjects *Subjects
+
 func main() {
 	port := os.Getenv("PORT")
 
@@ -30,7 +32,9 @@ func main() {
 	})
 
 	router.GET("/api/v2/subjects", func(c *gin.Context) {
-		subjects := getSubjects()
+		if subjects == nil {
+			subjects = getSubjects()
+		}
 
 		fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
 		fmt.Printf("data has length %d\n", len(subjects.Data))
