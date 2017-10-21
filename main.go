@@ -55,9 +55,20 @@ func main() {
 		<-chAssignments
 		<-chSummary
 
-		// get assignments
-		// get review statistics
+		dashboard := Dashboard{}
+		dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
 
+		leeches := []Leech{}
+
+		for i := 0; i<len(reviewStatistics.Data); i++ {
+			reviewStatistic := reviewStatistics.Data[i]
+			if reviewStatistic.Data.SubjectType == "radical" {
+				continue
+			}
+
+			fmt.Printf("%-v", reviewStatistic)
+			break
+		}
 		// iterate review statistics
 		// - exclude burned_at assignments
 		// - exclude not-yet-passed assignments
@@ -73,10 +84,12 @@ func main() {
 		// 	}
 		// }
 
+		dashboard.ReviewOrder = leeches
+		
 		// fmt.Printf("%-v\n", subjectsDataMap[19])
 		// fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
 		// fmt.Printf("data has length %d\n", len(subjects.Data))
-		c.JSON(200, reviewStatistics)
+		c.JSON(200, dashboard)
 	})
 
 	router.Run(":" + port)
