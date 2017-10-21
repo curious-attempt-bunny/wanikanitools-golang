@@ -9,6 +9,8 @@ import (
     "sort"
 
 	"github.com/gin-gonic/gin"
+	"github.com/newrelic/go-agent"
+	"github.com/newrelic/go-agent/_integrations/nrgin/v1"
 )
 
 func main() {
@@ -19,6 +21,16 @@ func main() {
 	}
 
 	router := gin.New()
+
+	if len(os.Getenv("NEW_RELIC_APP_NAME")) > 0 && len(os.Getenv("NEW_RELIC_LICENSE_KEY")) > 0 {
+		config := newrelic.NewConfig(os.Getenv("NEW_RELIC_APP_NAME"), os.Getenv("NEW_RELIC_LICENSE_KEY"))
+		app, err := newrelic.NewApplication(config)
+		if (err != nil) {
+			panic(err)
+		}
+		router.Use(nrgin.Middleware(app))
+	}
+
 	router.Use(gin.Logger())
 	router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")

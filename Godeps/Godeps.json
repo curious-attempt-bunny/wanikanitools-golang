@@ -42,6 +42,41 @@
 			"Rev": "a5cdd64afdee435007ee3e9f6ed4684af949d568"
 		},
 		{
+			"ImportPath": "github.com/newrelic/go-agent",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/_integrations/nrgin/v1",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/internal",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/internal/jsonx",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/internal/logger",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/internal/sysinfo",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
+			"ImportPath": "github.com/newrelic/go-agent/internal/utilization",
+			"Comment": "v1.9.0",
+			"Rev": "29ec3cd1bb2f21d21d36da37dae52695cb2c3a17"
+		},
+		{
 			"ImportPath": "github.com/ugorji/go/codec",
 			"Rev": "bdcc60b419d136a85cdf2e7cbcac34b3f1cd6e57"
 		},
