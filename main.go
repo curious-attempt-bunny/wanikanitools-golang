@@ -5,6 +5,7 @@ import (
 	"os"
     "fmt"
     "net/http"
+    "math"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
@@ -50,9 +51,13 @@ func main() {
 		chSummary := make(chan *Summary)
 		go getSummary(chSummary)
 		
+		assignments := <-chAssignments
+		assignmentsDataMap := make(map[int]AssignmentsData)
+		for i := 0; i<len(assignments.Data); i++ {
+	        assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
+	    }
 		<-chSubjects
 		reviewStatistics := <-chReviewStatistics
-		<-chAssignments
 		<-chSummary
 
 		dashboard := Dashboard{}
@@ -65,30 +70,82 @@ func main() {
 			if reviewStatistic.Data.SubjectType == "radical" {
 				continue
 			}
+			if (reviewStatistic.Data.MeaningIncorrect + reviewStatistic.Data.MeaningCorrect == 0) {
+				continue
+			}
+			if (reviewStatistic.Data.MeaningCorrect < 4) {
+				// has not yet made it to Guru (approximate)
+				continue;
+			}
 
-			fmt.Printf("%-v", reviewStatistic)
-			break
+			assignment := assignmentsDataMap[reviewStatistic.Data.SubjectID]
+
+			if (len(assignment.Data.BurnedAt) > 0) {
+				continue;
+			}
+
+            meaningScore := float64(reviewStatistic.Data.MeaningIncorrect) / math.Pow(float64(reviewStatistic.Data.MeaningCurrentStreak), 1.5)
+            readingScore := float64(reviewStatistic.Data.ReadingIncorrect) / math.Pow(float64(reviewStatistic.Data.ReadingCurrentStreak), 1.5)
+            
+            if (meaningScore < 1.0 && readingScore < 1.0) {
+            	continue;
+            }
+
+			subject := subjectsDataMap[reviewStatistic.Data.SubjectID]
+
+			leech := Leech{}
+
+			if len(subject.Data.Character) > 0 {
+				leech.Name = subject.Data.Character 
+			} else {
+				leech.Name = subject.Data.Characters
+			}
+
+			for j := 0; j<len(subject.Data.Meanings); j++ {
+				if (subject.Data.Meanings[j].Primary) {
+					leech.PrimaryMeaning = subject.Data.Meanings[j].Meaning
+					break
+				}
+			}
+
+			for j := 0; j<len(subject.Data.Readings); j++ {
+				if (subject.Data.Readings[j].Primary) {
+					leech.PrimaryReading = subject.Data.Readings[j].Reading
+					break
+				}
+			}
+
+			leech.SrsStage = assignment.Data.SrsStage			
+			leech.SrsStageName = assignment.Data.SrsStageName
+
+			if (meaningScore > readingScore) {
+				leech.WorstType = "meaning"
+				leech.WorstScore = meaningScore
+				leech.WorstCurrentStreak = reviewStatistic.Data.MeaningCurrentStreak
+				leech.WorstIncorrect = reviewStatistic.Data.MeaningIncorrect
+			} else {
+				leech.WorstType = "reading"
+				leech.WorstScore = readingScore
+				leech.WorstCurrentStreak = reviewStatistic.Data.ReadingCurrentStreak
+				leech.WorstIncorrect = reviewStatistic.Data.ReadingIncorrect
+			}
+
+			if leech.WorstCurrentStreak > 1 {
+                leech.Trend = -1 
+			} else if leech.WorstIncorrect > 1 {
+                leech.Trend = 1
+			} else {
+            	leech.Trend = 0
+            }
+    
+    		leech.SubjectID = subject.ID
+			leech.SubjectType = subject.Object
+
+			leeches = append(leeches, leech)
+			fmt.Printf("%-v\n", leech)
 		}
-		// iterate review statistics
-		// - exclude burned_at assignments
-		// - exclude not-yet-passed assignments
-		// - calculate scores
-		// - calculate worst score
-		// - remove worst score < 1.0
-		// - determine readings and meanings
-
-		// if subjects == nil {
-		// 	subjects = getSubjects()
-		// 	for i := 0; i<len(subjects.Data); i++ {
-		// 		subjectsDataMap[subjects.Data[i].ID] = subjects.Data[i]
-		// 	}
-		// }
 
 		dashboard.ReviewOrder = leeches
-		
-		// fmt.Printf("%-v\n", subjectsDataMap[19])
-		// fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
-		// fmt.Printf("data has length %d\n", len(subjects.Data))
 		c.JSON(200, dashboard)
 	})
 
