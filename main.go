@@ -178,9 +178,10 @@ func main() {
 		}
 
 		dashboard.ReviewOrder = leeches[0:retainedLeeches]
+		dashboard.LeechesTotal = len(leeches)
 		dashboard.SrsLevelTotals = srsLevelTotals
         dashboard.SrsLevelLeechesTotals = leechTotals
-		
+
 		dashboard.Levels.Apprentice. SrsLevelTotals = srsLevelTotals[1:5]
 		dashboard.Levels.Guru.       SrsLevelTotals = srsLevelTotals[5:7]
 		dashboard.Levels.Master.     SrsLevelTotals = srsLevelTotals[7:8]
