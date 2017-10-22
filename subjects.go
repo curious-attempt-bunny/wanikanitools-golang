@@ -46,7 +46,7 @@ type SubjectsData struct {
     URL           string `json:"url"`
 } 
 
-func getSubjects(chResult chan *Subjects) {
+func getSubjects(apiKey string, chResult chan *Subjects) {
     if subjectsCache != nil {
         chResult <- subjectsCache
         return
@@ -56,13 +56,13 @@ func getSubjects(chResult chan *Subjects) {
 
     maxPages := 18
     for page := 1; page <= maxPages; page++ {
-        go getSubjectsPage(page, ch)
+        go getSubjectsPage(apiKey, page, ch)
     }
     
     subjects := <-ch
     if (int(subjects.Pages.Last) > maxPages) {
         for page := maxPages+1; page <= int(subjects.Pages.Last); page++ {
-            go getSubjectsPage(page, ch)
+            go getSubjectsPage(apiKey, page, ch)
         }
         maxPages = int(subjects.Pages.Last)
     }
@@ -82,8 +82,8 @@ func getSubjects(chResult chan *Subjects) {
     chResult <- subjects
 }
 
-func getSubjectsPage(page int, ch chan *Subjects) {
-    body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+func getSubjectsPage(apiKey string, page int, ch chan *Subjects) {
+    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
     var subjects Subjects
     
     err := json.Unmarshal(body, &subjects)

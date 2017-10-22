@@ -7,8 +7,8 @@ Experimental alternate implementation of https://github.com/curious-attempt-bunn
 
   go get github.com/curious-attempt-bunny/wanikanitools-golang
   cd $GOPATH/src/github.com/curious-attempt-bunny/wanikanitools-golang
-  go build main.go pages.go assignments.go review_statistics.go subjects.go url.go dashboard.go leech.go summary.go cors.go
-  WANIKANI_V2_API_KEY=xxx PORT=5000 ./main
+  go build .
+  WANIKANI_V2_API_KEY=xxx PORT=5000 ./wanikanitools-golang
 
 ## Deploying to Dokku
 

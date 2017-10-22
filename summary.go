@@ -17,8 +17,8 @@ type Summary struct {
     URL           string `json:"url"`
 }
 
-func getSummary(chResult chan *Summary) {
-    body := getUrl("https://wanikani.com/api/v2/summary")
+func getSummary(apiKey string, chResult chan *Summary) {
+    body := getUrl(apiKey, "https://wanikani.com/api/v2/summary")
     var results Summary
     
     err := json.Unmarshal(body, &results)

@@ -2,15 +2,19 @@ package main
 
 import "io/ioutil"
 import "net/http"
-import "os"
 import "time"
 import "fmt"
 
-func getUrl(url string) []byte {
+var client *http.Client
+
+func init() {
+    client = &http.Client{}
+}
+
+func getUrl(apiKey string, url string) []byte {
     start := time.Now()
-    client := &http.Client{}
     req, _ := http.NewRequest("GET", url, nil)
-    req.Header.Add("Authorization", "Token token=" + os.Getenv("WANIKANI_V2_API_KEY"))
+    req.Header.Add("Authorization", "Token token=" + apiKey)
     resp, _ := client.Do(req)
     defer resp.Body.Close()
     body, _ := ioutil.ReadAll(resp.Body)

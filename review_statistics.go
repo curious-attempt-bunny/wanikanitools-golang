@@ -34,17 +34,17 @@ type ReviewStatisticsData struct {
     URL           string `json:"url"`
 }
 
-func getReviewStatistics(chResult chan *ReviewStatistics) {
+func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
     ch := make(chan *ReviewStatistics)
     maxPages := 1
     for page := 1; page <= maxPages; page++ {
-        go getReviewStatisticsPage(page, ch)
+        go getReviewStatisticsPage(apiKey, page, ch)
     }
     
     results := <-ch
     if (results.Pages.Last) > maxPages {
         for page := maxPages+1; page <= results.Pages.Last; page++ {
-            go getReviewStatisticsPage(page, ch)
+            go getReviewStatisticsPage(apiKey, page, ch)
         }
         maxPages = results.Pages.Last
     }
@@ -60,8 +60,8 @@ func getReviewStatistics(chResult chan *ReviewStatistics) {
 }
 
 
-func getReviewStatisticsPage(page int, ch chan *ReviewStatistics) {
-    body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
+func getReviewStatisticsPage(apiKey string, page int, ch chan *ReviewStatistics) {
+    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
     var results ReviewStatistics
     
     err := json.Unmarshal(body, &results)

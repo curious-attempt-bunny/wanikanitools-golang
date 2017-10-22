@@ -34,17 +34,17 @@ type AssignmentsData struct {
     URL           string `json:"url"`
 }
 
-func getAssignments(chResult chan *Assignments) {
+func getAssignments(apiKey string, chResult chan *Assignments) {
     ch := make(chan *Assignments)
     maxPages := 1
     for page := 1; page <= maxPages; page++ {
-        go getAssignmentsPage(page, ch)
+        go getAssignmentsPage(apiKey, page, ch)
     }
     
     results := <-ch
     if (results.Pages.Last > maxPages) {
         for page := maxPages+1; page <= results.Pages.Last; page++ {
-            go getAssignmentsPage(page, ch)
+            go getAssignmentsPage(apiKey, page, ch)
         }
         maxPages = results.Pages.Last
     }
@@ -60,8 +60,8 @@ func getAssignments(chResult chan *Assignments) {
 }
 
 
-func getAssignmentsPage(page int, ch chan *Assignments) {
-    body := getUrl(fmt.Sprintf("https://wanikani.com/api/v2/assignments?page=%d",page))
+func getAssignmentsPage(apiKey string, page int, ch chan *Assignments) {
+    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/assignments?page=%d",page))
     var results Assignments
     
     err := json.Unmarshal(body, &results)
