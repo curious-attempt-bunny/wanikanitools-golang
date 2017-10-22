@@ -13,11 +13,25 @@ func init() {
 
 func getUrl(apiKey string, url string) []byte {
     start := time.Now()
-    req, _ := http.NewRequest("GET", url, nil)
+    req, err := http.NewRequest("GET", url, nil)
+    if (err != nil) {
+        panic(err)
+    }
     req.Header.Add("Authorization", "Token token=" + apiKey)
-    resp, _ := client.Do(req)
+    resp, err := client.Do(req)
+    if (err != nil) {
+        panic(err)
+    }
     defer resp.Body.Close()
-    body, _ := ioutil.ReadAll(resp.Body)
+
+    if (resp.StatusCode != 200) {
+        panic(fmt.Sprintf("resp.StatusCode == %d", resp.StatusCode));
+    }
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if (err != nil) {
+        panic(err)
+    }
     secs2 := time.Since(start).Seconds()
   
     fmt.Printf("%f: %s\n", secs2, url)
