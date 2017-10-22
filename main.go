@@ -52,9 +52,6 @@ func main() {
 	})
 
 	router.GET("/srs/status", func(c *gin.Context) {
-		chSubjects := make(chan *Subjects)
-		go getSubjects(chSubjects)
-
 		chReviewStatistics := make(chan *ReviewStatistics)
 		go getReviewStatistics(chReviewStatistics)
 
@@ -78,7 +75,6 @@ func main() {
 		for i := 0; i<len(assignments.Data); i++ {
 	        assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
 	    }
-		<-chSubjects
 		reviewStatistics := <-chReviewStatistics
 
 		dashboard := Dashboard{}
@@ -119,7 +115,18 @@ func main() {
 				continue;
 			}
 
-			subject := subjectsDataMap[reviewStatistic.Data.SubjectID]
+			subject, isSubjectCached := subjectsDataMap[reviewStatistic.Data.SubjectID]
+			if !isSubjectCached {
+				fmt.Printf("Cache miss for subject ID %d - reloading\n", reviewStatistic.Data.SubjectID)
+				chSubjects := make(chan *Subjects)
+				go getSubjects(chSubjects)
+				<-chSubjects
+				subject, isSubjectCached = subjectsDataMap[reviewStatistic.Data.SubjectID]
+				if !isSubjectCached {
+					fmt.Printf("Double cache miss for subject ID %d - skipping\n", reviewStatistic.Data.SubjectID)
+					continue
+				}
+			}
 
 			leech := Leech{}
 
