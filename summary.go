@@ -24,6 +24,7 @@ func getSummary(apiKey string, chResult chan *Summary) {
     err := json.Unmarshal(body, &results)
     if err != nil {
         log.Fatal("error:", err, string(body))
+        panic(err)
     }
 
     chResult <- &results

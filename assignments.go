@@ -76,6 +76,7 @@ func getAssignmentsPage(apiKey string, page int, ch chan *Assignments) {
     err := json.Unmarshal(body, &results)
     if err != nil {
         log.Fatal("error:", err, string(body))
+        panic(err)
     }
 
     ch <- &results

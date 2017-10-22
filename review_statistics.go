@@ -75,6 +75,7 @@ func getReviewStatisticsPage(apiKey string, page int, ch chan *ReviewStatistics)
     err := json.Unmarshal(body, &results)
     if err != nil {
         log.Fatal("error:", err, string(body))
+        panic(err)        
     }
 
     ch <- &results

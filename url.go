@@ -8,6 +8,7 @@ import "fmt"
 var client *http.Client
 
 func init() {
+    http.DefaultTransport.(*http.Transport).MaxIdleConnsPerHost = 30
     client = &http.Client{}
 }
 

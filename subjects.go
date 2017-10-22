@@ -89,6 +89,7 @@ func getSubjectsPage(apiKey string, page int, ch chan *Subjects) {
     err := json.Unmarshal(body, &subjects)
     if err != nil {
         log.Fatal("error:", err, string(body))
+        panic(err)
     }
 
     ch <- &subjects
