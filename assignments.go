@@ -4,6 +4,8 @@ import "encoding/json"
 import "log"
 import "fmt"
 
+var apiKeyAssignmentsPageCounts map[string]int = make(map[string]int)
+
 type Assignments struct {
     Data []AssignmentsData `json:"data"`
     DataUpdatedAt string `json:"data_updated_at"`
@@ -36,13 +38,20 @@ type AssignmentsData struct {
 
 func getAssignments(apiKey string, chResult chan *Assignments) {
     ch := make(chan *Assignments)
-    maxPages := 1
+    maxPages, isApiKeyPageCountPresent := apiKeyAssignmentsPageCounts[apiKey]
+    if !isApiKeyPageCountPresent {
+        maxPages = 1
+    }
+    fmt.Printf("getAssignments assuming maxPages = %d\n", maxPages)
+
     for page := 1; page <= maxPages; page++ {
         go getAssignmentsPage(apiKey, page, ch)
     }
     
     results := <-ch
     if (results.Pages.Last > maxPages) {
+        apiKeyAssignmentsPageCounts[apiKey] = results.Pages.Last
+
         for page := maxPages+1; page <= results.Pages.Last; page++ {
             go getAssignmentsPage(apiKey, page, ch)
         }

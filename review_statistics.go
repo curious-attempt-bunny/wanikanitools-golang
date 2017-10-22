@@ -4,6 +4,8 @@ import "encoding/json"
 import "log"
 import "fmt"
 
+var apiKeyReviewStatisticPageCounts map[string]int = make(map[string]int)
+
 type ReviewStatistics struct {
     Data []ReviewStatisticsData `json:"data"`
     DataUpdatedAt string `json:"data_updated_at"`
@@ -36,13 +38,19 @@ type ReviewStatisticsData struct {
 
 func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
     ch := make(chan *ReviewStatistics)
-    maxPages := 1
+    maxPages, isApiKeyPageCountPresent := apiKeyReviewStatisticPageCounts[apiKey]
+    if !isApiKeyPageCountPresent {
+        maxPages = 1
+    }
+    fmt.Printf("getReviewStatistics assuming maxPages = %d\n", maxPages)
+
     for page := 1; page <= maxPages; page++ {
         go getReviewStatisticsPage(apiKey, page, ch)
     }
     
     results := <-ch
     if (results.Pages.Last) > maxPages {
+        apiKeyReviewStatisticPageCounts[apiKey] = results.Pages.Last
         for page := maxPages+1; page <= results.Pages.Last; page++ {
             go getReviewStatisticsPage(apiKey, page, ch)
         }
