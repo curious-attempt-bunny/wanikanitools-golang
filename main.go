@@ -7,6 +7,7 @@ import (
     "net/http"
     "math"
     "sort"
+    "strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent"
@@ -49,12 +50,25 @@ func main() {
 	router.Run(":" + port)
 }
 
+func renderError(c *gin.Context, category string, error string) {
+	fmt.Printf("%s.Error: %s\n", category, error)
+	if strings.Contains(error, "| resp.Status = 401 Unauthorized |") {
+		c.JSON(401, gin.H{"error": "Bad credentials"})	
+	} else {
+		c.JSON(500, gin.H{"error": error})
+	}
+}
+
 func apiV2Subjects(c *gin.Context) {
 	apiKey := c.MustGet("apiKey").(string)
 	ch := make(chan *Subjects)
 	go getSubjects(apiKey, ch)
 	subjects := <-ch
-	
+	if len(subjects.Error) > 0 {
+		renderError(c, "subjects", subjects.Error)
+		return
+	}
+
 	fmt.Printf("%-v\n", subjectsDataMap[19])
 	fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
 	fmt.Printf("data has length %d\n", len(subjects.Data))
@@ -76,6 +90,11 @@ func srsStatus(c *gin.Context) {
 	go getSummary(apiKey, chSummary)
 	
 	summary := <-chSummary
+	if len(summary.Error) > 0 {
+		renderError(c, "summary", summary.Error)
+		return
+	}
+
 	subjectReviewOrder := make(map[int]int)
 	for i := 0; i<len(summary.Data.ReviewsPerHour); i++ {
 		reviewsPerHour := summary.Data.ReviewsPerHour[i]
@@ -85,11 +104,21 @@ func srsStatus(c *gin.Context) {
 	}
 
 	assignments := <-chAssignments
+	if len(assignments.Error) > 0 {
+		renderError(c, "assignments", assignments.Error)
+		return
+	}
+
 	assignmentsDataMap := make(map[int]AssignmentsData)
 	for i := 0; i<len(assignments.Data); i++ {
         assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
     }
+
 	reviewStatistics := <-chReviewStatistics
+	if len(reviewStatistics.Error) > 0 {
+		renderError(c, "reviewStatistics", reviewStatistics.Error)
+		return
+	}
 
 	dashboard := Dashboard{}
 	dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
@@ -134,7 +163,12 @@ func srsStatus(c *gin.Context) {
 			fmt.Printf("Cache miss for subject ID %d - reloading\n", reviewStatistic.Data.SubjectID)
 			chSubjects := make(chan *Subjects)
 			go getSubjects(apiKey, chSubjects)
-			<-chSubjects
+			subjects := <-chSubjects
+			if len(subjects.Error) > 0 {
+				renderError(c, "subjects", subjects.Error)
+				return
+			}
+
 			subject, isSubjectCached = subjectsDataMap[reviewStatistic.Data.SubjectID]
 			if !isSubjectCached {
 				fmt.Printf("Double cache miss for subject ID %d - skipping\n", reviewStatistic.Data.SubjectID)

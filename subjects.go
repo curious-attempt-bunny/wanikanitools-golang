@@ -1,7 +1,6 @@
 package main
 
 import "encoding/json"
-import "log"
 import "fmt"
 
 var subjectsCache *Subjects
@@ -12,8 +11,9 @@ type Subjects struct {
     DataUpdatedAt string `json:"data_updated_at"`
     Object        string `json:"object"`
     Pages         Pages `json:"pages"`
-    TotalCount int64  `json:"total_count"`
+    TotalCount int  `json:"total_count"`
     URL        string `json:"url"`
+    Error      string `json:"-"`
 }
 
 type SubjectsData struct {
@@ -27,7 +27,7 @@ type SubjectsData struct {
         ComponentSubjectIds []int `json:"component_subject_ids"`
         CreatedAt           string  `json:"created_at"`
         DocumentURL         string  `json:"document_url"`
-        Level               int64   `json:"level"`
+        Level               int   `json:"level"`
         Meanings            []struct {
             Meaning string `json:"meaning"`
             Primary bool   `json:"primary"`
@@ -60,6 +60,11 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
     }
     
     subjects := <-ch
+    if len(subjects.Error) > 0 {
+        chResult <- subjects
+        return
+    }
+
     if (int(subjects.Pages.Last) > maxPages) {
         for page := maxPages+1; page <= int(subjects.Pages.Last); page++ {
             go getSubjectsPage(apiKey, page, ch)
@@ -69,6 +74,12 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
 
     for page := 2; page <= maxPages; page++ {
         subjectsPage := <-ch
+        if len(subjectsPage.Error) > 0 {
+            subjects.Error = subjectsPage.Error
+            chResult <- subjects
+            return
+        }
+
         subjects.Data = append(subjects.Data, subjectsPage.Data...)
     }
 
@@ -83,13 +94,17 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
 }
 
 func getSubjectsPage(apiKey string, page int, ch chan *Subjects) {
-    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+    if err != nil {
+        ch <- &Subjects{Error: err.Error()}
+        return
+    }
     var subjects Subjects
     
-    err := json.Unmarshal(body, &subjects)
+    err = json.Unmarshal(body, &subjects)
     if err != nil {
-        log.Fatal("error:", err, string(body))
-        panic(err)
+        ch <- &Subjects{Error: err.Error()}
+        return
     }
 
     ch <- &subjects

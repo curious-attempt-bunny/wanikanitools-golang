@@ -1,7 +1,6 @@
 package main
 
 import "encoding/json"
-import "log"
 import "fmt"
 
 var apiKeyAssignmentsPageCounts map[string]int = make(map[string]int)
@@ -13,6 +12,7 @@ type Assignments struct {
     Pages         Pages `json:"pages"`
     TotalCount int  `json:"total_count"`
     URL        string `json:"url"`
+    Error      string `json:"-"`
 }
 
 type AssignmentsData struct {
@@ -49,6 +49,11 @@ func getAssignments(apiKey string, chResult chan *Assignments) {
     }
     
     results := <-ch
+    if len(results.Error) > 0 {
+        chResult <- results
+        return
+    }
+
     if (results.Pages.Last > maxPages) {
         apiKeyAssignmentsPageCounts[apiKey] = results.Pages.Last
 
@@ -60,6 +65,12 @@ func getAssignments(apiKey string, chResult chan *Assignments) {
 
     for page := 2; page <= maxPages; page++ {
         resultsPage := <-ch
+        if len(resultsPage.Error) > 0 {
+            results.Error = resultsPage.Error
+            chResult <- results
+            return
+        }
+
         results.Data = append(results.Data, resultsPage.Data...)
     }
 
@@ -70,13 +81,18 @@ func getAssignments(apiKey string, chResult chan *Assignments) {
 
 
 func getAssignmentsPage(apiKey string, page int, ch chan *Assignments) {
-    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/assignments?page=%d",page))
+    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/assignments?page=%d",page))
+    if err != nil {
+        ch <- &Assignments{Error: err.Error()}
+        return
+    }
+
     var results Assignments
     
-    err := json.Unmarshal(body, &results)
+    err = json.Unmarshal(body, &results)
     if err != nil {
-        log.Fatal("error:", err, string(body))
-        panic(err)
+        ch <- &Assignments{Error: err.Error()}
+        return
     }
 
     ch <- &results

@@ -1,7 +1,6 @@
 package main
 
 import "encoding/json"
-import "log"
 import "fmt"
 
 var apiKeyReviewStatisticPageCounts map[string]int = make(map[string]int)
@@ -13,6 +12,7 @@ type ReviewStatistics struct {
     Pages         Pages `json:"pages"`
     TotalCount int    `json:"total_count"`
     URL        string `json:"url"`
+    Error      string `json:"-"`
 }
 
 type ReviewStatisticsData struct {
@@ -49,6 +49,11 @@ func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
     }
     
     results := <-ch
+    if len(results.Error) > 0 {
+        chResult <- results
+        return
+    }
+
     if (results.Pages.Last) > maxPages {
         apiKeyReviewStatisticPageCounts[apiKey] = results.Pages.Last
         for page := maxPages+1; page <= results.Pages.Last; page++ {
@@ -59,6 +64,12 @@ func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
 
     for page := 2; page <= maxPages; page++ {
         resultsPage := <-ch
+        if len(resultsPage.Error) > 0 {
+            results.Error = resultsPage.Error
+            chResult <- results
+            return
+        }
+    
         results.Data = append(results.Data, resultsPage.Data...)
     }
 
@@ -69,13 +80,17 @@ func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
 
 
 func getReviewStatisticsPage(apiKey string, page int, ch chan *ReviewStatistics) {
-    body := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
+    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
+    if err != nil {
+        ch <- &ReviewStatistics{Error: err.Error()}
+        return
+    }
     var results ReviewStatistics
     
-    err := json.Unmarshal(body, &results)
+    err = json.Unmarshal(body, &results)
     if err != nil {
-        log.Fatal("error:", err, string(body))
-        panic(err)        
+        ch <- &ReviewStatistics{Error: err.Error()}
+        return
     }
 
     ch <- &results

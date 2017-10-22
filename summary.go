@@ -1,7 +1,6 @@
 package main
 
 import "encoding/json"
-import "log"
 
 type Summary struct {
     Data struct {
@@ -15,16 +14,21 @@ type Summary struct {
     DataUpdatedAt string `json:"data_updated_at"`
     Object        string `json:"object"`
     URL           string `json:"url"`
+    Error         string `json:"-"`
 }
 
 func getSummary(apiKey string, chResult chan *Summary) {
-    body := getUrl(apiKey, "https://wanikani.com/api/v2/summary")
+    body, err := getUrl(apiKey, "https://wanikani.com/api/v2/summary")
+    if err != nil {
+        chResult <- &Summary{Error: err.Error()}
+        return
+    }
     var results Summary
     
-    err := json.Unmarshal(body, &results)
+    err = json.Unmarshal(body, &results)
     if err != nil {
-        log.Fatal("error:", err, string(body))
-        panic(err)
+        chResult <- &Summary{Error: err.Error()}
+        return
     }
 
     chResult <- &results

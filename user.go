@@ -1,7 +1,6 @@
 package main
 
 import "encoding/json"
-import "log"
 
 type User struct {
     Data struct {
@@ -15,16 +14,21 @@ type User struct {
     DataUpdatedAt string `json:"data_updated_at"`
     Object        string `json:"object"`
     URL           string `json:"url"`
+    Error         string `json:"-"`
 }
 
 func getUser(apiKey string, chResult chan *User) {
-    body := getUrl(apiKey, "https://wanikani.com/api/v2/user")
+    body, err := getUrl(apiKey, "https://wanikani.com/api/v2/user")
+    if err != nil {
+        chResult <- &User{Error: err.Error()}
+        return
+    }
     var results User
     
-    err := json.Unmarshal(body, &results)
+    err = json.Unmarshal(body, &results)
     if err != nil {
-        log.Fatal("error:", err, string(body))
-        panic(err)
+        chResult <- &User{Error: err.Error()}
+        return
     }
 
     chResult <- &results
