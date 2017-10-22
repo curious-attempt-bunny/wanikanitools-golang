@@ -229,6 +229,13 @@ func srsStatus(c *gin.Context) {
 	dashboard.Levels.Burned.     LeechesTotal = leechTotals[9]
 
 	c.JSON(200, dashboard)
+
+	txn := nrgin.Transaction(c)
+    if txn != nil {
+        txn.AddAttribute("leechesTotal", dashboard.LeechesTotal)
+        txn.AddAttribute("assignmentsTotal", len(assignments.Data))
+        txn.AddAttribute("reviewStatisticsTotal", len(reviewStatistics.Data))
+    }
 }	
 
 type LeechList []Leech
