@@ -8,6 +8,8 @@ import (
     "math"
     "sort"
     "strings"
+    "time"
+    "io"
 
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent"
@@ -45,6 +47,7 @@ func main() {
 	{
 		withApiKey.GET("/api/v2/subjects", apiV2Subjects)
 		withApiKey.GET("/srs/status", srsStatus)
+		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
 	}
 
 	router.Run(":" + port)
@@ -76,8 +79,6 @@ func apiV2Subjects(c *gin.Context) {
 }
 
 func srsStatus(c *gin.Context) {
-	fmt.Printf("HandlerName: %s\n", c.HandlerName())
-
 	apiKey := c.MustGet("apiKey").(string)
 
 	chReviewStatistics := make(chan *ReviewStatistics)
@@ -89,6 +90,9 @@ func srsStatus(c *gin.Context) {
 	chSummary := make(chan *Summary)
 	go getSummary(apiKey, chSummary)
 	
+    ch := make(chan *User)
+    go getUser(apiKey, ch)
+        
 	summary := <-chSummary
 	if len(summary.Error) > 0 {
 		renderError(c, "summary", summary.Error)
@@ -264,13 +268,57 @@ func srsStatus(c *gin.Context) {
 
 	c.JSON(200, dashboard)
 
-	txn := nrgin.Transaction(c)
+    user := <-ch
+    txn := nrgin.Transaction(c)
+    
     if txn != nil {
         txn.AddAttribute("leechesTotal", dashboard.LeechesTotal)
         txn.AddAttribute("assignmentsTotal", len(assignments.Data))
         txn.AddAttribute("reviewStatisticsTotal", len(reviewStatistics.Data))
     }
+
+    cacheDir := os.Getenv("CACHE_PATH")
+    if len(cacheDir) == 0 {
+    	cacheDir = "data"
+    }
+    f, err := os.OpenFile(fmt.Sprintf("%s/%s_history.csv", cacheDir, apiKey),
+    						os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    if err == nil {
+	    now := time.Now()
+		f.Write([]byte(fmt.Sprintf("%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+			now.UTC().Format("2006-01-02 15:04:05"), now.Unix(), user.Data.Level,
+			srsLevelTotals[1] + srsLevelTotals[2] + srsLevelTotals[3] + srsLevelTotals[4] +
+			srsLevelTotals[5] + srsLevelTotals[6] + srsLevelTotals[7] + srsLevelTotals[8] + srsLevelTotals[9], dashboard.LeechesTotal,
+			srsLevelTotals[1], srsLevelTotals[2], srsLevelTotals[3], srsLevelTotals[4],
+			srsLevelTotals[5], srsLevelTotals[6], srsLevelTotals[7], srsLevelTotals[8], srsLevelTotals[9],
+			leechTotals[1], leechTotals[2], leechTotals[3], leechTotals[4],
+			leechTotals[5], leechTotals[6], leechTotals[7], leechTotals[8], leechTotals[9])))
+		f.Close()
+	}
 }	
+
+func srsStatusHistory(c *gin.Context) {
+	apiKey := c.MustGet("apiKey").(string)
+
+	cacheDir := os.Getenv("CACHE_PATH")
+    if len(cacheDir) == 0 {
+    	cacheDir = "data"
+    }
+    filename := fmt.Sprintf("%s/%s_history.csv", cacheDir, apiKey)
+    file, err := os.Open(filename)
+    if err != nil {
+    	c.JSON(500, gin.H{"error":err.Error()})
+    	return
+    }
+    defer file.Close()
+
+	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s_history.csv", apiKey))
+	c.Header("Content-Type", "text/csv")
+	c.String(200, fmt.Sprintf("UTCDateTime,EpochSeconds,UserLevel,Total,LeechTotal,Apprentice1,Apprentice2,Apprentice3,"+
+		"Apprentice4,Guru1,Guru2,Master,Enlightened,Burned,LeechApprentice1,LeechApprentice2,LeechApprentice3,"+
+		"LeechApprentice4,LeechGuru1,LeechGuru2,LeechMaster,LeechEnlightened,LeechBurned\n"))
+	io.Copy(c.Writer, file)
+}
 
 type LeechList []Leech
 

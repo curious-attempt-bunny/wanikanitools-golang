@@ -1,3 +1,4 @@
 .env
 .docker_build/
 wanikanitools-golang
+data/*.csv

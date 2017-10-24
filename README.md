@@ -17,6 +17,10 @@ Experimental alternate implementation of https://github.com/curious-attempt-bunn
   dokku apps:create wanikanitools-golang
   dokku config:set --no-restart wanikanitools-golang WANIKANI_V2_API_KEY=xxx
   dokku config:set --no-restart wanikanitools-golang GIN_MODE=release
+  mkdir -p  /var/lib/dokku/data/storage/wanikanitools-golang
+  chown -R 32767:32767 /var/lib/dokku/data/storage/wanikanitools-golang
+  dokku docker-options:add wanikanitools-golang deploy,run "-v /var/lib/dokku/data/storage/wanikanitools-golang:/app/storage"
+  dokku config:set --no-restart wanikanitools-golang CACHE_PATH=/app/storage
 
 Optionally:
 
