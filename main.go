@@ -50,6 +50,7 @@ func main() {
 		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
 		withApiKey.GET("/leeches.txt", leechesTxt)
         withApiKey.GET("/leeches.json", leechesJson)
+        withApiKey.GET("/level/progress", levelProgress)
 	}
 
 	router.Run(":" + port)
@@ -74,9 +75,6 @@ func apiV2Subjects(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("%-v\n", subjectsDataMap[19])
-	fmt.Printf("%d subjects pages in total\n", subjects.Pages.Last)
-	fmt.Printf("data has length %d\n", len(subjects.Data))
 	c.JSON(200, subjects)
 }
 
@@ -228,6 +226,102 @@ func leechesJson(c *gin.Context) {
     }
 
     c.JSON(200, leeches)
+}
+
+func levelProgress(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    chUser := make(chan *User)
+    go getUser(apiKey, chUser)
+
+    chAssignments := make(chan *Assignments)
+    go getAssignments(apiKey, chAssignments)
+    
+    user := <-chUser
+    if len(user.Error) > 0 {
+        renderError(c, "user", user.Error)
+        return
+    }
+
+    assignments := <-chAssignments
+    if len(assignments.Error) > 0 {
+        renderError(c, "assignments", assignments.Error)
+        return
+    } 
+
+    var progress Progress
+    progress.Vocabulary.Level = user.Data.Level - 1
+    progress.Radical   .Level = user.Data.Level
+    progress.Kanji     .Level = user.Data.Level
+
+    progress.Vocabulary.SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    progress.Radical   .SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    progress.Kanji     .SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+    for i := 0; i<len(assignments.Data); i++ {
+        assignment := assignments.Data[i].Data
+
+        _, isSubjectCached := subjectsDataMap[assignment.SubjectID]
+        if !isSubjectCached {
+            fmt.Printf("Cache miss for subject ID %d - reloading\n", assignment.SubjectID)
+            chSubjects := make(chan *Subjects)
+            go getSubjects(apiKey, chSubjects)
+            subjects := <-chSubjects
+            if len(subjects.Error) > 0 {
+                renderError(c, "subjects", subjects.Error)
+                return
+            }
+        }
+
+        var progressType *ProgressType
+
+        if user.Data.Level - 1 == assignment.Level {
+            if assignment.SubjectType == "vocabulary" {
+                progressType = &progress.Vocabulary
+            }
+        } else if user.Data.Level == assignment.Level {
+            if assignment.SubjectType == "radical" {
+                progressType = &progress.Radical
+            } else if assignment.SubjectType == "kanji" {
+                progressType = &progress.Kanji
+            }
+        }
+
+        if progressType != nil {
+            progressType.SrsLevelTotals[ assignment.SrsStage ] += 1
+
+            if assignment.SrsStage >= 4 {
+                progressType.GuruedTotal += 1
+            }
+        }
+    }
+
+    for _, subject := range subjectsDataMap {
+        var progressType *ProgressType
+
+        if user.Data.Level - 1 == subject.Data.Level {
+            if subject.Object == "vocabulary" {
+                progressType = &progress.Vocabulary
+            }
+        } else if user.Data.Level == subject.Data.Level {
+            if subject.Object == "radical" {
+                progressType = &progress.Radical
+            } else if subject.Object == "kanji" {
+                progressType = &progress.Kanji
+            }
+        }
+
+        if progressType != nil {
+            progressType.Max += 1
+        }
+    }
+
+    c.JSON(200, progress)
+
+    txn := nrgin.Transaction(c)
+    if txn != nil {
+        txn.AddAttribute("assignmentsTotal", len(assignments.Data))
+    }
 }
 
 type LeechList []Leech

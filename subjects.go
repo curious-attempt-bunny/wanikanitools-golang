@@ -54,7 +54,7 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
 
     ch := make(chan *Subjects)
 
-    maxPages := 18
+    maxPages := 36
     for page := 1; page <= maxPages; page++ {
         go getSubjectsPage(apiKey, page, ch)
     }

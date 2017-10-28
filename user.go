@@ -5,7 +5,7 @@ import "encoding/json"
 type User struct {
     Data struct {
         CurrentVacationStartedAt string      `json:"current_vacation_started_at"`
-        Level                    int64       `json:"level"`
+        Level                    int         `json:"level"`
         ProfileURL               string      `json:"profile_url"`
         StartedAt                string      `json:"started_at"`
         Subscribed               bool        `json:"subscribed"`
