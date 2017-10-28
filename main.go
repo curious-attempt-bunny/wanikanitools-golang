@@ -49,6 +49,7 @@ func main() {
 		withApiKey.GET("/srs/status", srsStatus)
 		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
 		withApiKey.GET("/leeches.txt", leechesTxt)
+        withApiKey.GET("/leeches.json", leechesJson)
 	}
 
 	router.Run(":" + port)
@@ -215,6 +216,18 @@ func leechesTxt(c *gin.Context) {
     c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=leeches.txt"))
     c.Header("Content-Type", "text/plain")
     c.String(200, result.String())
+}
+
+func leechesJson(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    c.JSON(200, leeches)
 }
 
 type LeechList []Leech
