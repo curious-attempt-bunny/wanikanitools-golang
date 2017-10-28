@@ -1,14 +1,15 @@
 package main
 
 import (
-	"log"
-	"os"
+    "log"
+    "os"
+    "bytes"
     "fmt"
+    "io"
     "net/http"
     "sort"
     "strings"
     "time"
-    "io"
 
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent"
@@ -47,7 +48,7 @@ func main() {
 		withApiKey.GET("/api/v2/subjects", apiV2Subjects)
 		withApiKey.GET("/srs/status", srsStatus)
 		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
-		// withApiKey.GET("/leeches.txt", leechesTxt)
+		withApiKey.GET("/leeches.txt", leechesTxt)
 	}
 
 	router.Run(":" + port)
@@ -187,12 +188,33 @@ func srsStatusHistory(c *gin.Context) {
     }
     defer file.Close()
 
-	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s_history.csv", apiKey))
+	c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=status_history.csv"))
 	c.Header("Content-Type", "text/csv")
 	c.String(200, fmt.Sprintf("UTCDateTime,EpochSeconds,UserLevel,Total,LeechTotal,Apprentice1,Apprentice2,Apprentice3,"+
 		"Apprentice4,Guru1,Guru2,Master,Enlightened,Burned,LeechApprentice1,LeechApprentice2,LeechApprentice3,"+
 		"LeechApprentice4,LeechGuru1,LeechGuru2,LeechMaster,LeechEnlightened,LeechBurned\n"))
 	io.Copy(c.Writer, file)
+}
+
+func leechesTxt(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    var result bytes.Buffer
+
+    for i := 0; i < len(leeches); i++ {
+        result.WriteString(fmt.Sprintf("\"%s\n(%s meaning)\";%s\n", leeches[i].Name, leeches[i].SubjectType, leeches[i].PrimaryMeaning))
+        result.WriteString(fmt.Sprintf("\"%s\n(%s reading)\";%s\n", leeches[i].Name, leeches[i].SubjectType, leeches[i].PrimaryReading))
+    }
+
+    c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=leeches.txt"))
+    c.Header("Content-Type", "text/plain")
+    c.String(200, result.String())
 }
 
 type LeechList []Leech
