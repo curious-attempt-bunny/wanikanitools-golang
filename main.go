@@ -5,7 +5,6 @@ import (
 	"os"
     "fmt"
     "net/http"
-    "math"
     "sort"
     "strings"
     "time"
@@ -48,6 +47,7 @@ func main() {
 		withApiKey.GET("/api/v2/subjects", apiV2Subjects)
 		withApiKey.GET("/srs/status", srsStatus)
 		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
+		// withApiKey.GET("/leeches.txt", leechesTxt)
 	}
 
 	router.Run(":" + port)
@@ -81,153 +81,28 @@ func apiV2Subjects(c *gin.Context) {
 func srsStatus(c *gin.Context) {
 	apiKey := c.MustGet("apiKey").(string)
 
-	chReviewStatistics := make(chan *ReviewStatistics)
-	go getReviewStatistics(apiKey, chReviewStatistics)
-
-	chAssignments := make(chan *Assignments)
-	go getAssignments(apiKey, chAssignments)
-
-	chSummary := make(chan *Summary)
-	go getSummary(apiKey, chSummary)
-	
     ch := make(chan *User)
     go getUser(apiKey, ch)
         
-	summary := <-chSummary
-	if len(summary.Error) > 0 {
-		renderError(c, "summary", summary.Error)
-		return
-	}
-
-	subjectReviewOrder := make(map[int]int)
-	for i := 0; i<len(summary.Data.ReviewsPerHour); i++ {
-		reviewsPerHour := summary.Data.ReviewsPerHour[i]
-		for j := 0; j<len(reviewsPerHour.SubjectIds); j++ {
-			subjectReviewOrder[reviewsPerHour.SubjectIds[j]] = i
-		}
-	}
-
-	assignments := <-chAssignments
-	if len(assignments.Error) > 0 {
-		renderError(c, "assignments", assignments.Error)
-		return
-	}
-
-	assignmentsDataMap := make(map[int]AssignmentsData)
-	for i := 0; i<len(assignments.Data); i++ {
-        assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
-    }
-
-	reviewStatistics := <-chReviewStatistics
-	if len(reviewStatistics.Error) > 0 {
-		renderError(c, "reviewStatistics", reviewStatistics.Error)
-		return
-	}
-
 	dashboard := Dashboard{}
 	dashboard.Levels.Order = []string{ "apprentice", "guru", "master", "enlightened", "burned" }
 
-	leeches := make(LeechList, 0)
-	
 	srsLevelTotals := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     leechTotals := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     
+    leeches, reviewStatistics, assignments, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+    	renderError(c, resourceError.Category, resourceError.ErrorMessage)
+    	return
+    }
+
     for i := 0; i<len(assignments.Data); i++ {
     	srsLevelTotals[assignments.Data[i].Data.SrsStage] += 1
     }
 
-	for i := 0; i<len(reviewStatistics.Data); i++ {
-		reviewStatistic := reviewStatistics.Data[i]
-		if reviewStatistic.Data.SubjectType == "radical" {
-			continue
-		}
-		if (reviewStatistic.Data.MeaningIncorrect + reviewStatistic.Data.MeaningCorrect == 0) {
-			continue
-		}
-		if (reviewStatistic.Data.MeaningCorrect < 4) {
-			// has not yet made it to Guru (approximate)
-			continue;
-		}
-
-        meaningScore := float64(reviewStatistic.Data.MeaningIncorrect) / math.Pow(float64(reviewStatistic.Data.MeaningCurrentStreak), 1.5)
-        readingScore := float64(reviewStatistic.Data.ReadingIncorrect) / math.Pow(float64(reviewStatistic.Data.ReadingCurrentStreak), 1.5)
-        
-        if (meaningScore < 1.0 && readingScore < 1.0) {
-        	continue;
-        }
-
-		assignment := assignmentsDataMap[reviewStatistic.Data.SubjectID]
-
-		if (len(assignment.Data.BurnedAt) > 0) {
-			continue;
-		}
-
-		subject, isSubjectCached := subjectsDataMap[reviewStatistic.Data.SubjectID]
-		if !isSubjectCached {
-			fmt.Printf("Cache miss for subject ID %d - reloading\n", reviewStatistic.Data.SubjectID)
-			chSubjects := make(chan *Subjects)
-			go getSubjects(apiKey, chSubjects)
-			subjects := <-chSubjects
-			if len(subjects.Error) > 0 {
-				renderError(c, "subjects", subjects.Error)
-				return
-			}
-
-			subject, isSubjectCached = subjectsDataMap[reviewStatistic.Data.SubjectID]
-			if !isSubjectCached {
-				fmt.Printf("Double cache miss for subject ID %d - skipping\n", reviewStatistic.Data.SubjectID)
-				continue
-			}
-		}
-
-		leech := Leech{}
-
-		if len(subject.Data.Character) > 0 {
-			leech.Name = subject.Data.Character 
-		} else {
-			leech.Name = subject.Data.Characters
-		}
-
-		for j := 0; j<len(subject.Data.Meanings); j++ {
-			if (subject.Data.Meanings[j].Primary) {
-				leech.PrimaryMeaning = subject.Data.Meanings[j].Meaning
-				break
-			}
-		}
-
-		for j := 0; j<len(subject.Data.Readings); j++ {
-			if (subject.Data.Readings[j].Primary) {
-				leech.PrimaryReading = subject.Data.Readings[j].Reading
-				break
-			}
-		}
-
-		leech.SrsStage = assignment.Data.SrsStage			
-		leech.SrsStageName = assignment.Data.SrsStageName
-
-		if (meaningScore > readingScore) {
-			leech.WorstType = "meaning"
-			leech.WorstScore = meaningScore
-			leech.WorstCurrentStreak = reviewStatistic.Data.MeaningCurrentStreak
-			leech.WorstIncorrect = reviewStatistic.Data.MeaningIncorrect
-		} else {
-			leech.WorstType = "reading"
-			leech.WorstScore = readingScore
-			leech.WorstCurrentStreak = reviewStatistic.Data.ReadingCurrentStreak
-			leech.WorstIncorrect = reviewStatistic.Data.ReadingIncorrect
-		}
-
-		leech.SubjectID = subject.ID
-		leech.SubjectType = subject.Object
-
-		var isComingUpForReview bool
-		leech.ReviewOrder, isComingUpForReview = subjectReviewOrder[leech.SubjectID]
-		if !isComingUpForReview {
-			leech.ReviewOrder = 1000
-		}
-		leeches = append(leeches, leech)
+	for i := 0; i<len(leeches); i++ {
+		leech := leeches[i]
 		leechTotals[leech.SrsStage] += 1
-		// fmt.Printf("%-v\n", leech)
 	}
 
 	sort.Sort(leeches)

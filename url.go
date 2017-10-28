@@ -9,6 +9,11 @@ import "strings"
 
 var client *http.Client
 
+type ResourceError struct {
+    Category string
+    ErrorMessage string
+}
+
 func init() {
     http.DefaultTransport.(*http.Transport).MaxIdleConnsPerHost = 30
     client = &http.Client{}
