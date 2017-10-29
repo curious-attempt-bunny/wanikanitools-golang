@@ -290,7 +290,7 @@ func levelProgress(c *gin.Context) {
         if progressType != nil {
             progressType.SrsLevelTotals[ assignment.SrsStage ] += 1
 
-            if assignment.SrsStage >= 4 {
+            if assignment.SrsStage >= 5 {
                 progressType.GuruedTotal += 1
             }
         }
