@@ -146,3 +146,29 @@ nav.hiding {
     background-color: #f100a1;
     background-image: linear-gradient(to bottom, #f0a, #dd0093);
 }
+
+.srs {
+    text-align: center;
+    background-repeat: repeat-x;
+    color: #fff;
+}
+
+.srs.Apprentice {
+    background-color: #dd0093;
+    background-image: linear-gradient(to bottom, #f0a, #dd0093);
+}
+
+.srs.Guru {
+    background-color: #882d9e;
+    background-image: linear-gradient(to bottom, #aa38c6, #882d9e);
+}
+
+.srs.Master {
+    background-color: #294ddb;
+    background-image: linear-gradient(to bottom, #5571e2, #294ddb);
+}
+
+.srs.Enlightened {
+    background-color: #0093dd;
+    background-image: linear-gradient(to bottom, #0af, #0093dd);
+}
