@@ -51,6 +51,18 @@ func main() {
 		withApiKey.GET("/leeches.txt", leechesTxt)
         withApiKey.GET("/leeches.json", leechesJson)
         withApiKey.GET("/level/progress", levelProgress)
+
+        withApiKey.GET("/leeches/screensaver", func(c *gin.Context) {
+            apiKey := c.MustGet("apiKey").(string)
+
+            leeches, _, _, resourceError := getLeeches(apiKey)
+            if (resourceError != nil) {
+                renderError(c, resourceError.Category, resourceError.ErrorMessage)
+                return
+            }
+
+            c.HTML(http.StatusOK, "leeches.screensaver.tmpl.html", leeches)
+        })
 	}
 
 	router.Run(":" + port)

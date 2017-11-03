@@ -1,0 +1,41 @@
+<html>
+  {{template "header.tmpl.html"}}
+<body>
+  {{template "nav.tmpl.html"}}
+
+<div class="screensaver">
+    {{range .}}
+        <div id='leech-{{.SubjectID}}' class='leech'>
+            <span class='type'>
+                <span class='{{.SubjectType}}'><ruby><rb>{{.Name}}</rb><rt>{{.PrimaryReading}}</rt></ruby></span>&nbsp;<span class='meaning'>{{.PrimaryMeaning}}</span>
+            </span>
+        </div>
+    {{end}}
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        var lastId;
+        function animate() {
+            var id;
+            var leeches = $('.leech');
+            while(true) {
+                var index = Math.trunc(Math.random()*leeches.length);
+                id = leeches.get(index).id;
+                if (id != lastId) {
+                    break;
+                }
+            }
+
+            $('.leech').removeClass('active');
+            $('#'+id).addClass('active').css('left', Math.random()*500).css('top', Math.random()*500);;
+            lastId = id;
+        };
+
+        animate();
+        setInterval(function() {
+            animate();
+        }, 20000);
+    });
+</script>
+</html>

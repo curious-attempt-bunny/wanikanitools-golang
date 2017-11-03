@@ -4,4 +4,24 @@
   <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/static/main.css" />
+  <script>
+    $(document).ready(function() {
+        $("nav li a[href='"+window.location.pathname+"'").parent().addClass('active');
+
+        if (window.location.pathname == '/leeches/screensaver') {
+            $('nav').addClass('hiding')
+        }
+
+        var navHideTimeoutId;
+
+        $('.screensaver').mousemove(function() {
+            $("nav").removeClass('hiding');
+            window.clearTimeout(navHideTimeoutId);
+
+            navHideTimeoutId = setTimeout(function() {
+                $("nav").addClass('hiding');
+            }, 3000);
+        });
+    });
+  </script>
 </head>
