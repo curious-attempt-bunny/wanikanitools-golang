@@ -14,7 +14,17 @@
 </div>
 <script type='text/javascript'>
     $(document).ready(function() {
-        $('nav').addClass('hiding');
+        function qs(key) {
+            key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx control chars
+            var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
+            return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+        }
+
+        var apiKey = qs('api_key');
+
+        if (apiKey) {
+            $('nav').addClass('hiding');
+        }
         
         var navHideTimeoutId;
         $('.screensaver').mousemove(function() {

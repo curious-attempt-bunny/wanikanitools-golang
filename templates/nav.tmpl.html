@@ -2,14 +2,22 @@
   <div class="container">
     <ul class="nav navbar-nav">
       <li>
-        <a href="/"><span class="glyphicon glyphicon-home"></span> <span jang="ja">ホームページ</span></a>
+        <a href="/"><span class="glyphicon glyphicon-home"></span> <span jang="ja" title="Home">ホームページ</span></a>
       </li>
       <li>
-        <a href="/leeches/screensaver"><span lang="ja">蛭スクリーン セーバー</span> (Leeches Screensaver)</a>
+        <a href="/leeches/screensaver"><span lang="ja" title="Leeches Screensaver">蛭スクリーン セーバー</span></a>
       </li>
       <li>
         <a href="/leeches">Leeches List</a>
       </li>
     </ul>
+    <form id="nav-login-form" class="navbar-form navbar-right navbar-input-group" method="get" style="display: none;">
+      <div class="input-group" style="display: inline;">
+        <input type="text" class="form-control" id="api_key" name="api_key" placeholder="v2 API key" size="36" maxlength="36" style="width: 22em;"/>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </span>
+      </div>
+    </form>
   </div>
 </nav>

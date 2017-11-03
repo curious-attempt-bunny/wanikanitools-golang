@@ -48,22 +48,26 @@ func main() {
     router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl.html", nil)
-	})
+    withSessionApiKeyRedirect := router.Group("/")
+    withSessionApiKeyRedirect.Use(RedirectWithSessionApiKey())
+    {
+    	withSessionApiKeyRedirect.GET("/", func(c *gin.Context) {
+    		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+    	})
 
-	withApiKey := router.Group("/")
-	withApiKey.Use(ApiKeyAuth())
-	{
-		withApiKey.GET("/api/v2/subjects", apiV2Subjects)
-		withApiKey.GET("/srs/status", srsStatus)
-		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
-		withApiKey.GET("/leeches.txt", leechesTxt)
-        withApiKey.GET("/leeches.json", leechesJson)
-        withApiKey.GET("/level/progress", levelProgress)
-        withApiKey.GET("/leeches/screensaver", leechesScreensaver)
-        withApiKey.GET("/leeches", leechesList)
-	}
+    	withApiKey := withSessionApiKeyRedirect.Group("/")
+    	withApiKey.Use(ApiKeyAuth())
+    	{
+    		withApiKey.GET("/api/v2/subjects", apiV2Subjects)
+    		withApiKey.GET("/srs/status", srsStatus)
+    		withApiKey.GET("/srs/status/history.csv", srsStatusHistory)
+    		withApiKey.GET("/leeches.txt", leechesTxt)
+            withApiKey.GET("/leeches.json", leechesJson)
+            withApiKey.GET("/level/progress", levelProgress)
+            withApiKey.GET("/leeches/screensaver", leechesScreensaver)
+            withApiKey.GET("/leeches", leechesList)
+    	}
+    }
 
 	router.Run(":" + port)
 }
