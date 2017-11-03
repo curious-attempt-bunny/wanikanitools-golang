@@ -12,5 +12,44 @@
         </div>
     {{end}}
 </div>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('nav').addClass('hiding');
+        
+        var navHideTimeoutId;
+        $('.screensaver').mousemove(function() {
+            $("nav").removeClass('hiding');
+            window.clearTimeout(navHideTimeoutId);
+
+            navHideTimeoutId = setTimeout(function() {
+                $("nav").addClass('hiding');
+            }, 3000);
+        });
+
+        var lastId;
+        function animate() {
+            var id;
+            var leeches = $('.leech');
+            while(true) {
+                var index = Math.trunc(Math.random()*leeches.length);
+                id = leeches.get(index).id;
+                if (id != lastId) {
+                    break;
+                }
+            }
+
+            $('.leech').removeClass('active');
+            $('#'+id).addClass('active').css('left', Math.random()*500).css('top', Math.random()*500);;
+            lastId = id;      
+        };
+
+        setTimeout(function() {
+            animate();
+            setInterval(function() {
+                animate();
+            }, 20000);            
+        }, 500);
+    });
+</script>
 </body>
 </html>
