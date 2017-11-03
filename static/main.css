@@ -25,6 +25,10 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+#preview-warning {
+    display: none;
+}
+
 .screensaver {
   background: black;
   width: 100%;

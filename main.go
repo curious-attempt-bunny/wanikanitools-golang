@@ -69,6 +69,13 @@ func main() {
     	}
     }
 
+    router.POST("/signout", func(c *gin.Context) {
+        session := sessions.Default(c)
+        session.Delete("api_key")
+        session.Save()
+        c.Redirect(http.StatusFound, "/")
+    })
+
 	router.Run(":" + port)
 }
 
