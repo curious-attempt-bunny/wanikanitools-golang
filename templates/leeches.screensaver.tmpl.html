@@ -15,6 +15,18 @@
 </body>
 <script>
     $(document).ready(function() {
+        $('nav').addClass('hiding')
+        
+        var navHideTimeoutId;
+        $('.screensaver').mousemove(function() {
+            $("nav").removeClass('hiding');
+            window.clearTimeout(navHideTimeoutId);
+
+            navHideTimeoutId = setTimeout(function() {
+                $("nav").addClass('hiding');
+            }, 3000);
+        });
+
         var lastId;
         function animate() {
             var id;

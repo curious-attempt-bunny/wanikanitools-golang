@@ -111,6 +111,10 @@ nav.hiding {
 
 /* leech list */
 
+.leeches td, th {
+    text-align: center;
+}
+
 .leeches tbody a {
     color: white;
 }
