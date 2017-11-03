@@ -51,18 +51,8 @@ func main() {
 		withApiKey.GET("/leeches.txt", leechesTxt)
         withApiKey.GET("/leeches.json", leechesJson)
         withApiKey.GET("/level/progress", levelProgress)
-
-        withApiKey.GET("/leeches/screensaver", func(c *gin.Context) {
-            apiKey := c.MustGet("apiKey").(string)
-
-            leeches, _, _, resourceError := getLeeches(apiKey)
-            if (resourceError != nil) {
-                renderError(c, resourceError.Category, resourceError.ErrorMessage)
-                return
-            }
-
-            c.HTML(http.StatusOK, "leeches.screensaver.tmpl.html", leeches)
-        })
+        withApiKey.GET("/leeches/screensaver", leechesScreensaver)
+        withApiKey.GET("/leeches", leechesList)
 	}
 
 	router.Run(":" + port)
@@ -336,8 +326,34 @@ func levelProgress(c *gin.Context) {
     }
 }
 
+func leechesScreensaver(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    c.HTML(http.StatusOK, "leeches.screensaver.tmpl.html", leeches)
+}
+
+func leechesList(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    sort.Sort(leeches)
+    
+    c.HTML(http.StatusOK, "leeches.list.tmpl.html", leeches)
+}
+
 type LeechList []Leech
 
 func (p LeechList) Len() int { return len(p) }
-func (p LeechList) Less(i, j int) bool { return p[i].ReviewOrder < p[j].ReviewOrder }
+func (p LeechList) Less(i, j int) bool { return p[i].WorstScore > p[j].WorstScore || (p[i].WorstScore == p[j].WorstScore && p[i].Name > p[j].Name)}
 func (p LeechList) Swap(i, j int){ p[i], p[j] = p[j], p[i] }

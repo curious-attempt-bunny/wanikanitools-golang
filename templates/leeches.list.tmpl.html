@@ -1,0 +1,42 @@
+<html>
+  {{template "header.tmpl.html"}}
+<body>
+  {{template "nav.tmpl.html"}}
+
+<div class="container">
+    <table class="table leeches">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Worst</td>
+                <td>SRS</td>
+                <td>Wrong</td>
+                <td>Streak</td>
+                <td>Score</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .}}
+                <tr>
+                    <td class='type'>
+                        <a href='https://wanikani.com/{{.SubjectType}}/{{.Name}}' target='_blank'>
+                            <div class='{{.SubjectType}}'>{{.Name}}</div>
+                        </a>
+                    </td>
+                    <td>{{.WorstType}}</td>
+                    <td class='{{.SrsStageName}}'>{{.SrsStage}}</td>
+                    <td>{{.WorstIncorrect}}</td>
+                    <td>{{.WorstCurrentStreak}}</td>
+                    <td>{{printf "%.2f" .WorstScore}}</td>
+                </tr>
+            {{end}}            
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+</html>

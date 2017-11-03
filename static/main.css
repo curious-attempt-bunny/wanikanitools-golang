@@ -107,3 +107,38 @@ nav.hiding {
     color: red;
     font-size: 2em;
 }
+
+
+/* leech list */
+
+.leeches tbody a {
+    color: white;
+}
+
+.leeches tbody a:hover {
+    color: white;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3), 0 0 10px #fff;
+}
+
+.leeches .type {
+    padding: 0;  
+}
+
+.leeches div.vocabulary {
+    padding: 8px;
+    background-repeat: repeat-x;
+    font-size: 20px;
+    color: white;
+    background-color: #a100f1;
+    background-image: linear-gradient(to bottom, #a0f, #9300dd);
+}
+
+.leeches div.kanji {
+    padding: 8px;
+    background-repeat: repeat-x;
+    font-size: 20px;
+    color: white;
+    background-color: #f100a1;
+    background-image: linear-gradient(to bottom, #f0a, #dd0093);
+}
