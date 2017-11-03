@@ -4,6 +4,34 @@
 	"GodepVersion": "v79",
 	"Deps": [
 		{
+			"ImportPath": "github.com/boj/redistore",
+			"Comment": "v1.2-5-g4562487",
+			"Rev": "4562487a4bee9a7c272b72bfaeda4917d0a47ab9"
+		},
+		{
+			"ImportPath": "github.com/bradfitz/gomemcache/memcache",
+			"Comment": "release.r60-46-g1952afa",
+			"Rev": "1952afaa557dc08e8e0d89eafab110fb501c1a2b"
+		},
+		{
+			"ImportPath": "github.com/bradleypeabody/gorilla-sessions-memcache",
+			"Rev": "75ee37df8664a47cd5d9eb84d41e1f2b08086893"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/internal",
+			"Comment": "v1.2.0-4-g47dc60e",
+			"Rev": "47dc60e71eed504e3ef8e77ee3c6fe720f3be57f"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Comment": "v1.2.0-4-g47dc60e",
+			"Rev": "47dc60e71eed504e3ef8e77ee3c6fe720f3be57f"
+		},
+		{
+			"ImportPath": "github.com/gin-contrib/sessions",
+			"Rev": "cccdeef56346e7037ca92de250c2b55ef5e7ffe3"
+		},
+		{
 			"ImportPath": "github.com/gin-contrib/sse",
 			"Rev": "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae"
 		},
@@ -32,9 +60,28 @@
 			"Rev": "1643683e1b54a9e88ad26d98f81400c8c9d9f4f9"
 		},
 		{
+			"ImportPath": "github.com/gorilla/context",
+			"Comment": "v1.1-7-g08b5f42",
+			"Rev": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Comment": "v1.1-6-ge59506c",
+			"Rev": "e59506cc896acb7f7bf732d4fdf5e25f7ccd8983"
+		},
+		{
+			"ImportPath": "github.com/gorilla/sessions",
+			"Comment": "v1.1-8-ga3acf13",
+			"Rev": "a3acf13e802c358d65f249324d14ed24aac11370"
+		},
+		{
 			"ImportPath": "github.com/json-iterator/go",
 			"Comment": "1.0.3",
 			"Rev": "6240e1e7983a85228f7fd9c3e1b6932d46ec58e2"
+		},
+		{
+			"ImportPath": "github.com/kidstuff/mongostore",
+			"Rev": "256d65ac5b0e35e7c5ebb3f175c0bed1e5c2b253"
 		},
 		{
 			"ImportPath": "github.com/mattn/go-isatty",
@@ -88,6 +135,31 @@
 			"ImportPath": "gopkg.in/go-playground/validator.v8",
 			"Comment": "v8.18.2",
 			"Rev": "5f1438d3fca68893a817e4a66806cea46a9e4ebf"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2016.08.01-5-g3f83fa5",
+			"Rev": "3f83fa5005286a7fe593b055f0d7771a7dce4655"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/bson",
+			"Comment": "r2016.08.01-5-g3f83fa5",
+			"Rev": "3f83fa5005286a7fe593b055f0d7771a7dce4655"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/json",
+			"Comment": "r2016.08.01-5-g3f83fa5",
+			"Rev": "3f83fa5005286a7fe593b055f0d7771a7dce4655"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/sasl",
+			"Comment": "r2016.08.01-5-g3f83fa5",
+			"Rev": "3f83fa5005286a7fe593b055f0d7771a7dce4655"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/scram",
+			"Comment": "r2016.08.01-5-g3f83fa5",
+			"Rev": "3f83fa5005286a7fe593b055f0d7771a7dce4655"
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",

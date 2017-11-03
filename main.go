@@ -14,6 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent"
 	"github.com/newrelic/go-agent/_integrations/nrgin/v1"
+    "github.com/gin-contrib/sessions"
 )
 
 func main() {
@@ -34,8 +35,17 @@ func main() {
 		router.Use(nrgin.Middleware(app))
 	}
 
-	router.Use(CORSMiddleware())
-	router.LoadHTMLGlob("templates/*.tmpl.html")
+    router.Use(CORSMiddleware())
+
+    secret := os.Getenv("SESSION_SECRET")
+    if len(secret) == 0 {
+        secret = "a secret"
+    }
+
+    store := sessions.NewCookieStore([]byte(secret))
+	router.Use(sessions.Sessions("session", store))
+
+    router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
 
 	router.GET("/", func(c *gin.Context) {
