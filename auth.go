@@ -31,9 +31,10 @@ func RedirectWithSessionApiKey() gin.HandlerFunc {
             c.Request.URL.RawQuery = parameters.Encode()
             c.Redirect(http.StatusFound, c.Request.URL.String())
             c.Abort()
-        } else {
-            c.Next()
+            return
         }
+
+        c.Next()
     }
 }
 

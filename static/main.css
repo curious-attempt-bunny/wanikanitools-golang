@@ -48,6 +48,13 @@ nav.hiding {
   transition: 3s
 }
 
+nav .user-name {
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 0.5em;
+  color: white;
+}
+
 .leech {
     font-size: 5em;
     position: absolute;

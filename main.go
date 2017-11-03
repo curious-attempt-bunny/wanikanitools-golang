@@ -17,6 +17,11 @@ import (
     "github.com/gin-contrib/sessions"
 )
 
+type TemplateContext struct {
+    User *User
+    Data interface{}
+}
+
 func main() {
 	port := os.Getenv("PORT")
 
@@ -52,7 +57,24 @@ func main() {
     withSessionApiKeyRedirect.Use(RedirectWithSessionApiKey())
     {
     	withSessionApiKeyRedirect.GET("/", func(c *gin.Context) {
-    		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+            apiKey := c.Query("api_key")
+
+            fmt.Printf("%s, %-v\n", apiKey)
+
+            if len(apiKey) > 0 {
+                ch := make(chan *User)
+                go getUser(apiKey, ch)
+                user := <-ch
+                if len(user.Error) > 0 {
+                    renderError(c, "user", user.Error)
+                    return
+                }
+                fmt.Printf("%-v\n", user)
+
+    		    c.HTML(http.StatusOK, "index.tmpl.html", TemplateContext{User:user})
+            } else {                
+                c.HTML(http.StatusOK, "index.tmpl.html", nil)
+            }
     	})
 
     	withApiKey := withSessionApiKeyRedirect.Group("/")
@@ -350,27 +372,45 @@ func levelProgress(c *gin.Context) {
 func leechesScreensaver(c *gin.Context) {
     apiKey := c.MustGet("apiKey").(string)
 
+    chUser := make(chan *User)
+    go getUser(apiKey, chUser)
+
     leeches, _, _, resourceError := getLeeches(apiKey)
     if (resourceError != nil) {
         renderError(c, resourceError.Category, resourceError.ErrorMessage)
         return
     }
 
-    c.HTML(http.StatusOK, "leeches.screensaver.tmpl.html", leeches)
+    user := <-chUser
+    if len(user.Error) > 0 {
+        renderError(c, "user", user.Error)
+        return
+    }    
+
+    c.HTML(http.StatusOK, "leeches.screensaver.tmpl.html", TemplateContext{User:user, Data:leeches})
 }
 
 func leechesList(c *gin.Context) {
     apiKey := c.MustGet("apiKey").(string)
 
+    chUser := make(chan *User)
+    go getUser(apiKey, chUser)
+
     leeches, _, _, resourceError := getLeeches(apiKey)
     if (resourceError != nil) {
         renderError(c, resourceError.Category, resourceError.ErrorMessage)
         return
     }
 
+    user := <-chUser
+    if len(user.Error) > 0 {
+        renderError(c, "user", user.Error)
+        return
+    }
+
     sort.Sort(leeches)
     
-    c.HTML(http.StatusOK, "leeches.list.tmpl.html", leeches)
+    c.HTML(http.StatusOK, "leeches.list.tmpl.html", TemplateContext{User:user, Data:leeches})
 }
 
 type LeechList []Leech
