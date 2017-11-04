@@ -1,10 +1,11 @@
 <html>
   {{template "header.tmpl.html"}}
-<body>
+<body style="background: black;">
   {{template "nav.tmpl.html" .}}
 
+<div id="preview-warning" class="container alert alert-warning" role="alert"><strong>You're not logged in!</strong> This is a preview. It's hightechbunny's leeches that you're looking at.</div>
+
 <div class="screensaver">
-    <div id="preview-warning" class="alert alert-warning" role="alert"><strong>You're not logged in!</strong> This is a preview. It's hightechbunny's leeches that you're looking at.</div>
     
     {{range .Data}}
         <div id='leech-{{.SubjectID}}' class='leech'>
