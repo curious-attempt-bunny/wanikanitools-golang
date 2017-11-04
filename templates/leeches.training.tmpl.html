@@ -1,0 +1,97 @@
+<html>
+  {{template "header.tmpl.html"}}
+<body>
+  {{template "nav.tmpl.html" .}}
+
+<div class="container training">
+    <img src="/static/scenery.jpg" style="width:100%;"/>
+    <img id="school" src="/static/school.png" style="width:25%;"/>
+
+    {{range .Data}}
+        <div id='leech-{{.SubjectID}}' class='leech {{.SubjectType}}'>
+            <span>{{.Name}}</span>
+        </div>
+    {{end}}
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        var leeches = []
+
+        $('.leech').each(function(i, el) {
+            leeches.push(
+                {el: $(el),
+                    current: {x: Math.random()*120 - 20, y: Math.random()*-200 - 10}, 
+                    dest: {x: 78, y: 44},
+                    display: true})
+        });
+
+        function update() {
+            leeches.forEach(function(leech) {
+                if (!leech.display) {
+                    return;
+                }
+                if (Math.abs(leech.current.x - leech.dest.x) + Math.abs(leech.current.y - leech.dest.y) <= 2) {
+                    leech.display = false;
+                    leech.el.hide();
+                    $('#school').addClass("jello");
+                    setTimeout(function() {
+                        $('#school').removeClass("jello");
+                    }, 500);
+                    return;
+                }
+
+                var doX = Math.abs(leech.current.x - leech.dest.x) > Math.abs(leech.current.y - leech.dest.y);
+                if (Math.random() < 0.1) {
+                    doX = !doX;
+                }
+
+                if (doX) {
+                    if (leech.current.x < leech.dest.x) {
+                        leech.current.x += 1;
+                    } else if (leech.current.x > leech.dest.x) {
+                        leech.current.x -= 1;
+                    }
+
+                    if (Math.random() < 0.3) {
+                        if (leech.current.y < leech.dest.y) {
+                            leech.current.y += 1;
+                        } else if (leech.current.y > leech.dest.y) {
+                            leech.current.y -= 1;
+                        }
+                    }
+                } else {
+                    if (leech.current.y < leech.dest.y) {
+                        leech.current.y += 1;
+                    } else if (leech.current.y > leech.dest.y) {
+                        leech.current.y -= 1;
+                    }
+
+                    if (Math.random() < 0.3) {
+                        if (leech.current.x < leech.dest.x) {
+                            leech.current.x += 1;
+                        } else if (leech.current.x > leech.dest.x) {
+                            leech.current.x -= 1;
+                        }
+                    }
+                }
+
+                var scale = 3.0;
+                if (leech.current.y > 5) {
+                    var h = 1.0 - Math.min(40, leech.current.y - 5) / 40.0;
+                    scale = Math.min(3.0, h*1.5 + 1.5);
+                }
+
+                leech.el.
+                    css('left', leech.current.x+"%").
+                    css('bottom', leech.current.y+"%").
+                    css('font-size', scale+"em");
+            })
+
+            return true;
+        }
+
+        setInterval(update, 100);
+    })
+</script>
+</html>

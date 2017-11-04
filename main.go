@@ -88,6 +88,7 @@ func main() {
             withApiKey.GET("/level/progress", levelProgress)
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
             withApiKey.GET("/leeches", leechesList)
+            withApiKey.GET("/leeches/training", leechesTraining)
     	}
     }
 
@@ -412,6 +413,31 @@ func leechesList(c *gin.Context) {
     
     c.HTML(http.StatusOK, "leeches.list.tmpl.html", TemplateContext{User:user, Data:leeches})
 }
+
+func leechesTraining(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    chUser := make(chan *User)
+    go getUser(apiKey, chUser)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    user := <-chUser
+    if len(user.Error) > 0 {
+        renderError(c, "user", user.Error)
+        return
+    }
+
+    sort.Sort(leeches)
+    
+    c.HTML(http.StatusOK, "leeches.training.tmpl.html", TemplateContext{User:user, Data:leeches})
+}
+
+
 
 type LeechList []Leech
 

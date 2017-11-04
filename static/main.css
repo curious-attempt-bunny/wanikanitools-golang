@@ -55,7 +55,7 @@ nav .user-name {
   color: white;
 }
 
-.leech {
+.screensaver .leech {
     font-size: 5em;
     position: absolute;
     top:0;
@@ -65,46 +65,46 @@ nav .user-name {
     transition: opacity 2s 0s;
 }
 
-.leech span {
+.screensaver .leech span {
     color: black;
     transition: color 2s 0s, background-color 2s 0s;
 }
 
-.leech span.type {
+.screensaver .leech span.type {
     padding-left: 0.2em;
     padding-right: 0.2em;
 }
 
-.leech span.type rt {
+.screensaver .leech span.type rt {
     transition: color 2s 14s, background-color 2s 14s;
     font-size: 0.33em
 }
 
-.leech span.reading {
+.screensaver .leech span.reading {
     transition: color 2s 14s, background-color 2s 14s;
 }
 
-.leech span.meaning {
+.screensaver .leech span.meaning {
     transition: color 2s 7s, background-color 2s 7s;
 }
 
-.leech.active {
+.screensaver .leech.active {
     opacity: 1;
 }
 
-.leech.active span {
+.screensaver .leech.active span {
     color: white;
 }
         
-.leech.active .radical {
+.screensaver .leech.active .radical {
     background-color: #0af;
 }
 
-.leech.active .kanji {
+.screensaver .leech.active .kanji {
     background-color: #f0a;
 }
 
-.leech.active .vocabulary {
+.screensaver .leech.active .vocabulary {
     background-color: #a0f;
 }
 
@@ -182,4 +182,75 @@ nav .user-name {
 .srs.Enlightened {
     background-color: #0093dd;
     background-image: linear-gradient(to bottom, #0af, #0093dd);
+}
+
+.training {
+    position: relative;    
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.training #school {
+    position: absolute;
+    right: 7%;
+    top: 22%;
+}
+
+.training .leech {
+    font-size: 3em;
+    color: white;
+    position: absolute;
+    border-radius: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.training .leech.kanji {
+    background-color: #f0a;
+}
+
+.training .leech.vocabulary {
+    background-color: #a0f;
+}
+
+@keyframes jello {
+  from, 11.1%, to {
+    transform: none;
+  }
+
+  22.2% {
+    transform: skewX(-12.5deg) skewY(-12.5deg);
+  }
+
+  33.3% {
+    transform: skewX(6.25deg) skewY(6.25deg);
+  }
+
+  44.4% {
+    transform: skewX(-3.125deg) skewY(-3.125deg);
+  }
+
+  55.5% {
+    transform: skewX(1.5625deg) skewY(1.5625deg);
+  }
+
+  66.6% {
+    transform: skewX(-0.78125deg) skewY(-0.78125deg);
+  }
+
+  77.7% {
+    transform: skewX(0.390625deg) skewY(0.390625deg);
+  }
+
+  88.8% {
+    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+  }
+}
+
+.jello {
+  animation-name: jello;
+  transform-origin: center;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
 }

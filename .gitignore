@@ -2,3 +2,4 @@
 .docker_build/
 wanikanitools-golang
 data/*.csv
+.DS_Store
