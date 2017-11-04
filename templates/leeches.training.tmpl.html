@@ -5,7 +5,9 @@
 
 <div class="container training">
     <img src="/static/scenery.jpg" style="width:100%;"/>
-    <img id="school" src="/static/school.png" style="width:25%;"/>
+    <img id="school" src="/static/school.png"/>
+    <img id="gym" src="/static/gym.png"/>
+    <img id="target-practice" src="/static/target-practice.png"/>
 
     {{range .Data}}
         <div id='leech-{{.SubjectID}}' class='leech {{.SubjectType}}'>
@@ -21,7 +23,7 @@
         $('.leech').each(function(i, el) {
             leeches.push(
                 {el: $(el),
-                    current: {x: Math.random()*120 - 20, y: Math.random()*-200 - 10}, 
+                    current: {x: Math.random()*80 + 20, y: Math.random()*-150 - 10}, 
                     dest: {x: 78, y: 44},
                     display: true})
         });
