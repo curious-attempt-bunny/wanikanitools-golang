@@ -198,6 +198,27 @@ nav .user-name {
     top: 22%;
 }
 
+.training #construction1 {
+    position: absolute;
+    right: 13%;
+    bottom: 42%;
+    width: 2em;
+}
+
+.training #construction2 {
+    position: absolute;
+    left: 43%;
+    bottom: 32%;
+    width: 2.5em;
+}
+
+.training #construction3 {
+    position: absolute;
+    left: 26%;
+    bottom: 3%;
+    width: 3em;
+}
+
 .training #gym {
     position: absolute;
     width: 12%;
