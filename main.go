@@ -295,15 +295,17 @@ func levelProgress(c *gin.Context) {
         return
     } 
 
-    var progress Progress
-    progress.Vocabulary.Level = user.Data.Level - 1
-    progress.Radical   .Level = user.Data.Level
-    progress.Kanji     .Level = user.Data.Level
-
-    progress.Vocabulary.SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-    progress.Radical   .SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-    progress.Kanji     .SrsLevelTotals = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-
+    levelToTypeToProgress := make(map[int]map[string]*ProgressType)
+    levelToTypeToProgress[user.Data.Level - 1] = make(map[string]*ProgressType)
+    levelToTypeToProgress[user.Data.Level - 1]["radical"] = &ProgressType{Level:user.Data.Level - 1, Type:"radical", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    levelToTypeToProgress[user.Data.Level - 1]["vocabulary"] = &ProgressType{Level:user.Data.Level - 1, Type:"vocabulary", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    levelToTypeToProgress[user.Data.Level - 1]["kanji"] = &ProgressType{Level:user.Data.Level - 1, Type:"kanji", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    
+    levelToTypeToProgress[user.Data.Level] = make(map[string]*ProgressType)
+    levelToTypeToProgress[user.Data.Level]["radical"] = &ProgressType{Level:user.Data.Level, Type:"radical", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    levelToTypeToProgress[user.Data.Level]["vocabulary"] = &ProgressType{Level:user.Data.Level, Type:"vocabulary", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    levelToTypeToProgress[user.Data.Level]["kanji"] = &ProgressType{Level:user.Data.Level, Type:"kanji", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+    
     for i := 0; i<len(assignments.Data); i++ {
         assignment := assignments.Data[i].Data
 
@@ -319,49 +321,39 @@ func levelProgress(c *gin.Context) {
             }
         }
 
-        var progressType *ProgressType
-
-        if user.Data.Level - 1 == assignment.Level {
-            if assignment.SubjectType == "vocabulary" {
-                progressType = &progress.Vocabulary
-            }
-        } else if user.Data.Level == assignment.Level {
-            if assignment.SubjectType == "radical" {
-                progressType = &progress.Radical
-            } else if assignment.SubjectType == "kanji" {
-                progressType = &progress.Kanji
-            }
+        typeToProgress, exists := levelToTypeToProgress[assignment.Level]
+        if (!exists) {
+            continue
         }
 
-        if progressType != nil {
-            progressType.SrsLevelTotals[ assignment.SrsStage ] += 1
+        progressType := typeToProgress[assignment.SubjectType]
+        progressType.SrsLevelTotals[ assignment.SrsStage ] += 1
 
-            if assignment.SrsStage >= 5 {
-                progressType.GuruedTotal += 1
-            }
+        if assignment.SrsStage >= 5 {
+            progressType.GuruedTotal += 1
         }
     }
 
     for _, subject := range subjectsDataMap {
-        var progressType *ProgressType
-
-        if user.Data.Level - 1 == subject.Data.Level {
-            if subject.Object == "vocabulary" {
-                progressType = &progress.Vocabulary
-            }
-        } else if user.Data.Level == subject.Data.Level {
-            if subject.Object == "radical" {
-                progressType = &progress.Radical
-            } else if subject.Object == "kanji" {
-                progressType = &progress.Kanji
-            }
+        typeToProgress, exists := levelToTypeToProgress[subject.Data.Level]
+        if (!exists) {
+            continue
         }
 
-        if progressType != nil {
-            progressType.Max += 1
-        }
+        progressType := typeToProgress[subject.Object]
+        progressType.Max += 1
     }
 
+    var progress Progress
+
+    progress.Progresses = []*ProgressType{
+        levelToTypeToProgress[user.Data.Level - 1]["radical"],
+        levelToTypeToProgress[user.Data.Level - 1]["kanji"],
+        levelToTypeToProgress[user.Data.Level - 1]["vocabulary"],
+        levelToTypeToProgress[user.Data.Level]["radical"],
+        levelToTypeToProgress[user.Data.Level]["kanji"],
+        levelToTypeToProgress[user.Data.Level]["vocabulary"] }
+    
     c.JSON(200, progress)
 
     txn := nrgin.Transaction(c)
