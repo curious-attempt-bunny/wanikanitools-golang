@@ -5,8 +5,11 @@ import "fmt"
 
 type Leech struct {
     Name               string  `json:"name"`
+    Level              int     `json:"level"`
     PrimaryMeaning     string  `json:"primary_meaning"`
+    Meanings           []string `json:"meanings"`
     PrimaryReading     string  `json:"primary_reading"`
+    Readings           []string `json:"readings"`
     SrsStage           int     `json:"srs_stage"`
     SrsStageName       string  `json:"srs_stage_name"`
     SubjectID          int     `json:"subject_id"`
@@ -109,17 +112,21 @@ func getLeeches(apiKey string) (LeechList, *ReviewStatistics, *Assignments, *Res
             leech.Name = subject.Data.Characters
         }
 
+        leech.Level = subject.Data.Level
+
+        leech.Meanings = make([]string, len(subject.Data.Meanings))
         for j := 0; j<len(subject.Data.Meanings); j++ {
+            leech.Meanings[j] = subject.Data.Meanings[j].Meaning
             if (subject.Data.Meanings[j].Primary) {
                 leech.PrimaryMeaning = subject.Data.Meanings[j].Meaning
-                break
             }
         }
 
+        leech.Readings = make([]string, len(subject.Data.Readings))
         for j := 0; j<len(subject.Data.Readings); j++ {
+            leech.Readings[j] = subject.Data.Readings[j].Reading
             if (subject.Data.Readings[j].Primary) {
                 leech.PrimaryReading = subject.Data.Readings[j].Reading
-                break
             }
         }
 
