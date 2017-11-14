@@ -8,6 +8,17 @@
   <script type="text/javascript" src="/static/jquery.dataTables.min.1.10.16.js"/>
   <script type="text/javascript" src="/static/dataTables.bootstrap.min.1.10.16.js"></script>
   <script type="text/javascript">
+    if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
+
+    Math.trunc = Math.trunc || function(x) {
+        return x - x % 1;
+    };
+
     $(document).ready(function() {
         $("nav li a[href='"+window.location.pathname+"']").parent().addClass('active');
         function qs(key) {
