@@ -2,8 +2,8 @@ package main
 
 import "encoding/json"
 import "fmt"
-
-var apiKeyReviewStatisticPageCounts map[string]int = make(map[string]int)
+import "io/ioutil"
+import "net/url"
 
 type ReviewStatistics struct {
     Data []ReviewStatisticsData `json:"data"`
@@ -37,61 +37,81 @@ type ReviewStatisticsData struct {
 }
 
 func getReviewStatistics(apiKey string, chResult chan *ReviewStatistics) {
-    ch := make(chan *ReviewStatistics)
-    maxPages, isApiKeyPageCountPresent := apiKeyReviewStatisticPageCounts[apiKey]
-    if !isApiKeyPageCountPresent {
-        maxPages = 1
-    }
-    fmt.Printf("getReviewStatistics assuming maxPages = %d\n", maxPages)
+    var results *ReviewStatistics
 
-    for page := 1; page <= maxPages; page++ {
-        go getReviewStatisticsPage(apiKey, page, ch)
-    }
-    
-    results := <-ch
-    if len(results.Error) > 0 {
-        chResult <- results
-        return
-    }
-
-    if (results.Pages.Last) > maxPages {
-        apiKeyReviewStatisticPageCounts[apiKey] = results.Pages.Last
-        for page := maxPages+1; page <= results.Pages.Last; page++ {
-            go getReviewStatisticsPage(apiKey, page, ch)
-        }
-        maxPages = results.Pages.Last
-    }
-
-    for page := 2; page <= maxPages; page++ {
-        resultsPage := <-ch
-        if len(resultsPage.Error) > 0 {
-            results.Error = resultsPage.Error
-            chResult <- results
+    apiEntity := "review_statistics"
+    uri := "https://wanikani.com/api/v2/"+apiEntity
+    cacheFile := fmt.Sprintf("%s/%s_%s.json", GetCacheDir(), apiKey, apiEntity)
+    raw, err := ioutil.ReadFile(cacheFile)
+    if (err != nil) {
+        // cache miss
+        results, err = getReviewStatisticsPage(apiKey, uri)
+        if err != nil {
+            chResult <- &ReviewStatistics{Error: err.Error()}
+            return
+        }    
+    } else {
+        // cache hit
+        err = json.Unmarshal(raw, &results)
+        if err != nil {
+            chResult <- &ReviewStatistics{Error: err.Error()}
             return
         }
-    
-        results.Data = append(results.Data, resultsPage.Data...)
+        v := url.Values{}
+        v.Set("updated_after", results.DataUpdatedAt)
+        results.Pages.NextURL = uri+"?"+v.Encode()
     }
 
-    results.Pages.Current = 1
+    itemDataMap := make(map[int]ReviewStatisticsData)
+    for _, item := range results.Data {
+        itemDataMap[item.Data.SubjectID] = item
+    }
 
+    lastResult := results
+    for len(lastResult.Pages.NextURL) > 0 {
+        lastResult, err = getReviewStatisticsPage(apiKey, lastResult.Pages.NextURL)
+        if err != nil {
+            chResult <- &ReviewStatistics{Error: err.Error()}
+            return
+        }
+
+        for _, item := range lastResult.Data {
+            itemDataMap[item.Data.SubjectID] = item
+        }
+    }
+
+    results.Data = make([]ReviewStatisticsData, 0, len(itemDataMap))
+    for _, item := range itemDataMap {
+        results.Data = append(results.Data, item)
+    }
+    
     chResult <- results
-}
 
-
-func getReviewStatisticsPage(apiKey string, page int, ch chan *ReviewStatistics) {
-    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/review_statistics?page=%d",page))
-    if err != nil {
-        ch <- &ReviewStatistics{Error: err.Error()}
+    raw, err = json.MarshalIndent(results, "", "  ")
+    if (err != nil) {
+        fmt.Printf("Error marshalling %s cache: %s\n", apiEntity, err.Error())
         return
     }
+
+    err = ioutil.WriteFile(cacheFile, raw, 0644)
+    if (err != nil) {
+        fmt.Printf("Error writing %s cache: %s\n", apiEntity, err.Error())
+        return
+    }
+}
+
+func getReviewStatisticsPage(apiKey string, pageUrl string) (*ReviewStatistics, error) {
+    body, err := getUrl(apiKey, pageUrl)
+    if err != nil {
+        return nil, err
+    }
+
     var results ReviewStatistics
     
     err = json.Unmarshal(body, &results)
     if err != nil {
-        ch <- &ReviewStatistics{Error: err.Error()}
-        return
+        return nil, err
     }
 
-    ch <- &results
+    return &results, nil
 }

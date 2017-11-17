@@ -77,8 +77,6 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
 
     lastResult := subjects
     for len(lastResult.Pages.NextURL) > 0 {
-        fmt.Printf("Next page: %s\n", lastResult.Pages.NextURL)
-
         lastResult, err = getSubjectsPage(apiKey, lastResult.Pages.NextURL)
         if err != nil {
             chResult <- &Subjects{Error: err.Error()}
@@ -113,7 +111,7 @@ func getSubjectsPage(apiKey string, pageUrl string) (*Subjects, error) {
     if err != nil {
         return nil, err
     }
-    fmt.Println(string(body))
+
     var subjects Subjects
     
     err = json.Unmarshal(body, &subjects)
