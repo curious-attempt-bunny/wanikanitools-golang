@@ -123,6 +123,14 @@ func apiV2Subjects(c *gin.Context) {
 	c.JSON(200, subjects)
 }
 
+func GetCacheDir() string {
+    cacheDir := os.Getenv("CACHE_PATH")
+    if len(cacheDir) == 0 {
+        cacheDir = "data"
+    }
+    return cacheDir
+}
+
 func srsStatus(c *gin.Context) {
 	apiKey := c.MustGet("apiKey").(string)
 
@@ -197,11 +205,7 @@ func srsStatus(c *gin.Context) {
         txn.AddAttribute("reviewStatisticsTotal", len(reviewStatistics.Data))
     }
 
-    cacheDir := os.Getenv("CACHE_PATH")
-    if len(cacheDir) == 0 {
-    	cacheDir = "data"
-    }
-    f, err := os.OpenFile(fmt.Sprintf("%s/%s_history.csv", cacheDir, apiKey),
+    f, err := os.OpenFile(fmt.Sprintf("%s/%s_history.csv", GetCacheDir(), apiKey),
     						os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
     if err == nil {
 	    now := time.Now()

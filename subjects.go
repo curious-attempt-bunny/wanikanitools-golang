@@ -2,6 +2,8 @@ package main
 
 import "encoding/json"
 import "fmt"
+import "io/ioutil"
+import "net/url"
 
 var subjectsCache *Subjects
 var subjectsDataMap map[int]SubjectsData = make(map[int]SubjectsData)
@@ -52,11 +54,26 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
         return
     }
 
-    subjects, err := getSubjectsPage(apiKey, "https://wanikani.com/api/v2/subjects")
-    if err != nil {
-        chResult <- &Subjects{Error: err.Error()}
-        return
-    }    
+    var subjects *Subjects
+    raw, err := ioutil.ReadFile(GetCacheDir()+"/subjects.json")
+    if (err != nil) {
+        // cache miss
+        subjects, err = getSubjectsPage(apiKey, "https://wanikani.com/api/v2/subjects")
+        if err != nil {
+            chResult <- &Subjects{Error: err.Error()}
+            return
+        }    
+    } else {
+        // cache hit
+        err = json.Unmarshal(raw, &subjects)
+        if err != nil {
+            chResult <- &Subjects{Error: err.Error()}
+            return
+        }
+        v := url.Values{}
+        v.Set("updated_after", subjects.DataUpdatedAt)
+        subjects.Pages.NextURL = "https://wanikani.com/api/v2/subjects?"+v.Encode()
+    }
 
     lastResult := subjects
     for len(lastResult.Pages.NextURL) > 0 {
@@ -77,6 +94,18 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
     subjectsCache = subjects
     
     chResult <- subjects
+
+    raw, err = json.MarshalIndent(subjects, "", "  ")
+    if (err != nil) {
+        fmt.Printf("Error marshalling subject cache: %s\n", err.Error())
+        return
+    }
+
+    err = ioutil.WriteFile(GetCacheDir()+"/subjects.json", raw, 0644)
+    if (err != nil) {
+        fmt.Printf("Error writing subject cache: %s\n", err.Error())
+        return
+    }
 }
 
 func getSubjectsPage(apiKey string, pageUrl string) (*Subjects, error) {
@@ -84,6 +113,7 @@ func getSubjectsPage(apiKey string, pageUrl string) (*Subjects, error) {
     if err != nil {
         return nil, err
     }
+    fmt.Println(string(body))
     var subjects Subjects
     
     err = json.Unmarshal(body, &subjects)
