@@ -52,39 +52,25 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
         return
     }
 
-    ch := make(chan *Subjects)
-
-    maxPages := 36
-    for page := 1; page <= maxPages; page++ {
-        go getSubjectsPage(apiKey, page, ch)
-    }
-    
-    subjects := <-ch
-    if len(subjects.Error) > 0 {
-        chResult <- subjects
+    subjects, err := getSubjectsPage(apiKey, "https://wanikani.com/api/v2/subjects")
+    if err != nil {
+        chResult <- &Subjects{Error: err.Error()}
         return
-    }
+    }    
 
-    if (int(subjects.Pages.Last) > maxPages) {
-        for page := maxPages+1; page <= int(subjects.Pages.Last); page++ {
-            go getSubjectsPage(apiKey, page, ch)
-        }
-        maxPages = int(subjects.Pages.Last)
-    }
+    lastResult := subjects
+    for len(lastResult.Pages.NextURL) > 0 {
+        fmt.Printf("Next page: %s\n", lastResult.Pages.NextURL)
 
-    for page := 2; page <= maxPages; page++ {
-        subjectsPage := <-ch
-        if len(subjectsPage.Error) > 0 {
-            subjects.Error = subjectsPage.Error
-            chResult <- subjects
+        lastResult, err = getSubjectsPage(apiKey, lastResult.Pages.NextURL)
+        if err != nil {
+            chResult <- &Subjects{Error: err.Error()}
             return
         }
 
-        subjects.Data = append(subjects.Data, subjectsPage.Data...)
+        subjects.Data = append(subjects.Data, lastResult.Data...)
     }
-
-    subjects.Pages.Current = 1
-
+    
     for i := 0; i<len(subjects.Data); i++ {
         subjectsDataMap[subjects.Data[i].ID] = subjects.Data[i]
     }
@@ -93,19 +79,17 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
     chResult <- subjects
 }
 
-func getSubjectsPage(apiKey string, page int, ch chan *Subjects) {
-    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/subjects?page=%d",page))
+func getSubjectsPage(apiKey string, pageUrl string) (*Subjects, error) {
+    body, err := getUrl(apiKey, pageUrl)
     if err != nil {
-        ch <- &Subjects{Error: err.Error()}
-        return
+        return nil, err
     }
     var subjects Subjects
     
     err = json.Unmarshal(body, &subjects)
     if err != nil {
-        ch <- &Subjects{Error: err.Error()}
-        return
+        return nil, err
     }
 
-    ch <- &subjects
+    return &subjects, nil
 }

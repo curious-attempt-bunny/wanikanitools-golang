@@ -88,7 +88,6 @@ func main() {
             withApiKey.GET("/level/progress", levelProgress)
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
             withApiKey.GET("/leeches", leechesList)
-            withApiKey.GET("/leeches/training", leechesTraining)
     	}
     }
 
