@@ -104,6 +104,9 @@ func main() {
 func renderError(c *gin.Context, category string, error string) {
 	fmt.Printf("%s.Error: %s\n", category, error)
 	if strings.Contains(error, "| resp.Status = 401 Unauthorized |") {
+        session := sessions.Default(c)
+        session.Delete("api_key")
+        session.Save()
 		c.JSON(401, gin.H{"error": "Bad credentials"})	
 	} else {
 		c.JSON(500, gin.H{"error": error})
