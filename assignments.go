@@ -2,6 +2,8 @@ package main
 
 import "encoding/json"
 import "fmt"
+import "io/ioutil"
+import "net/url"
 
 var apiKeyAssignmentsPageCounts map[string]int = make(map[string]int)
 
@@ -37,63 +39,81 @@ type AssignmentsData struct {
 }
 
 func getAssignments(apiKey string, chResult chan *Assignments) {
-    ch := make(chan *Assignments)
-    maxPages, isApiKeyPageCountPresent := apiKeyAssignmentsPageCounts[apiKey]
-    if !isApiKeyPageCountPresent {
-        maxPages = 1
-    }
-    fmt.Printf("getAssignments assuming maxPages = %d\n", maxPages)
+    var results *Assignments
 
-    for page := 1; page <= maxPages; page++ {
-        go getAssignmentsPage(apiKey, page, ch)
-    }
-    
-    results := <-ch
-    if len(results.Error) > 0 {
-        chResult <- results
-        return
-    }
-
-    if (results.Pages.Last > maxPages) {
-        apiKeyAssignmentsPageCounts[apiKey] = results.Pages.Last
-
-        for page := maxPages+1; page <= results.Pages.Last; page++ {
-            go getAssignmentsPage(apiKey, page, ch)
+    apiEntity := "assignments"
+    uri := "https://wanikani.com/api/v2/"+apiEntity
+    cacheFile := fmt.Sprintf("%s/%s_%s.json", GetCacheDir(), apiKey, apiEntity)
+    raw, err := ioutil.ReadFile(cacheFile)
+    if (err != nil) {
+        // cache miss
+        results, err = getAssignmentsPage(apiKey, uri)
+        if err != nil {
+            chResult <- &Assignments{Error: err.Error()}
+            return
+        }    
+    } else {
+        // cache hit
+        err = json.Unmarshal(raw, &results)
+        if err != nil {
+            chResult <- &Assignments{Error: err.Error()}
+            return
         }
-        maxPages = results.Pages.Last
+        v := url.Values{}
+        v.Set("updated_after", results.DataUpdatedAt)
+        results.Pages.NextURL = uri+"?"+v.Encode()
     }
 
-    for page := 2; page <= maxPages; page++ {
-        resultsPage := <-ch
-        if len(resultsPage.Error) > 0 {
-            results.Error = resultsPage.Error
-            chResult <- results
+    itemDataMap := make(map[int]AssignmentsData)
+    for _, item := range results.Data {
+        itemDataMap[item.Data.SubjectID] = item
+    }
+
+    lastResult := results
+    for len(lastResult.Pages.NextURL) > 0 {
+        lastResult, err = getAssignmentsPage(apiKey, lastResult.Pages.NextURL)
+        if err != nil {
+            chResult <- &Assignments{Error: err.Error()}
             return
         }
 
-        results.Data = append(results.Data, resultsPage.Data...)
+        for _, item := range lastResult.Data {
+            itemDataMap[item.Data.SubjectID] = item
+        }
     }
 
-    results.Pages.Current = 1
-
+    results.Data = make([]AssignmentsData, 0, len(itemDataMap))
+    for _, item := range itemDataMap {
+        results.Data = append(results.Data, item)
+    }
+    
     chResult <- results
+
+    raw, err = json.MarshalIndent(results, "", "  ")
+    if (err != nil) {
+        fmt.Printf("Error marshalling %s cache: %s\n", apiEntity, err.Error())
+        return
+    }
+
+    err = ioutil.WriteFile(cacheFile, raw, 0644)
+    if (err != nil) {
+        fmt.Printf("Error writing %s cache: %s\n", apiEntity, err.Error())
+        return
+    }
 }
 
-
-func getAssignmentsPage(apiKey string, page int, ch chan *Assignments) {
-    body, err := getUrl(apiKey, fmt.Sprintf("https://wanikani.com/api/v2/assignments?page=%d",page))
+func getAssignmentsPage(apiKey string, pageUrl string) (*Assignments, error) {
+    body, err := getUrl(apiKey, pageUrl)
     if err != nil {
-        ch <- &Assignments{Error: err.Error()}
-        return
+        return nil, err
     }
 
     var results Assignments
     
     err = json.Unmarshal(body, &results)
     if err != nil {
-        ch <- &Assignments{Error: err.Error()}
-        return
+        return nil, err
     }
 
-    ch <- &results
+    return &results, nil
 }
