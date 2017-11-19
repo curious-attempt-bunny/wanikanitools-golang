@@ -4,6 +4,7 @@ require 'cgi'
 brokenLinks = [
     'https://anonmgur.com/up/690971a092473f53f6784a155cf46f1a.png',
     'https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif',
+    'https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif'
 ]
 
 scriptToForum = Hash.new
@@ -22,10 +23,13 @@ Dir.glob('data/topic.*.json').each do |file|
         img_urls = post['cooked'].scan(/<img[^>]+src="([^"]+)"/m).flatten.map { |url| CGI::unescapeHTML(url).gsub('</em>', '_') }
         puts img_urls.inspect
         img_url = img_urls.find do |url|
-            img_url = m ? m[1].to_s : nil
-            img_url = nil if img_url && img_url.include?('/emoji/')
-            img_url = nil if brokenLinks.include?(img_url)
-            img_url
+            if url.include?('/emoji/')
+                false 
+            elsif brokenLinks.include?(url)
+                false
+            else
+                true
+            end
         end
         puts "  -> #{img_url}"
 

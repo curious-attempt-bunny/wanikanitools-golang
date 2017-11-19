@@ -180,7 +180,7 @@
     "version": "0.3"
   },
   {
-    "img_url": "https://anonmgur.com/up/690971a092473f53f6784a155cf46f1a.png",
+    "img_url": null,
     "likes": 0,
     "author": "horusscope",
     "topic_url": "https://community.wanikani.com/t/userscript-renbow-hacks-level-up-alert/11865",
@@ -540,7 +540,7 @@
     "version": "1.3"
   },
   {
-    "img_url": "//community.wanikani.com/images/emoji/apple/wink.png?v=3",
+    "img_url": null,
     "likes": 0,
     "author": "wilddamon",
     "topic_url": "https://community.wanikani.com/t/userscript-accept-vocab-readings-as-a-correct-meanings/15335",
@@ -876,7 +876,7 @@
     "version": "3"
   },
   {
-    "img_url": "https://discourse-cdn-sjc1.com/business2/images/emoji/apple/point_right.png?v=5",
+    "img_url": null,
     "likes": 16,
     "author": "rfindley",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-mistake-delay-new-version-2x/20426",
@@ -1152,7 +1152,7 @@
     "version": "1.2"
   },
   {
-    "img_url": "https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif",
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/0/02f1e4f49cbfdc161805d19346c641a55ab631f5.png",
     "likes": 1,
     "author": "Ethan",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-quick-info/8431",
