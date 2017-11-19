@@ -21,4 +21,4 @@ scripts.each do |url, script|
 end
 
 File.write('data/scripts.json', JSON.generate({scripts: scripts}))
-File.write('../static/scripts.json', JSON.generate(scripts.values))
+File.write('../static/scripts.json', JSON.pretty_generate(scripts.values, indent: '  '))

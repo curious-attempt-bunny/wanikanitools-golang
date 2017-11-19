@@ -1,7 +1,10 @@
 require 'json'
+require 'cgi'
 
-# 
-        # puts "#{post['username']}, #{m[1]}"
+brokenLinks = [
+    'https://anonmgur.com/up/690971a092473f53f6784a155cf46f1a.png',
+    'https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif',
+]
 
 scriptToForum = Hash.new
 
@@ -11,15 +14,24 @@ Dir.glob('data/topic.*.json').each do |file|
     m = post['cooked'].match(/href="(https:\/\/greasyfork.org\/(?:[^\/]+\/)scripts\/[^\/"?]+)/m)
     if m
         script_url = m[1]
-        m = post['cooked'].match(/<img[^>]+src="([^"]+)"/m)
-        img_url = m ? m[1].to_s : nil
-        img_url = nil if img_url && img_url.include?('/emoji/')
-    
+        
+        topic_url = "https://community.wanikani.com/t/#{topic['slug']}/#{topic['id']}"
+        next if topic_url == "https://community.wanikani.com/t/the-new-and-improved-list-of-api-and-third-party-apps/7694"
+        puts topic_url
+
+        img_urls = post['cooked'].scan(/<img[^>]+src="([^"]+)"/m).flatten.map { |url| CGI::unescapeHTML(url).gsub('</em>', '_') }
+        puts img_urls.inspect
+        img_url = img_urls.find do |url|
+            img_url = m ? m[1].to_s : nil
+            img_url = nil if img_url && img_url.include?('/emoji/')
+            img_url = nil if brokenLinks.include?(img_url)
+            img_url
+        end
+        puts "  -> #{img_url}"
+
         likes = post['actions_summary'].find { |action| action['count'] }
         likes = likes ? likes['count'] : 0
 
-        topic_url = "https://community.wanikani.com/t/#{topic['slug']}/#{topic['id']}"
-        next if topic_url == "https://community.wanikani.com/t/the-new-and-improved-list-of-api-and-third-party-apps/7694"
         # print "#{'%03d' % likes}♥, #{topic_url}, "
         # puts "#{script_url}, #{img_url}, #{post['username']}"
 
