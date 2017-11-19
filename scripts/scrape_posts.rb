@@ -4,7 +4,7 @@ require 'cgi'
 brokenLinks = [
     'https://anonmgur.com/up/690971a092473f53f6784a155cf46f1a.png',
     'https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif',
-    'https://s3.amazonaws.com/s3.wanikani.com/assets/v03/loading-100x100.gif'
+    '//community.wanikani.com/uploads/wanikani_community/original/2X/3/385fdec565bd57a15974eee9d01eda08099b479c.png'
 ]
 
 scriptToForum = Hash.new
@@ -20,7 +20,7 @@ Dir.glob('data/topic.*.json').each do |file|
         next if topic_url == "https://community.wanikani.com/t/the-new-and-improved-list-of-api-and-third-party-apps/7694"
         puts topic_url
 
-        img_urls = post['cooked'].scan(/<img[^>]+src="([^"]+)"/m).flatten.map { |url| CGI::unescapeHTML(url).gsub('</em>', '_') }
+        img_urls = post['cooked'].scan(/<img[^>]+src="([^"]+)"/m).flatten.map { |url| CGI::unescapeHTML(url).gsub('</em>', '_').sub(/^\/uploads/, '//community.wanikani.com/uploads') }
         puts img_urls.inspect
         img_url = img_urls.find do |url|
             if url.include?('/emoji/')
