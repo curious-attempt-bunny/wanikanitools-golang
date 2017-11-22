@@ -8,7 +8,7 @@
     "topic_id": 10201,
     "name": "Wanikani Lightning Mode",
     "description": "Eliminates second Enter or Click for correct review answers.",
-    "installs": 1509,
+    "installs": 1529,
     "version": "1.0.4"
   },
   {
@@ -20,7 +20,7 @@
     "topic_id": 10516,
     "name": "WaniKani Ultimate Timeline",
     "description": "Review schedule explorer for WaniKani",
-    "installs": 5229,
+    "installs": 5293,
     "version": "6.5.1"
   },
   {
@@ -32,7 +32,7 @@
     "topic_id": 10623,
     "name": "WaniKani additional resource links + Stroke order",
     "description": "Adds a link to alc/goo/weblio/ on vocab/kanji review/lesson/info pages, and stroke order for kanji.",
-    "installs": 8,
+    "installs": 9,
     "version": "0.0.9.6"
   },
   {
@@ -56,7 +56,7 @@
     "topic_id": 10713,
     "name": "WaniKani Real Numbers",
     "description": "Replaces 42+ with the real number using WaniKani API",
-    "installs": 3955,
+    "installs": 4014,
     "version": "4"
   },
   {
@@ -68,7 +68,7 @@
     "topic_id": 11215,
     "name": "WaniKani Hide Context Sentence",
     "description": "Hide context sentences until hovered.",
-    "installs": 310,
+    "installs": 314,
     "version": "1.0.3"
   },
   {
@@ -101,11 +101,7 @@
     "author": "Mempo",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-dashboard-active-topics-panel/11274",
     "script_url": "https://greasyfork.org/en/scripts/15028-wanikani-dashboard-active-topics-panel",
-    "topic_id": 11274,
-    "name": "Wanikani Dashboard Active Topics Panel",
-    "description": "Active Topics Panel for your dashboard",
-    "installs": 112,
-    "version": "1.6.1"
+    "topic_id": 11274
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/6/6ebceae7925fa38e065c8eef447a32473adf41ec.png",
@@ -913,7 +909,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 11,
+    "likes": 12,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -934,6 +930,18 @@
     "description": "Adds User Synonyms to the lessons page. Adds User Synonyms and Notes to unlearned item pages. This is an update of the version that was originally provided by @kobayashi (Takuya Kobayashi) and has been adapted to work with a newer version of WaniKani. The original &quot;WaniKani Lesson User Synonyms&quot; in version 0.1.2 has been broken since November 2017.",
     "installs": 26,
     "version": "0.2.2"
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/c/2/c2d1555ef0f9a96c764d360b218529ad0928342b_1_690x410.png",
+    "likes": 0,
+    "author": "polv",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-hide-buttons-in-review/22228",
+    "script_url": "https://greasyfork.org/en/scripts/35505-wanikani-hide-button-in-review",
+    "topic_id": 22228,
+    "name": "WaniKani Hide Button in Review",
+    "description": "Hide overly clunky buttons in Review and account for the size",
+    "installs": 2,
+    "version": "0.1.1"
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/3X/6/d/6d0f5c908c658ce5cdd2a4c35fd4c5a057b538da_1_521x500.png",
@@ -970,18 +978,6 @@
     "description": "Adds a link to the alc.co.jp results to vocab pages",
     "installs": 266,
     "version": "1"
-  },
-  {
-    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/6/63510d0ff4755a5662d7792a8bd2263e14160eec.png",
-    "likes": 1,
-    "author": "Samuel-H",
-    "topic_url": "https://community.wanikani.com/t/old-versionuserscript-burn-reviews-v1003/6806",
-    "script_url": "https://greasyfork.org/en/scripts/7007-wanikani-burn-reviews",
-    "topic_id": 6806,
-    "name": "Wanikani Burn Reviews",
-    "description": "Adds a space on the main page that reviews random burned items",
-    "installs": 1052,
-    "version": "1.0.0.3"
   },
   {
     "img_url": null,

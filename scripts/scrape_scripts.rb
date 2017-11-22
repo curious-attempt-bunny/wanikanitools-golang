@@ -24,5 +24,6 @@ File.write('data/scripts.json', JSON.generate({scripts: scripts}))
 
 # excluded scripts
 scripts.delete("https://greasyfork.org/en/scripts/35387-wanikani-app-store")
+scripts.delete("https://greasyfork.org/en/scripts/7007-wanikani-burn-reviews")
 
 File.write('../static/scripts.json', JSON.pretty_generate(scripts.values, indent: '  '))
