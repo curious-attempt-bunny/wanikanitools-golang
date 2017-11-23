@@ -15,6 +15,10 @@ import (
 	"github.com/newrelic/go-agent"
 	"github.com/newrelic/go-agent/_integrations/nrgin/v1"
     "github.com/gin-contrib/sessions"
+
+    "github.com/mattes/migrate"
+    _ "github.com/mattes/migrate/database/postgres"
+    _ "github.com/mattes/migrate/source/file"
 )
 
 type TemplateContext struct {
@@ -28,6 +32,8 @@ func main() {
 	if port == "" {
 		log.Fatal("$PORT must be set")
 	}
+
+    dbMigrate();
 
 	router := gin.Default()
 
@@ -99,6 +105,28 @@ func main() {
     })
 
 	router.Run(":" + port)
+}
+
+func dbMigrate() {
+    if os.Getenv("DATABASE_URL") == "" {
+        log.Fatal("$DATABASE_URL must be set")
+    }
+
+    m, err := migrate.New(
+        "file://migrations",
+        os.Getenv("DATABASE_URL"))
+
+    if err != nil {
+        fmt.Printf("migrate.New failed with:\n");
+        log.Fatal(err)
+    }
+
+    err = m.Up()
+
+    if err != nil && err != migrate.ErrNoChange {
+        fmt.Printf("migrate.Up failed with:\n");
+        log.Fatal(err)
+    }
 }
 
 func renderError(c *gin.Context, category string, error string) {
