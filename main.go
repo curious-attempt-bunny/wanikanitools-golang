@@ -127,7 +127,7 @@ type Script struct {
 }
 
 type ScriptIndex struct {
-    BrowserInstalls   map[string][]Script
+    BrowserInstalls   map[string][]Script `json:"browser_installs"`
     AvailableScripts []Script             `json:"available_scripts"`
 }
 
