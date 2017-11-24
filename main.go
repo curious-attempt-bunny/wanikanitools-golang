@@ -4,8 +4,11 @@ import (
     "log"
     "os"
     "bytes"
+    "database/sql"
+    "encoding/json"
     "fmt"
     "io"
+    "io/ioutil"
     "net/http"
     "sort"
     "strings"
@@ -94,6 +97,8 @@ func main() {
             withApiKey.GET("/level/progress", levelProgress)
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
             withApiKey.GET("/leeches", leechesList)
+            withApiKey.POST("/scripts/installed", postScriptsInstalled)
+            withApiKey.GET("/scripts", listScripts)
     	}
     }
 
@@ -105,6 +110,144 @@ func main() {
     })
 
 	router.Run(":" + port)
+}
+
+
+type Script struct {
+    Author      string      `json:"author"`
+    Description string      `json:"description"`
+    ImgURL      interface{} `json:"img_url"`
+    Installs    float64     `json:"installs"`
+    Likes       float64     `json:"likes"`
+    Name        string      `json:"name"`
+    ScriptURL   string      `json:"script_url"`
+    TopicID     float64     `json:"topic_id"`
+    TopicURL    string      `json:"topic_url"`
+    Version     string      `json:"version"`
+}
+
+type ScriptIndex struct {
+    BrowserInstalls   map[string][]Script
+    AvailableScripts []Script             `json:"available_scripts"`
+}
+
+var scripts []Script;
+var nameToScript map[string]Script;
+
+func listScripts(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    if len(scripts) == 0 {
+        raw, err := ioutil.ReadFile("static/scripts.json")
+        if (err != nil) {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return;
+        }
+
+        err = json.Unmarshal(raw, &scripts)
+        if err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+        }
+
+        nameToScript = make(map[string]Script)
+        for _, script := range scripts {
+            nameToScript[script.Name] = script
+        }
+    }
+
+    db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+    defer db.Close()
+
+    rows, err := db.Query("SELECT browser_uuid, script_name, script_version, last_seen FROM scripts WHERE api_key = $1", apiKey)
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    var result ScriptIndex
+    result.BrowserInstalls = make(map[string][]Script)
+    result.AvailableScripts = scripts
+
+    for rows.Next() {
+        var browserUuid string;
+        var scriptName string;
+        var scriptVersion string;
+        var lastSeen int64;
+        if err := rows.Scan(&browserUuid, &scriptName, &scriptVersion, &lastSeen); err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+
+        script, present := nameToScript[scriptName]
+        if !present {
+            fmt.Printf("No script found with name: %s\n", scriptName)
+            continue
+        }
+
+        _, present = result.BrowserInstalls[browserUuid]
+        if !present {
+            result.BrowserInstalls[browserUuid] = make([]Script, 0)
+        }
+
+        result.BrowserInstalls[browserUuid] = append(result.BrowserInstalls[browserUuid], script)
+    }
+
+    c.JSON(200, result)
+}
+
+type InstalledScripts struct {
+    Installed    map[string]InstalledScript `form:"installed" json:"installed"`
+}
+
+type InstalledScript struct {
+    Author            string   `json:"author"`
+    Description       string   `json:"description"`
+    Includes          []string `json:"includes"`
+    LastSeenInstalled int64  `json:"lastSeenInstalled"`
+    Name              string   `json:"name"`
+    Uuid              string   `json:"uuid"`
+    Version           string   `json:"version"`
+}
+
+func postScriptsInstalled(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+    browserUuid := c.Query("browser_uuid")
+    var installed InstalledScripts
+
+    err := c.BindJSON(&installed)
+    if (err != nil) {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+    defer db.Close()
+
+    _, err = db.Exec("DELETE FROM scripts WHERE browser_uuid = $1 AND api_key = $2", browserUuid, apiKey)
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    for _, script := range installed.Installed {
+        _, err = db.Exec("INSERT INTO scripts (api_key, browser_uuid, script_name, script_version, last_seen) VALUES ($1, $2, $3, $4, $5)",
+            apiKey, browserUuid, script.Name, script.Version, script.LastSeenInstalled)
+        if err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+
+    }
+
+    c.JSON(200, gin.H{"uploaded": installed})
 }
 
 func dbMigrate() {
@@ -127,6 +270,9 @@ func dbMigrate() {
         fmt.Printf("migrate.Up failed with:\n");
         log.Fatal(err)
     }
+
+    version, _, _ := m.Version()
+    fmt.Printf("Migrations complete at version: %d\n", version)
 }
 
 func renderError(c *gin.Context, category string, error string) {
