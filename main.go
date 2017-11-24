@@ -224,6 +224,11 @@ func postScriptsInstalled(c *gin.Context) {
         return
     }
 
+    if len(browserUuid) == 0 {
+        c.JSON(500, gin.H{"error": "browserUuid query parameter required"})
+        return   
+    }
+
     db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
     if err != nil {
         c.JSON(500, gin.H{"error": err.Error()})
