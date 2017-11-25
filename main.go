@@ -125,15 +125,16 @@ type Script struct {
     TopicURL    string      `json:"topic_url"`
     Version     string      `json:"version"`
     GlobalVariables []string `json:"global_variables"`
+    PercentageOfUsers  float64 `json:"percentage_of_users"`
 }
 
 type ScriptIndex struct {
-    BrowserInstalls   map[string][]Script `json:"browser_installs"`
-    AvailableScripts []Script             `json:"available_scripts"`
+    BrowserInstalls   map[string][]*Script `json:"browser_installs"`
+    AvailableScripts []*Script             `json:"available_scripts"`
 }
 
-var scripts []Script;
-var nameToScript map[string]Script;
+var scripts []*Script;
+var nameToScript map[string]*Script;
 
 func listScripts(c *gin.Context) {
     apiKey := c.MustGet("apiKey").(string)
@@ -150,7 +151,7 @@ func listScripts(c *gin.Context) {
             c.JSON(500, gin.H{"error": err.Error()})
         }
 
-        nameToScript = make(map[string]Script)
+        nameToScript = make(map[string]*Script)
         for _, script := range scripts {
             nameToScript[script.Name] = script
         }
@@ -170,7 +171,7 @@ func listScripts(c *gin.Context) {
     }
 
     var result ScriptIndex
-    result.BrowserInstalls = make(map[string][]Script)
+    result.BrowserInstalls = make(map[string][]*Script)
     result.AvailableScripts = scripts
 
     for rows.Next() {
@@ -191,10 +192,43 @@ func listScripts(c *gin.Context) {
 
         _, present = result.BrowserInstalls[browserUuid]
         if !present {
-            result.BrowserInstalls[browserUuid] = make([]Script, 0)
+            result.BrowserInstalls[browserUuid] = make([]*Script, 0)
         }
 
         result.BrowserInstalls[browserUuid] = append(result.BrowserInstalls[browserUuid], script)
+    }
+
+    var totalUsers float64
+    err = db.QueryRow("SELECT COUNT(DISTINCT(api_key)) FROM scripts").Scan(&totalUsers)
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    rows, err = db.Query("SELECT script_name, COUNT(DISTINCT(api_key)) as uses FROM scripts GROUP BY script_name")
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    for rows.Next() {
+        var scriptName string;
+        var userCount float64;
+        if err := rows.Scan(&scriptName, &userCount); err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+
+        script, present := nameToScript[scriptName]
+        if !present {
+            fmt.Printf("No script found with name: %s\n", scriptName)
+            continue
+        }
+
+        script.PercentageOfUsers = 100.0 * userCount / totalUsers
+
+        fmt.Printf("%s %g (%g) -> %g\n", scriptName, userCount, totalUsers, script.PercentageOfUsers)
+
     }
 
     c.JSON(200, result)
