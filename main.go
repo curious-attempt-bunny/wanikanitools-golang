@@ -124,6 +124,7 @@ type Script struct {
     TopicID     float64     `json:"topic_id"`
     TopicURL    string      `json:"topic_url"`
     Version     string      `json:"version"`
+    GlobalVariables []string `json:"global_variables"`
 }
 
 type ScriptIndex struct {

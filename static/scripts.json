@@ -9,7 +9,14 @@
     "name": "Wanikani Lightning Mode",
     "description": "Eliminates second Enter or Click for correct review answers.",
     "installs": 1529,
-    "version": "1.0.4"
+    "version": "1.0.4",
+    "globalVariables": [
+      "wklightning",
+      "lightning",
+      "ignore",
+      "observer",
+      "advance"
+    ]
   },
   {
     "img_url": "http://i.imgur.com/mo1PVNr.png",
@@ -21,7 +28,19 @@
     "name": "WaniKani Ultimate Timeline",
     "description": "Review schedule explorer for WaniKani",
     "installs": 5293,
-    "version": "6.5.1"
+    "version": "6.5.1",
+    "globalVariables": [
+      "wktimeln",
+      "str",
+      "x",
+      "y",
+      "tstamp",
+      "label",
+      "timeline",
+      "types",
+      "arr",
+      "promise"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/a/a8ad3a55275ea84f05276b51f8bd97f1cfb538d0.png",
@@ -33,7 +52,10 @@
     "name": "WaniKani additional resource links + Stroke order",
     "description": "Adds a link to alc/goo/weblio/ on vocab/kanji review/lesson/info pages, and stroke order for kanji.",
     "installs": 9,
-    "version": "0.0.9.6"
+    "version": "0.0.9.6",
+    "globalVariables": [
+      "objCurItem"
+    ]
   },
   {
     "img_url": null,
@@ -45,7 +67,11 @@
     "name": "WaniKani Post Search Direct Link",
     "description": "Adds direct links to Post Search results to go directly to post, instead of topic.",
     "installs": 34,
-    "version": "1.0.3"
+    "version": "1.0.3",
+    "globalVariables": [
+      "wkgotopost",
+      "observer"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/0/0a270c0f76862f94afb7dd90daf6aba80496cd09.png",
@@ -57,7 +83,10 @@
     "name": "WaniKani Real Numbers",
     "description": "Replaces 42+ with the real number using WaniKani API",
     "installs": 4014,
-    "version": "4"
+    "version": "4",
+    "globalVariables": [
+      "doneReviews"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/4/4296f0a93bccf713f1fcb01d1bd4818a757c74ae.gif",
@@ -69,7 +98,10 @@
     "name": "WaniKani Hide Context Sentence",
     "description": "Hide context sentences until hovered.",
     "installs": 314,
-    "version": "1.0.3"
+    "version": "1.0.3",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/7/7571e8738ad496edc1a21808a727705c808a7066_1_690x388.png",
@@ -81,7 +113,11 @@
     "name": "Wanikani Procrastination Annihilation",
     "description": "Hides the forums until you&#39;ve completed some reviews",
     "installs": 67,
-    "version": "1.2.3.4"
+    "version": "1.2.3.4",
+    "globalVariables": [
+      "settings",
+      "currentReviewAmount"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/4/4dd9ce51d6560051e2415878e90eb7afcacb5731.jpg",
@@ -93,7 +129,10 @@
     "name": "Purple Wanikani",
     "description": "Don&#39;t worry anymore about feeling left out by purple banners!",
     "installs": 5,
-    "version": "1"
+    "version": "1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/3/329c53a5032f90ff51198dfd29f9ad8c7c6c232a.png",
@@ -101,7 +140,14 @@
     "author": "Mempo",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-dashboard-active-topics-panel/11274",
     "script_url": "https://greasyfork.org/en/scripts/15028-wanikani-dashboard-active-topics-panel",
-    "topic_id": 11274
+    "topic_id": 11274,
+    "name": "Wanikani Dashboard Active Topics Panel",
+    "description": "Active Topics Panel for your dashboard",
+    "installs": 112,
+    "version": "1.6.1",
+    "globalVariables": [
+      "icon"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/6/6ebceae7925fa38e065c8eef447a32473adf41ec.png",
@@ -113,7 +159,11 @@
     "name": "Wanikani Review SRS/Level Indicator",
     "description": "Show current SRS level and how many are left before levelling up",
     "installs": 1042,
-    "version": "1.4.3"
+    "version": "1.4.3",
+    "globalVariables": [
+      "cssDynamicWidth",
+      "positionInList"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/6/6427c4a122486ed4a7079f20d075b60c3316b66d.png",
@@ -125,7 +175,10 @@
     "name": "WaniKani Markdown Notes",
     "description": "Allows you to write Markdown in the notes, which will be rendered as HTML when the page loads.",
     "installs": 57,
-    "version": "1.4"
+    "version": "1.4",
+    "globalVariables": [
+      "wkmdnotes"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/4/4c5337ca5b2c3927752d6850aba564c4a318f939_1_690x425.png",
@@ -137,7 +190,10 @@
     "name": "WaniKani Golden Burn",
     "description": "Turn burned items to gold.",
     "installs": 785,
-    "version": "1.0.4"
+    "version": "1.0.4",
+    "globalVariables": [
+      "wkgoldburn"
+    ]
   },
   {
     "img_url": null,
@@ -149,7 +205,10 @@
     "name": "Wanikani Sounds",
     "description": "Adds sounds for correct and incorrect on WaniKani reviews.",
     "installs": 49,
-    "version": "1.0.1"
+    "version": "1.0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/5/522160b6cd7dbe0b9f209966e4bebdbe66592205.png",
@@ -161,7 +220,12 @@
     "name": "WaniKani Review Countdown Timer",
     "description": "Adds a time limit to review questions.",
     "installs": 111,
-    "version": "1.1.1"
+    "version": "1.1.1",
+    "globalVariables": [
+      "settings",
+      "saveValue",
+      "isIgnored"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/1/11ed6aee77ea54a185801ea4eca363c051bd4066_1_635x500.png",
@@ -173,7 +237,10 @@
     "name": "WK Auto Commit",
     "description": "Auto commit for Wanikani",
     "installs": 180,
-    "version": "0.3"
+    "version": "0.3",
+    "globalVariables": [
+      "str2"
+    ]
   },
   {
     "img_url": null,
@@ -185,7 +252,10 @@
     "name": "Renbow h4x",
     "description": "Provide an alert when a user appears to have gained a level",
     "installs": 23,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -197,7 +267,14 @@
     "name": "Wanikani Lesson Tab Transmutation",
     "description": "Change the order of lesson tabs",
     "installs": 53,
-    "version": "1.2"
+    "version": "1.2",
+    "globalVariables": [
+      "settingsKanji",
+      "settingsVocab",
+      "kanReorderExamplesOption",
+      "kanReorderReadingOption",
+      "kanReorderExamplesReadingOption"
+    ]
   },
   {
     "img_url": null,
@@ -209,7 +286,10 @@
     "name": "KW Anki Mode",
     "description": "Anki mode on KaniWani",
     "installs": 28,
-    "version": "1.4.1"
+    "version": "1.4.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -221,7 +301,10 @@
     "name": "J-Sound",
     "description": "Adds the &#39;j&#39; shortcut from lesson and review pages to the vocab pages.",
     "installs": 8,
-    "version": "1.0.2"
+    "version": "1.0.2",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/e/4/e45557b2a84b0e1e1b055feed0978c68e0c57fd1_1_690x253.png",
@@ -233,7 +316,10 @@
     "name": "WaniKani Item Marker",
     "description": "Tool to mark and track individual radicals/kanji/vocabulary",
     "installs": 101,
-    "version": "4.0"
+    "version": "4.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/0/9/097d729f7ff6b1aeb032d838cd4f0757000efeb8.png",
@@ -245,7 +331,21 @@
     "name": "WaniKani Lattice Extension",
     "description": "Extends the WaniKani lattice and allows to choose what data to display",
     "installs": 24,
-    "version": "3.0"
+    "version": "3.0",
+    "globalVariables": [
+      "input",
+      "value",
+      "enlargeIn",
+      "dictSize",
+      "numBits",
+      "entry",
+      "data",
+      "bits",
+      "maxpower",
+      "power",
+      "resb",
+      "w"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/7/9/79ee8369aec7d0f9ee256dc086556f3bc449ccd3.png",
@@ -257,7 +357,31 @@
     "name": "Wanikani Burn Manager",
     "description": "Mass Resurrect/Retire of Burn items on WaniKani",
     "installs": 181,
-    "version": "1.0.2"
+    "version": "1.0.2",
+    "globalVariables": [
+      "wkburnmgr",
+      "promise",
+      "next",
+      "simul",
+      "completed",
+      "mode",
+      "func",
+      "list",
+      "p",
+      "args",
+      "str",
+      "n2",
+      "n1",
+      "apikey",
+      "busy",
+      "ref",
+      "state",
+      "elem",
+      "needed",
+      "total",
+      "done",
+      "percent"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/1/14802a9514b22f5dd226a0ff92cc142163b5eb02.gif",
@@ -269,7 +393,31 @@
     "name": "Wanikani Self-Study Quiz Edition",
     "description": "Self-study your items via the Wanikani level pages",
     "installs": 692,
-    "version": "2.0.20"
+    "version": "2.0.20",
+    "globalVariables": [
+      "wkselfstudy",
+      "d",
+      "sel",
+      "ssgrp",
+      "temp",
+      "order",
+      "round",
+      "incorrect",
+      "answered",
+      "sec",
+      "itype",
+      "apikey",
+      "items",
+      "idx",
+      "arr",
+      "qtype",
+      "atype",
+      "qlang",
+      "qtext",
+      "ichar",
+      "alang",
+      "code"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/8/8eb033854eb18647f4e6d1cc64e10094de6084de_1_314x500.png",
@@ -281,7 +429,41 @@
     "name": "Homophone Explorer",
     "description": "Finds homophones on Wanikani.com on each vocabulary page and during lesson and review sessions.",
     "installs": 65,
-    "version": "0.8.1b"
+    "version": "0.8.1b",
+    "globalVariables": [
+      "hpx",
+      "thisUpdating",
+      "updateTimeoutID",
+      "comparisonReadings",
+      "comparisonVocab",
+      "APIKey",
+      "ui",
+      "randomTime",
+      "timeSinceUpdate",
+      "timeUntilUpdate",
+      "userInformation",
+      "vocabList",
+      "lastUpdated",
+      "homophones",
+      "currentReadings",
+      "totalSetCount",
+      "urlBuild",
+      "jsonDataValid",
+      "jsonData",
+      "time",
+      "days",
+      "hours",
+      "mins",
+      "secs",
+      "currentStatus",
+      "res",
+      "timeoutID",
+      "currentUrl",
+      "pathname",
+      "key",
+      "validKeyFound",
+      "property"
+    ]
   },
   {
     "img_url": "https://imgur.com/uNmFFmj.png",
@@ -293,7 +475,25 @@
     "name": "Wanikani Burn Reviews",
     "description": "Adds a space on the main page that reviews random burned items. This is a maintained fork of the original script by Samuel Harbord",
     "installs": 387,
-    "version": "2.2.4"
+    "version": "2.2.4",
+    "globalVariables": [
+      "BRData",
+      "BRConfig",
+      "BRQuestion",
+      "logmethod",
+      "BREnableLogging",
+      "BRLoggingEnabled",
+      "BRDisableLogging",
+      "reviewTypeTextEng",
+      "reviewTypeTextJp",
+      "itemTypeArray",
+      "fontSize",
+      "useCache",
+      "queueBRAnim",
+      "allowQueueBRAnim",
+      "BRLangJP",
+      "BRIsChrome"
+    ]
   },
   {
     "img_url": "https://c2.staticflickr.com/8/7251/27098924903_fcd483c64e_o.png",
@@ -305,7 +505,10 @@
     "name": "WaniKani progress colours",
     "description": "Change the progress colours so that they are different from the Kanji/Vocab colours",
     "installs": 28,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/1/1ce2ae96bfe6dbbf342d4fc41d964164f8309765_1_690x397.png",
@@ -317,7 +520,10 @@
     "name": "WaniKani Level Vocabulary Grid",
     "description": "Rearranges the WaniKani Level Vocabulary into a grid",
     "installs": 68,
-    "version": "0.3.2"
+    "version": "0.3.2",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -329,7 +535,10 @@
     "name": "WaniKani Lesson Overlearning",
     "description": "Always automatically click the &#39;Need more time&#39; button after lessons to enable overlearning.",
     "installs": 9,
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/0/3/034c2435dc11c82fcbb064ffd9da97748862dbd0_1_690x198.jpg",
@@ -341,7 +550,15 @@
     "name": "WaniKani SRS grid",
     "description": "try to take over the world!",
     "installs": 186,
-    "version": "3.2"
+    "version": "3.2",
+    "globalVariables": [
+      "deleting",
+      "apprentice",
+      "guru",
+      "master",
+      "enlighten",
+      "burned"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/3X/f/6/f6cc20b8a227c1bd42400163dc698d6dc78e78ef_1_689x300.png",
@@ -353,7 +570,11 @@
     "name": "WaniKani Condensed Progress Bars",
     "description": "try to take over the world!",
     "installs": 47,
-    "version": "2.3"
+    "version": "2.3",
+    "globalVariables": [
+      "radicals",
+      "kanji"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/7/7b83c2ecec8b992dc1bb67a45cf121cf7ceb1b6d_1_690x203.png",
@@ -365,7 +586,10 @@
     "name": "WaniKani Left and Right",
     "description": "Review pages have a left/right setup",
     "installs": 12,
-    "version": "0.7"
+    "version": "0.7",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/b/b4f988a158458ef22223ff26210c94f98acefe30.png",
@@ -377,7 +601,10 @@
     "name": "Wanikani Forum Bar",
     "description": "Attaches a forum toolbar to the bottom of the site menu",
     "installs": 30,
-    "version": "1.0.1"
+    "version": "1.0.1",
+    "globalVariables": [
+      "wkforumbar"
+    ]
   },
   {
     "img_url": null,
@@ -389,7 +616,11 @@
     "name": "Wanikani Anki Mode",
     "description": "Anki mode for Wanikani",
     "installs": 126,
-    "version": "1.6"
+    "version": "1.6",
+    "globalVariables": [
+      "autostart",
+      "answerShown"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/2X/e/e8eff0a92b0f3e0e85f69d2bd6185a92ac637d25_1_690x235.png",
@@ -401,7 +632,18 @@
     "name": "WaniKani Notify",
     "description": "Popup notification when reviews are available",
     "installs": 65,
-    "version": "1.8"
+    "version": "1.8",
+    "globalVariables": [
+      "nextTimes",
+      "notification",
+      "burned",
+      "currentLevel",
+      "nextTime",
+      "toCheck",
+      "levels",
+      "overallNextTime",
+      "date"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/5/547e60a25a3b683341b36827be98cf09e89efaac.png",
@@ -413,7 +655,10 @@
     "name": "Wanikani Lesson Spoiler Removal",
     "description": "Hides the meaning below kanji and vocab on lesson pages",
     "installs": 34,
-    "version": "4"
+    "version": "4",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -425,7 +670,10 @@
     "name": "Wanikani Kana Review",
     "description": "Changes kanji-&gt;kana on &#39;meaning&#39; reviews",
     "installs": 10,
-    "version": "1.1"
+    "version": "1.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/b/b2b7965a5d6da83a0040008bcab06b8a70c76316.png",
@@ -437,7 +685,10 @@
     "name": "WaniKani Links",
     "description": "Adds links to info pages during reviews.  Jisho and WaniKani.  Click the review item for a popup.",
     "installs": 19,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -449,7 +700,10 @@
     "name": "Lessons touchpad swipe navigation",
     "description": "Navigate your lessons with swipe gesture (&quot;wheel&quot; event)",
     "installs": 11,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -461,7 +715,18 @@
     "name": "WaniKani Just The Vocab (Skip Radicals and Kanji)",
     "description": "Skips radicals and kanji by automatically and invisibly getting them right in your WaniKani reviews so that you only see vocabulary reviews. For those who feel that vocabulary is all that is necessary and just happen to like WaniKani&#39;s interface and word list better than other SRS programs. Or set some variables to skip only radicals if you prefer.",
     "installs": 42,
-    "version": "0.4"
+    "version": "0.4",
+    "globalVariables": [
+      "skipRadicals",
+      "skipKanji",
+      "questionType",
+      "answer",
+      "rq",
+      "count",
+      "answered",
+      "fakeIsBlank",
+      "newWordIsReady"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/1/13407574fb36f5ee44ee209a72a89d9d48b335e1.png",
@@ -473,7 +738,13 @@
     "name": "Wanikani Wrap-up Button Enhancement",
     "description": "Beefed-up Wrap-up button",
     "installs": 74,
-    "version": "2.1"
+    "version": "2.1",
+    "globalVariables": [
+      "amount",
+      "poplist",
+      "pushlist",
+      "reviewpop"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/a/a92efe383a23ec7b043520a26b930bded27f85a1_1_690x453.png",
@@ -485,7 +756,11 @@
     "name": "WaniKani Customize Wrap Up",
     "description": "Customize the number of wrap-up items",
     "installs": 5,
-    "version": "3"
+    "version": "3",
+    "globalVariables": [
+      "wrapUpActive",
+      "numberOfItems"
+    ]
   },
   {
     "img_url": null,
@@ -497,7 +772,14 @@
     "name": "WaniKani Review Audio Tweak",
     "description": "allow audio to be played after review meaning questions, when reading has been previously answered correctly. also includes enable autoplay when incorrect setting (default: off).",
     "installs": 112,
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "globalVariables": [
+      "questionType",
+      "liElem",
+      "buttonElem",
+      "audioAutoplay",
+      "audioElem"
+    ]
   },
   {
     "img_url": null,
@@ -509,7 +791,10 @@
     "name": "WaniKani Level Duration",
     "description": "This will display the number of days since your last level-up. Two display options are offered.  By RhosVeedcy.",
     "installs": 1714,
-    "version": "1.3.3"
+    "version": "1.3.3",
+    "globalVariables": [
+      "id"
+    ]
   },
   {
     "img_url": null,
@@ -521,7 +806,11 @@
     "name": "Wanikani Multiple Answer Input",
     "description": "Input multiple readings/meanings",
     "installs": 10,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+      "WKMAI",
+      "wrong"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/e/e8e63149abdaeeddfd6706fb395ece251e30c708.png",
@@ -533,7 +822,10 @@
     "name": "Wanikani You Should Already Know This Reading",
     "description": "Inject mnemonics from other items into your lessons",
     "installs": 99,
-    "version": "1.3"
+    "version": "1.3",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -545,7 +837,10 @@
     "name": "wk-vocab-as-reading",
     "description": "Makes WaniKani vocab readings correct answers for meaning",
     "installs": 4,
-    "version": "2.1"
+    "version": "2.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/1/16a3fa91cb856659653f692d74460c8977f8996e_1_690x474.png",
@@ -557,7 +852,11 @@
     "name": "WaniKani Info Page Tweaks",
     "description": "try to take over the world!",
     "installs": 1,
-    "version": "0.3"
+    "version": "0.3",
+    "globalVariables": [
+      "start",
+      "order"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/4/4b693d36151d89ae34797f756d16197f5bad3f0b_1_690x423.png",
@@ -569,7 +868,12 @@
     "name": "WaniKani Wrong Answer Delay",
     "description": "Adds delay when you answered incorrectly so you have time to look at your answer again, and spot any typos",
     "installs": 123,
-    "version": "0.91"
+    "version": "0.91",
+    "globalVariables": [
+      "isDisabled",
+      "openingItemInfo",
+      "overlay"
+    ]
   },
   {
     "img_url": null,
@@ -581,7 +885,11 @@
     "name": "WaniKani Review Wrong Info Click",
     "description": "Automatically click the info button upon wrong review answer.",
     "installs": 1532,
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "globalVariables": [
+      "wrongCount",
+      "lastWrongCount"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/2X/7/7ae49d223154f00ca560a2b933885977bb0e83ed_1_690x316.png",
@@ -593,7 +901,12 @@
     "name": "WaniKani Katakana Madness",
     "description": "Transforms everything related to on&#39;yomi into katakana",
     "installs": 281,
-    "version": "1.0.6"
+    "version": "1.0.6",
+    "globalVariables": [
+      "chain",
+      "eventListenerSupported",
+      "levels"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/0/0a2c91b92a08de1fe2167ce6ba9f960ca6322a16.png",
@@ -605,7 +918,10 @@
     "name": "Wanikani Note Attention Grabber",
     "description": "Give extra attention to notes",
     "installs": 5,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -617,7 +933,16 @@
     "name": "WaniKani Context Sentences in Reviews",
     "description": "Shows the context sentence in the question during vocab reviews.",
     "installs": 67,
-    "version": "2.0"
+    "version": "2.0",
+    "globalVariables": [
+      "currentlevel",
+      "listknown",
+      "gettingjson",
+      "japanese",
+      "english",
+      "jvoc",
+      "sentjhtml"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/e/e51fba5992feac5e36d821553394fa5cdb951ec1_1_690x200.png",
@@ -629,7 +954,16 @@
     "name": "Vocabulary for Wanikani",
     "description": "Adds vocabulary to the wanikani dashboard",
     "installs": 81,
-    "version": "1.1.7"
+    "version": "1.1.7",
+    "globalVariables": [
+      "previousWord",
+      "MM",
+      "DD",
+      "hh",
+      "mm",
+      "levelList",
+      "flag"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/1/17ab58c6f9d7e2e99b21aa0cf0fef8479e9295e0_1_633x500.png",
@@ -641,7 +975,10 @@
     "name": "WK Lesson Spoiler Tags",
     "description": "Makes example sentence translations visible on mouseover",
     "installs": 16,
-    "version": "0.3"
+    "version": "0.3",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/e/3/e3eeda5ac8bf1363aea10abca951e2df9f21b52e.jpg",
@@ -653,7 +990,11 @@
     "name": "Wanikani Forums Lesson/Review Status",
     "description": "Shows status of your Wanikani lessons/reviews while in the forums.",
     "installs": 125,
-    "version": "1.0.9"
+    "version": "1.0.9",
+    "globalVariables": [
+      "lc",
+      "rc"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/a/d/ada9c496e7f3a63d613b937a689c91c9a467dcc7_1_690x312.png",
@@ -665,7 +1006,11 @@
     "name": "WK Forums Hide Users&#39; Posts",
     "description": "try to take over the world!",
     "installs": 6,
-    "version": "1.3"
+    "version": "1.3",
+    "globalVariables": [
+      "people",
+      "addToHideList"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/e/c/eca3856b79c472eed57f8e2393ecc3b30a36674d.jpg",
@@ -677,7 +1022,10 @@
     "name": "WK fix &#39;Next Day&#39;",
     "description": "Changes the WK Dashboard&#39;s &quot;Next Day&quot; to &quot;Next 24 hours&quot;",
     "installs": 7,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -689,7 +1037,17 @@
     "name": "WaniKani SRS Reorder Button",
     "description": "Adds button enabling item ordering by SRS level.",
     "installs": 67,
-    "version": "1.1.0"
+    "version": "1.1.0",
+    "globalVariables": [
+      "questionTypeOrder",
+      "itemTypeOrder",
+      "ascendingSRS",
+      "priotitizeSRS",
+      "force1x1",
+      "itemsByLevels",
+      "usedUIDs",
+      "previousLevel"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/4/8/48e0b9235abc5fa4b50dc425c5eb86fe8a47355d.png",
@@ -701,7 +1059,13 @@
     "name": "Wanikani Override",
     "description": "Adds an &quot;Ignore Answer&quot; button during reviews that makes WaniKani ignore the current answer (useful if, for example, you made a stupid typo)",
     "installs": 3701,
-    "version": "1.1.3"
+    "version": "1.1.3",
+    "globalVariables": [
+      "scriptLog",
+      "curAction",
+      "itemName",
+      "stackMessage"
+    ]
   },
   {
     "img_url": null,
@@ -713,7 +1077,12 @@
     "name": "WaniKani Review Asc/Desc SRS Order (Radical -&gt; Kanji -&gt; Vocab)",
     "description": "Sorts WaniKani reviews by type and ascending or descending SRS level",
     "installs": 108,
-    "version": "3"
+    "version": "3",
+    "globalVariables": [
+      "id",
+      "method",
+      "index"
+    ]
   },
   {
     "img_url": null,
@@ -725,7 +1094,10 @@
     "name": "Wanikani shaking for no reason bug fix",
     "description": "Fix wanikani bug where the answer box would shake even though the answer is in right format.",
     "installs": 2,
-    "version": "0.12"
+    "version": "0.12",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/a/c/acbfd7a880e07b5294d7395a02b509d3eccccc16_1_690x430.png",
@@ -737,7 +1109,10 @@
     "name": "WK Show Review SRS Level",
     "description": "Prepends an indicator of the SRS level for the current item to the &quot;stats&quot; display.",
     "installs": 16,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/2/2/2252b08a74f9d859da4822d51d451818fce4c93e.png",
@@ -749,7 +1124,30 @@
     "name": "WaniKani Pitch Info",
     "description": "Grabs Pitch value for a given Vocab from weblio.jp and displays it on a WaniKani vocab or session page.",
     "installs": 225,
-    "version": "0.38"
+    "version": "0.38",
+    "globalVariables": [
+      "readingElem",
+      "tmpVocab",
+      "tmpSessionElem",
+      "spanElem",
+      "newReading",
+      "reading",
+      "vocab",
+      "sessionReadingElem",
+      "pitchInfoElem",
+      "numMatch",
+      "numMatch2",
+      "vocabPitchType",
+      "tmpKanaElem",
+      "kanaElem",
+      "kana",
+      "kanaLength",
+      "digraphCount",
+      "kanaPlusParticleLength",
+      "pattern",
+      "fontSize",
+      "appendHtml"
+    ]
   },
   {
     "img_url": null,
@@ -761,7 +1159,10 @@
     "name": "WaniKani TAB Key to Info click",
     "description": "Binds the Item Info button to the TAB key",
     "installs": 8,
-    "version": "1"
+    "version": "1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -773,7 +1174,10 @@
     "name": "For the goddess!",
     "description": "This was necessary.",
     "installs": 3,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/b/2/b2ced52813c77ab67704469779f2ca0a4bff09b0.PNG",
@@ -785,7 +1189,10 @@
     "name": "WaniKani Lesson Filter",
     "description": "Filter your lessons by type, while maintaining WaniKani&#39;s lesson order.",
     "installs": 30,
-    "version": "1.1.1"
+    "version": "1.1.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/3/7/378712f9dbb063404f444be2058bc75ebcf1675c_1_690x188.png",
@@ -797,7 +1204,10 @@
     "name": "Self Q.O.L",
     "description": "Alters WK Lessons for a self-review focused experience",
     "installs": 5,
-    "version": "1.0.2"
+    "version": "1.0.2",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -809,7 +1219,10 @@
     "name": "Auto-WrapUp",
     "description": "Automatic Wrapup",
     "installs": 2,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+      "autoLoadWrapUp"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/d/4/d425b415337c610c5b986818644035c2959d3e92.jpg",
@@ -821,7 +1234,10 @@
     "name": "WaniKani SRS Level Progress",
     "description": "Review schedule explorer for WaniKani",
     "installs": 303,
-    "version": "1.2.0"
+    "version": "1.2.0",
+    "globalVariables": [
+      "html"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/a/e/aeba3544ade7ae58110e80b337d0ceb166f9bfc3_1_690x218.png",
@@ -833,7 +1249,10 @@
     "name": "Wanikani Common Vocab Indicator",
     "description": "Show whether the vocabulary word is common or not according to Jisho.org",
     "installs": 68,
-    "version": "0.0.4"
+    "version": "0.0.4",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/9/5/9532788333175df5990e22e53b575fb35a1ef633_1_690x313.png",
@@ -845,7 +1264,10 @@
     "name": "Leech-O-Meter",
     "description": "Warning indicator for Wanikani when learning common leeches.",
     "installs": 12,
-    "version": "0.0.1"
+    "version": "0.0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/2/7/27c79ff05a7f7e6e23f360cba991689c88bf9d1b.png",
@@ -857,7 +1279,10 @@
     "name": "WaniKani Show Specific SRS Level in Reviews",
     "description": "Show &quot;Apprentice 3&quot; instead of &quot;Apprentice&quot;, etc.",
     "installs": 57,
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/d/9/d9777bad01a74b2894f1edd1a26e6cfa66dcc7db_1_428x499.png",
@@ -869,7 +1294,11 @@
     "name": "Satori Reader WaniKani Lookup",
     "description": "Lookup Kanji and Vocab you have learned in WaniKani on Satori Reader.",
     "installs": 7,
-    "version": "3"
+    "version": "3",
+    "globalVariables": [
+      "available",
+      "learned"
+    ]
   },
   {
     "img_url": null,
@@ -881,7 +1310,11 @@
     "name": "Wanikani Mistake Delay",
     "description": "Adds a delay after wrong answers to prevent double-tapping &lt;enter&gt;",
     "installs": 91,
-    "version": "2.0.1"
+    "version": "2.0.1",
+    "globalVariables": [
+      "wkmistakedelay",
+      "delay"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/b/0/b031817a6a5fa9f789e334ed8b7d82ac77b0d550_1_690x176.gif",
@@ -893,7 +1326,10 @@
     "name": "WaniKani Dashboard Level Progress Detail",
     "description": "Show detailed progress bars.",
     "installs": 54,
-    "version": "0.0.3"
+    "version": "0.0.3",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/b/f/bf2b4e97ed59a81477a8e03b45891ae9ad7436d1_1_690x160.png",
@@ -905,7 +1341,13 @@
     "name": "WaniKani Lesson Balance",
     "description": "Reorder lessons to maintain an even balance across radicals / kanji / vocab as well as ordering to maximize unlocks.",
     "installs": 4,
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "globalVariables": [
+      "minType",
+      "todo",
+      "best",
+      "bestUnlocks"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
@@ -917,7 +1359,15 @@
     "name": "WaniKani Leech Trainer",
     "description": "Quiz yourself on your leeches!",
     "installs": 42,
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "globalVariables": [
+      "onice",
+      "leeches",
+      "quiz",
+      "offset",
+      "temp",
+      "d"
+    ]
   },
   {
     "img_url": null,
@@ -929,7 +1379,33 @@
     "name": "WaniKani Lesson User Synonyms 2",
     "description": "Adds User Synonyms to the lessons page. Adds User Synonyms and Notes to unlearned item pages. This is an update of the version that was originally provided by @kobayashi (Takuya Kobayashi) and has been adapted to work with a newer version of WaniKani. The original &quot;WaniKani Lesson User Synonyms&quot; in version 0.1.2 has been broken since November 2017.",
     "installs": 26,
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "globalVariables": [
+      "keyTTL",
+      "managedNotes",
+      "type",
+      "synKey",
+      "btnAdd",
+      "wrapper",
+      "inputLi",
+      "inputForm",
+      "inputInput",
+      "inputBtnAdd",
+      "inputBtnRemove",
+      "newSynText",
+      "synLiElems",
+      "newLen",
+      "newSynElem",
+      "synEls",
+      "userSynStr",
+      "userSyn",
+      "add",
+      "keyName",
+      "completed",
+      "currentQuizItem",
+      "lastCompleted",
+      "match"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/c/2/c2d1555ef0f9a96c764d360b218529ad0928342b_1_690x410.png",
@@ -941,7 +1417,10 @@
     "name": "WaniKani Hide Button in Review",
     "description": "Hide overly clunky buttons in Review and account for the size",
     "installs": 2,
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/3X/6/d/6d0f5c908c658ce5cdd2a4c35fd4c5a057b538da_1_521x500.png",
@@ -953,7 +1432,13 @@
     "name": "[Japanese] WaniKanify Vocabularizer",
     "description": "Replaces vocabulary on English Websites with Japanese vocabulary learned from WaniKani",
     "installs": 181,
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "globalVariables": [
+      "autoRun",
+      "downloading",
+      "json",
+      "wanikaniVocabLookup"
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/2X/d/d467db0a98be692ce6a478bbec99b4fd189b53a8_1_612x500.png",
@@ -965,7 +1450,49 @@
     "name": "Wanikani Self-Study Plus",
     "description": "Adds an option to add and review your own custom vocabulary",
     "installs": 453,
-    "version": "0.2.3"
+    "version": "0.2.3",
+    "globalVariables": [
+      "debugging",
+      "APIkey",
+      "generateReviewList",
+      "success",
+      "found",
+      "fullList",
+      "locked",
+      "srsList2",
+      "vocabList",
+      "review",
+      "num",
+      "tsvfile",
+      "colsplit",
+      "vsplit",
+      "srslist",
+      "newlist",
+      "reviewActive",
+      "kanji",
+      "kana",
+      "newkanji",
+      "newkana",
+      "next",
+      "soonest",
+      "strReviews",
+      "submit",
+      "typeBgColor",
+      "altText",
+      "list",
+      "obj",
+      "solution",
+      "threshold",
+      "returnvalue",
+      "stackMessage",
+      "requestedItem",
+      "kanjiList",
+      "kanjiReady",
+      "userGuppy",
+      "matched",
+      "xhr",
+      "key"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/7/7d3301b9ae6cba26bb52eef8d0ee0bd399b15427_1_690x362.png",
@@ -977,7 +1504,10 @@
     "name": "WaniKani ALC",
     "description": "Adds a link to the alc.co.jp results to vocab pages",
     "installs": 266,
-    "version": "1"
+    "version": "1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -989,7 +1519,10 @@
     "name": "WK But No Cigar",
     "description": "Stops Wanikani from marking answers that are &#39;a bit off&#39; as correct, makes you try again until you are right or wrong.",
     "installs": 590,
-    "version": "0.9"
+    "version": "0.9",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/8/8a918aa2a3219bf396874bfab1fd107393015d06_1_690x318.png",
@@ -1001,7 +1534,10 @@
     "name": "WaniKani: I Don&#39;t know button",
     "description": "Adds an &quot;I don&#39;t know the answer&quot; button to reviews. When clicked it will submit an incorrect answer.",
     "installs": 463,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/2/2da6b74aa6724d0187f9f0ffc5a5a8625ad9dc35_1_690x345.jpg",
@@ -1013,7 +1549,62 @@
     "name": "WK Community Mnemonics",
     "description": "This script allows WaniKani members to contribute their own mnemonics which appear on any page that includes item info.",
     "installs": 790,
-    "version": "0.9.7.8"
+    "version": "0.9.7.8",
+    "globalVariables": [
+      "CMVersion",
+      "CMIsReview",
+      "CMIsLesson",
+      "CMIsList",
+      "CMIsChrome",
+      "versionChanges",
+      "CMType",
+      "CMChar",
+      "CMIndex",
+      "CMReady",
+      "CMPreloadReady",
+      "CMPageIndex",
+      "CMSortMap",
+      "CMPageMap",
+      "CMTableData",
+      "newItem",
+      "CMInitData",
+      "CMData",
+      "curItem",
+      "curMText",
+      "curRText",
+      "curMScores",
+      "curRScores",
+      "curMUsers",
+      "curRUsers",
+      "curMLength",
+      "curRLength",
+      "curSortMap",
+      "curPageMap",
+      "curM",
+      "curR",
+      "regOpen",
+      "regClose",
+      "CMPostReady",
+      "CMTableItems",
+      "MScoresSorted",
+      "RScoresSorted",
+      "CMItem",
+      "CMContent",
+      "CMStylesAdded",
+      "CMSelTemp",
+      "tagStart",
+      "includesClass",
+      "tagEnd",
+      "selEnd",
+      "CMLastTag",
+      "mnemText",
+      "CMSettings",
+      "CMVotes",
+      "CMInitSettings",
+      "CMInitVotes",
+      "CMUser",
+      "CMVersionCheck"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/6/67e86b3bbaeb1c36941f5619e563ec5113d90b9d_1_690x268.png",
@@ -1025,7 +1616,11 @@
     "name": "WaniKani Fake Numbers",
     "description": "Replaces numbers over 42 with 42+ on the main parts of the Dashboard.",
     "installs": 15,
-    "version": "1.0"
+    "version": "1.0",
+    "globalVariables": [
+      "splitString",
+      "newData"
+    ]
   },
   {
     "img_url": "https://lh6.googleusercontent.com/-MVEzo1WKcqo/VO7uj9zplBI/AAAAAAAACgg/v5lah_jq9C0/w820-h152-no/JapaneseQuestionsExample.png",
@@ -1037,7 +1632,11 @@
     "name": "WK Custom Review Question (KunOn+)",
     "description": "Changes the text of the Review or Lesson Quiz question. Specifies ON or KUN reading for Kanji. Options to have the text in English or Japanese.",
     "installs": 875,
-    "version": "0.4.3"
+    "version": "0.4.3",
+    "globalVariables": [
+      "bIsReview",
+      "eventListenerSupported"
+    ]
   },
   {
     "img_url": null,
@@ -1049,7 +1648,10 @@
     "name": "WK Never Wrong",
     "description": "Never get a review wrong again* (*even if you do)",
     "installs": 80,
-    "version": "0.1"
+    "version": "0.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -1061,7 +1663,10 @@
     "name": "WK FiddleSettings",
     "description": "enter something useful",
     "installs": 5,
-    "version": "0.2"
+    "version": "0.2",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -1073,7 +1678,10 @@
     "name": "Wanikani Landscape Friendly",
     "description": "Makes Wanikani Review font smaller",
     "installs": 16,
-    "version": "1"
+    "version": "1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/3X/3/b/3b0e9dcc24cd0f92da383c118fc7190da7da7658_1_689x434.png",
@@ -1085,7 +1693,10 @@
     "name": "WaniKani Denial Mode",
     "description": "Make the dashboard look like you&#39;re level 60 and have burnt everything.",
     "installs": 22,
-    "version": "1.1"
+    "version": "1.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/1/116097843ec9a4963ff028e67e3bf26a505315ed.png",
@@ -1097,7 +1708,10 @@
     "name": "Wanikani Reorder Ultimate 2",
     "description": "Learn in the order you want to.",
     "installs": 151,
-    "version": "2.1.1"
+    "version": "2.1.1",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/8/e/8ec257e2975a62bccf65de6d8a60bf7cb3cac891_1_689x265.png",
@@ -1109,7 +1723,19 @@
     "name": "WaniKani Dashboard Progress Plus",
     "description": "Display detailed level progress.",
     "installs": 4308,
-    "version": "1.4.1"
+    "version": "1.4.1",
+    "globalVariables": [
+      "wkdpp",
+      "MM",
+      "DD",
+      "hh",
+      "mm",
+      "ul",
+      "li",
+      "data",
+      "total",
+      "colors"
+    ]
   },
   {
     "img_url": null,
@@ -1121,7 +1747,10 @@
     "name": "Wanikani Audio Button Sizer",
     "description": "Makes the audio button 30x30 and bordered so it&#39;s easier to press",
     "installs": 46,
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/2X/1/1147348c970153d8d4ed65966aa2d23dc9be2b9b_1_652x303.png",
@@ -1133,7 +1762,16 @@
     "name": "Wanikani Double-Check",
     "description": "Adds a delay after wrong answers to prevent double-tapping &lt;enter&gt;",
     "installs": 63,
-    "version": "2.0.4"
+    "version": "2.0.4",
+    "globalVariables": [
+      "wkdoublecheck",
+      "state",
+      "msg",
+      "itype",
+      "qtype",
+      "answer",
+      "audioAutoplay"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/8/85db864dd6ee4da523d0e0dca252bfcb69af1627_1_690x340.jpg",
@@ -1145,7 +1783,10 @@
     "name": "WK Anki Mode",
     "description": "Anki mode for Wanikani",
     "installs": 128,
-    "version": "1.2"
+    "version": "1.2",
+    "globalVariables": [
+      "answerShown"
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/0/02f1e4f49cbfdc161805d19346c641a55ab631f5.png",
@@ -1157,7 +1798,15 @@
     "name": "WaniKani Quick Info",
     "description": "Shows available information while waiting for the server response",
     "installs": 63,
-    "version": "0.2"
+    "version": "0.2",
+    "globalVariables": [
+      "htmlify",
+      "r",
+      "n",
+      "loading",
+      "u",
+      "l"
+    ]
   },
   {
     "img_url": null,
@@ -1169,7 +1818,10 @@
     "name": "WK Do You Even Kana?",
     "description": "check that the okurigana matches the answer.",
     "installs": 275,
-    "version": "0.7"
+    "version": "0.7",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://lh3.googleusercontent.com/Iuc87V-ebaZF42jFcgtGiAvxbGqh--JM9T7lGjxOHkU=w935-h123-no",
@@ -1181,7 +1833,10 @@
     "name": "CustomLevelColours",
     "description": "Change the colours for SRS Levels/Progress percentages to increase contrast for colour blindness.",
     "installs": 12,
-    "version": "0.2"
+    "version": "0.2",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://lh3.googleusercontent.com/Z5F5MbSSj0HdArw0VmedYwybkuVVd_VfbWVUcM1l7ug=w893-h218-no",
@@ -1193,7 +1848,10 @@
     "name": "WK Language Point Connector Cards",
     "description": "Adds a section to your Dashboard to play Language Point Connctions fridge magnet poetry.",
     "installs": 105,
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": null,
@@ -1205,7 +1863,10 @@
     "name": "Lang-8 - &quot;All Corrections&quot; View Enhancer",
     "description": "Easier to read and view corrections in the &quot;All Corrections&quot; viewer, especially for Japanese.",
     "installs": 18,
-    "version": "1.4"
+    "version": "1.4",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://lh3.googleusercontent.com/bPKKTW4Ztlh8UfnAeGQv0qdnGfgGoh2glxi5OW4cIq8=w196-h81-no",
@@ -1217,7 +1878,10 @@
     "name": "Wanikani Review Count Analysis",
     "description": "Reports review counts.",
     "installs": 348,
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/c/1/c14e321dc9f57517cbd3ea1d099bb8fb4bec874c.gif",
@@ -1229,7 +1893,10 @@
     "name": "WaniKani Nippongrammar Extension",
     "description": "Svg Canvas used to draw Kanji on reviews and lessons, using website code.",
     "installs": 356,
-    "version": "0.9"
+    "version": "0.9",
+    "globalVariables": [
+
+    ]
   },
   {
     "img_url": "https://greasyfork.org/system/screenshots/screenshots/000/002/016/original/Screen_Shot_2015-09-14_at_5.43.23_pm.png",
@@ -1241,6 +1908,9 @@
     "name": "WK Voice Recognition Experiment",
     "description": "enter something useful",
     "installs": 17,
-    "version": "0.2"
+    "version": "0.2",
+    "globalVariables": [
+      "mic"
+    ]
   }
 ]
