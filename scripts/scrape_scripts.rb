@@ -17,7 +17,7 @@ scripts.each do |url, script|
         script['installs'] = m[3].gsub(/,/, '').to_i
         script['version'] = m[4]
         topicIdToScript[script['topic_id']] = script
-        script['globalVariables'] = []
+        script['global_variables'] = []
     else
         puts "Failed regex! (#{script['script_url']})"
         `rm #{filename}`
@@ -37,22 +37,22 @@ raw.lines.each do |line|
     puts code
     puts "    #{var}"
 
-    topicIdToScript[topic_id]['globalVariables'] = (topicIdToScript[topic_id]['globalVariables'] << var).uniq
+    topicIdToScript[topic_id]['global_variables'] = (topicIdToScript[topic_id]['global_variables'] << var).uniq
 end
 
 globalVariables = []
 
 scripts.each do |url, script|
     puts globalVariables.inspect
-    puts script['globalVariables'].inspect
-    globalVariables += script['globalVariables']
+    puts script['global_variables'].inspect
+    globalVariables += script['global_variables']
 end
 
 sharedGlobalVariables = globalVariables.group_by { |i| i }.select { |k,v| v.size > 2 }
 incognitoWanikaniWindowVariables = ['postMessage', 'blur', 'focus', 'close', 'frames', 'self', 'window', 'parent', 'opener', 'top', 'length', 'closed', 'location', 'document', 'origin', 'name', 'history', 'locationbar', 'menubar', 'personalbar', 'scrollbars', 'statusbar', 'toolbar', 'status', 'frameElement', 'navigator', 'applicationCache', 'customElements', 'external', 'screen', 'innerWidth', 'innerHeight', 'scrollX', 'pageXOffset', 'scrollY', 'pageYOffset', 'screenX', 'screenY', 'outerWidth', 'outerHeight', 'devicePixelRatio', 'clientInformation', 'screenLeft', 'screenTop', 'defaultStatus', 'defaultstatus', 'styleMedia', 'onanimationend', 'onanimationiteration', 'onanimationstart', 'onsearch', 'ontransitionend', 'onwebkitanimationend', 'onwebkitanimationiteration', 'onwebkitanimationstart', 'onwebkittransitionend', 'isSecureContext', 'onabort', 'onblur', 'oncancel', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'onclose', 'oncontextmenu', 'oncuechange', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus', 'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata', 'onloadedmetadata', 'onloadstart', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onpause', 'onplay', 'onplaying', 'onprogress', 'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeked', 'onseeking', 'onselect', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'onvolumechange', 'onwaiting', 'onwheel', 'ongotpointercapture', 'onlostpointercapture', 'onpointerdown', 'onpointermove', 'onpointerup', 'onpointercancel', 'onpointerover', 'onpointerout', 'onpointerenter', 'onpointerleave', 'onbeforeunload', 'onhashchange', 'onlanguagechange', 'onmessage', 'onmessageerror', 'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onrejectionhandled', 'onstorage', 'onunhandledrejection', 'onunload', 'performance', 'stop', 'open', 'alert', 'confirm', 'prompt', 'print', 'requestAnimationFrame', 'cancelAnimationFrame', 'requestIdleCallback', 'cancelIdleCallback', 'captureEvents', 'releaseEvents', 'getComputedStyle', 'matchMedia', 'moveTo', 'moveBy', 'resizeTo', 'resizeBy', 'getSelection', 'find', 'getMatchedCSSRules', 'webkitRequestAnimationFrame', 'webkitCancelAnimationFrame', 'btoa', 'atob', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'createImageBitmap', 'scroll', 'scrollTo', 'scrollBy', 'onappinstalled', 'onbeforeinstallprompt', 'caches', 'crypto', 'ondevicemotion', 'ondeviceorientation', 'ondeviceorientationabsolute', 'indexedDB', 'webkitStorageInfo', 'sessionStorage', 'localStorage', 'fetch', 'onauxclick', 'visualViewport', 'speechSynthesis', 'webkitRequestFileSystem', 'webkitResolveLocalFileSystemURL', 'openDatabase', 'chrome', 'NREUM', 'newrelic', '__nr_require', 'font', '$', 'jQuery', 'jQuery112405201788882720262', 'Animation', 'AudioPlay', 'Charting', 'Counts', 'Dashboard', 'DateTime', 'Form', 'CharacterGrid', 'InfoTip', 'Lattice', 'Misc', 'NavBar', 'Profile', 'Progression', 'Search', 'TextStyle', 'Notes', 'UserSynonyms', 'GoogleAnalyticsObject', 'ga', 'gaplugins', 'gaGlobal', 'gaData']
 
 scripts.each do |url, script|
-    script['globalVariables'].reject! { |var| sharedGlobalVariables.has_key?(var) || incognitoWanikaniWindowVariables.include?(var) }
+    script['global_variables'].reject! { |var| sharedGlobalVariables.has_key?(var) || incognitoWanikaniWindowVariables.include?(var) }
 end
 
 

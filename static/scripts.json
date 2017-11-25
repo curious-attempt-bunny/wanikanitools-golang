@@ -10,7 +10,7 @@
     "description": "Eliminates second Enter or Click for correct review answers.",
     "installs": 1529,
     "version": "1.0.4",
-    "globalVariables": [
+    "global_variables": [
       "wklightning",
       "lightning",
       "ignore",
@@ -29,7 +29,7 @@
     "description": "Review schedule explorer for WaniKani",
     "installs": 5293,
     "version": "6.5.1",
-    "globalVariables": [
+    "global_variables": [
       "wktimeln",
       "str",
       "x",
@@ -53,7 +53,7 @@
     "description": "Adds a link to alc/goo/weblio/ on vocab/kanji review/lesson/info pages, and stroke order for kanji.",
     "installs": 9,
     "version": "0.0.9.6",
-    "globalVariables": [
+    "global_variables": [
       "objCurItem"
     ]
   },
@@ -68,7 +68,7 @@
     "description": "Adds direct links to Post Search results to go directly to post, instead of topic.",
     "installs": 34,
     "version": "1.0.3",
-    "globalVariables": [
+    "global_variables": [
       "wkgotopost",
       "observer"
     ]
@@ -84,7 +84,7 @@
     "description": "Replaces 42+ with the real number using WaniKani API",
     "installs": 4014,
     "version": "4",
-    "globalVariables": [
+    "global_variables": [
       "doneReviews"
     ]
   },
@@ -99,7 +99,7 @@
     "description": "Hide context sentences until hovered.",
     "installs": 314,
     "version": "1.0.3",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -114,7 +114,7 @@
     "description": "Hides the forums until you&#39;ve completed some reviews",
     "installs": 67,
     "version": "1.2.3.4",
-    "globalVariables": [
+    "global_variables": [
       "settings",
       "currentReviewAmount"
     ]
@@ -130,7 +130,7 @@
     "description": "Don&#39;t worry anymore about feeling left out by purple banners!",
     "installs": 5,
     "version": "1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -145,7 +145,7 @@
     "description": "Active Topics Panel for your dashboard",
     "installs": 112,
     "version": "1.6.1",
-    "globalVariables": [
+    "global_variables": [
       "icon"
     ]
   },
@@ -160,7 +160,7 @@
     "description": "Show current SRS level and how many are left before levelling up",
     "installs": 1042,
     "version": "1.4.3",
-    "globalVariables": [
+    "global_variables": [
       "cssDynamicWidth",
       "positionInList"
     ]
@@ -176,7 +176,7 @@
     "description": "Allows you to write Markdown in the notes, which will be rendered as HTML when the page loads.",
     "installs": 57,
     "version": "1.4",
-    "globalVariables": [
+    "global_variables": [
       "wkmdnotes"
     ]
   },
@@ -191,7 +191,7 @@
     "description": "Turn burned items to gold.",
     "installs": 785,
     "version": "1.0.4",
-    "globalVariables": [
+    "global_variables": [
       "wkgoldburn"
     ]
   },
@@ -206,7 +206,7 @@
     "description": "Adds sounds for correct and incorrect on WaniKani reviews.",
     "installs": 49,
     "version": "1.0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -221,7 +221,7 @@
     "description": "Adds a time limit to review questions.",
     "installs": 111,
     "version": "1.1.1",
-    "globalVariables": [
+    "global_variables": [
       "settings",
       "saveValue",
       "isIgnored"
@@ -238,7 +238,7 @@
     "description": "Auto commit for Wanikani",
     "installs": 180,
     "version": "0.3",
-    "globalVariables": [
+    "global_variables": [
       "str2"
     ]
   },
@@ -253,7 +253,7 @@
     "description": "Provide an alert when a user appears to have gained a level",
     "installs": 23,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -268,7 +268,7 @@
     "description": "Change the order of lesson tabs",
     "installs": 53,
     "version": "1.2",
-    "globalVariables": [
+    "global_variables": [
       "settingsKanji",
       "settingsVocab",
       "kanReorderExamplesOption",
@@ -287,7 +287,7 @@
     "description": "Anki mode on KaniWani",
     "installs": 28,
     "version": "1.4.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -302,7 +302,7 @@
     "description": "Adds the &#39;j&#39; shortcut from lesson and review pages to the vocab pages.",
     "installs": 8,
     "version": "1.0.2",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -317,7 +317,7 @@
     "description": "Tool to mark and track individual radicals/kanji/vocabulary",
     "installs": 101,
     "version": "4.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -332,7 +332,7 @@
     "description": "Extends the WaniKani lattice and allows to choose what data to display",
     "installs": 24,
     "version": "3.0",
-    "globalVariables": [
+    "global_variables": [
       "input",
       "value",
       "enlargeIn",
@@ -358,7 +358,7 @@
     "description": "Mass Resurrect/Retire of Burn items on WaniKani",
     "installs": 181,
     "version": "1.0.2",
-    "globalVariables": [
+    "global_variables": [
       "wkburnmgr",
       "promise",
       "next",
@@ -394,7 +394,7 @@
     "description": "Self-study your items via the Wanikani level pages",
     "installs": 692,
     "version": "2.0.20",
-    "globalVariables": [
+    "global_variables": [
       "wkselfstudy",
       "d",
       "sel",
@@ -430,7 +430,7 @@
     "description": "Finds homophones on Wanikani.com on each vocabulary page and during lesson and review sessions.",
     "installs": 65,
     "version": "0.8.1b",
-    "globalVariables": [
+    "global_variables": [
       "hpx",
       "thisUpdating",
       "updateTimeoutID",
@@ -476,7 +476,7 @@
     "description": "Adds a space on the main page that reviews random burned items. This is a maintained fork of the original script by Samuel Harbord",
     "installs": 387,
     "version": "2.2.4",
-    "globalVariables": [
+    "global_variables": [
       "BRData",
       "BRConfig",
       "BRQuestion",
@@ -506,7 +506,7 @@
     "description": "Change the progress colours so that they are different from the Kanji/Vocab colours",
     "installs": 28,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -521,7 +521,7 @@
     "description": "Rearranges the WaniKani Level Vocabulary into a grid",
     "installs": 68,
     "version": "0.3.2",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -536,7 +536,7 @@
     "description": "Always automatically click the &#39;Need more time&#39; button after lessons to enable overlearning.",
     "installs": 9,
     "version": "0.2.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -551,7 +551,7 @@
     "description": "try to take over the world!",
     "installs": 186,
     "version": "3.2",
-    "globalVariables": [
+    "global_variables": [
       "deleting",
       "apprentice",
       "guru",
@@ -571,7 +571,7 @@
     "description": "try to take over the world!",
     "installs": 47,
     "version": "2.3",
-    "globalVariables": [
+    "global_variables": [
       "radicals",
       "kanji"
     ]
@@ -587,7 +587,7 @@
     "description": "Review pages have a left/right setup",
     "installs": 12,
     "version": "0.7",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -602,7 +602,7 @@
     "description": "Attaches a forum toolbar to the bottom of the site menu",
     "installs": 30,
     "version": "1.0.1",
-    "globalVariables": [
+    "global_variables": [
       "wkforumbar"
     ]
   },
@@ -617,7 +617,7 @@
     "description": "Anki mode for Wanikani",
     "installs": 126,
     "version": "1.6",
-    "globalVariables": [
+    "global_variables": [
       "autostart",
       "answerShown"
     ]
@@ -633,7 +633,7 @@
     "description": "Popup notification when reviews are available",
     "installs": 65,
     "version": "1.8",
-    "globalVariables": [
+    "global_variables": [
       "nextTimes",
       "notification",
       "burned",
@@ -656,7 +656,7 @@
     "description": "Hides the meaning below kanji and vocab on lesson pages",
     "installs": 34,
     "version": "4",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -671,7 +671,7 @@
     "description": "Changes kanji-&gt;kana on &#39;meaning&#39; reviews",
     "installs": 10,
     "version": "1.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -686,7 +686,7 @@
     "description": "Adds links to info pages during reviews.  Jisho and WaniKani.  Click the review item for a popup.",
     "installs": 19,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -701,7 +701,7 @@
     "description": "Navigate your lessons with swipe gesture (&quot;wheel&quot; event)",
     "installs": 11,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -716,7 +716,7 @@
     "description": "Skips radicals and kanji by automatically and invisibly getting them right in your WaniKani reviews so that you only see vocabulary reviews. For those who feel that vocabulary is all that is necessary and just happen to like WaniKani&#39;s interface and word list better than other SRS programs. Or set some variables to skip only radicals if you prefer.",
     "installs": 42,
     "version": "0.4",
-    "globalVariables": [
+    "global_variables": [
       "skipRadicals",
       "skipKanji",
       "questionType",
@@ -739,7 +739,7 @@
     "description": "Beefed-up Wrap-up button",
     "installs": 74,
     "version": "2.1",
-    "globalVariables": [
+    "global_variables": [
       "amount",
       "poplist",
       "pushlist",
@@ -757,7 +757,7 @@
     "description": "Customize the number of wrap-up items",
     "installs": 5,
     "version": "3",
-    "globalVariables": [
+    "global_variables": [
       "wrapUpActive",
       "numberOfItems"
     ]
@@ -773,7 +773,7 @@
     "description": "allow audio to be played after review meaning questions, when reading has been previously answered correctly. also includes enable autoplay when incorrect setting (default: off).",
     "installs": 112,
     "version": "0.1.0",
-    "globalVariables": [
+    "global_variables": [
       "questionType",
       "liElem",
       "buttonElem",
@@ -792,7 +792,7 @@
     "description": "This will display the number of days since your last level-up. Two display options are offered.  By RhosVeedcy.",
     "installs": 1714,
     "version": "1.3.3",
-    "globalVariables": [
+    "global_variables": [
       "id"
     ]
   },
@@ -807,7 +807,7 @@
     "description": "Input multiple readings/meanings",
     "installs": 10,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
       "WKMAI",
       "wrong"
     ]
@@ -823,7 +823,7 @@
     "description": "Inject mnemonics from other items into your lessons",
     "installs": 99,
     "version": "1.3",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -838,7 +838,7 @@
     "description": "Makes WaniKani vocab readings correct answers for meaning",
     "installs": 4,
     "version": "2.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -853,7 +853,7 @@
     "description": "try to take over the world!",
     "installs": 1,
     "version": "0.3",
-    "globalVariables": [
+    "global_variables": [
       "start",
       "order"
     ]
@@ -869,7 +869,7 @@
     "description": "Adds delay when you answered incorrectly so you have time to look at your answer again, and spot any typos",
     "installs": 123,
     "version": "0.91",
-    "globalVariables": [
+    "global_variables": [
       "isDisabled",
       "openingItemInfo",
       "overlay"
@@ -886,7 +886,7 @@
     "description": "Automatically click the info button upon wrong review answer.",
     "installs": 1532,
     "version": "0.1.0",
-    "globalVariables": [
+    "global_variables": [
       "wrongCount",
       "lastWrongCount"
     ]
@@ -902,7 +902,7 @@
     "description": "Transforms everything related to on&#39;yomi into katakana",
     "installs": 281,
     "version": "1.0.6",
-    "globalVariables": [
+    "global_variables": [
       "chain",
       "eventListenerSupported",
       "levels"
@@ -919,7 +919,7 @@
     "description": "Give extra attention to notes",
     "installs": 5,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -934,7 +934,7 @@
     "description": "Shows the context sentence in the question during vocab reviews.",
     "installs": 67,
     "version": "2.0",
-    "globalVariables": [
+    "global_variables": [
       "currentlevel",
       "listknown",
       "gettingjson",
@@ -955,7 +955,7 @@
     "description": "Adds vocabulary to the wanikani dashboard",
     "installs": 81,
     "version": "1.1.7",
-    "globalVariables": [
+    "global_variables": [
       "previousWord",
       "MM",
       "DD",
@@ -976,7 +976,7 @@
     "description": "Makes example sentence translations visible on mouseover",
     "installs": 16,
     "version": "0.3",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -991,7 +991,7 @@
     "description": "Shows status of your Wanikani lessons/reviews while in the forums.",
     "installs": 125,
     "version": "1.0.9",
-    "globalVariables": [
+    "global_variables": [
       "lc",
       "rc"
     ]
@@ -1007,7 +1007,7 @@
     "description": "try to take over the world!",
     "installs": 6,
     "version": "1.3",
-    "globalVariables": [
+    "global_variables": [
       "people",
       "addToHideList"
     ]
@@ -1023,7 +1023,7 @@
     "description": "Changes the WK Dashboard&#39;s &quot;Next Day&quot; to &quot;Next 24 hours&quot;",
     "installs": 7,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1038,7 +1038,7 @@
     "description": "Adds button enabling item ordering by SRS level.",
     "installs": 67,
     "version": "1.1.0",
-    "globalVariables": [
+    "global_variables": [
       "questionTypeOrder",
       "itemTypeOrder",
       "ascendingSRS",
@@ -1060,7 +1060,7 @@
     "description": "Adds an &quot;Ignore Answer&quot; button during reviews that makes WaniKani ignore the current answer (useful if, for example, you made a stupid typo)",
     "installs": 3701,
     "version": "1.1.3",
-    "globalVariables": [
+    "global_variables": [
       "scriptLog",
       "curAction",
       "itemName",
@@ -1078,7 +1078,7 @@
     "description": "Sorts WaniKani reviews by type and ascending or descending SRS level",
     "installs": 108,
     "version": "3",
-    "globalVariables": [
+    "global_variables": [
       "id",
       "method",
       "index"
@@ -1095,7 +1095,7 @@
     "description": "Fix wanikani bug where the answer box would shake even though the answer is in right format.",
     "installs": 2,
     "version": "0.12",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1110,7 +1110,7 @@
     "description": "Prepends an indicator of the SRS level for the current item to the &quot;stats&quot; display.",
     "installs": 16,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1125,7 +1125,7 @@
     "description": "Grabs Pitch value for a given Vocab from weblio.jp and displays it on a WaniKani vocab or session page.",
     "installs": 225,
     "version": "0.38",
-    "globalVariables": [
+    "global_variables": [
       "readingElem",
       "tmpVocab",
       "tmpSessionElem",
@@ -1160,7 +1160,7 @@
     "description": "Binds the Item Info button to the TAB key",
     "installs": 8,
     "version": "1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1175,7 +1175,7 @@
     "description": "This was necessary.",
     "installs": 3,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1190,7 +1190,7 @@
     "description": "Filter your lessons by type, while maintaining WaniKani&#39;s lesson order.",
     "installs": 30,
     "version": "1.1.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1205,7 +1205,7 @@
     "description": "Alters WK Lessons for a self-review focused experience",
     "installs": 5,
     "version": "1.0.2",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1220,7 +1220,7 @@
     "description": "Automatic Wrapup",
     "installs": 2,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
       "autoLoadWrapUp"
     ]
   },
@@ -1235,7 +1235,7 @@
     "description": "Review schedule explorer for WaniKani",
     "installs": 303,
     "version": "1.2.0",
-    "globalVariables": [
+    "global_variables": [
       "html"
     ]
   },
@@ -1250,7 +1250,7 @@
     "description": "Show whether the vocabulary word is common or not according to Jisho.org",
     "installs": 68,
     "version": "0.0.4",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1265,7 +1265,7 @@
     "description": "Warning indicator for Wanikani when learning common leeches.",
     "installs": 12,
     "version": "0.0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1280,7 +1280,7 @@
     "description": "Show &quot;Apprentice 3&quot; instead of &quot;Apprentice&quot;, etc.",
     "installs": 57,
     "version": "1.0.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1295,7 +1295,7 @@
     "description": "Lookup Kanji and Vocab you have learned in WaniKani on Satori Reader.",
     "installs": 7,
     "version": "3",
-    "globalVariables": [
+    "global_variables": [
       "available",
       "learned"
     ]
@@ -1311,7 +1311,7 @@
     "description": "Adds a delay after wrong answers to prevent double-tapping &lt;enter&gt;",
     "installs": 91,
     "version": "2.0.1",
-    "globalVariables": [
+    "global_variables": [
       "wkmistakedelay",
       "delay"
     ]
@@ -1327,7 +1327,7 @@
     "description": "Show detailed progress bars.",
     "installs": 54,
     "version": "0.0.3",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1342,7 +1342,7 @@
     "description": "Reorder lessons to maintain an even balance across radicals / kanji / vocab as well as ordering to maximize unlocks.",
     "installs": 4,
     "version": "0.1.0",
-    "globalVariables": [
+    "global_variables": [
       "minType",
       "todo",
       "best",
@@ -1360,7 +1360,7 @@
     "description": "Quiz yourself on your leeches!",
     "installs": 42,
     "version": "0.1.1",
-    "globalVariables": [
+    "global_variables": [
       "onice",
       "leeches",
       "quiz",
@@ -1371,7 +1371,7 @@
   },
   {
     "img_url": null,
-    "likes": 5,
+    "likes": 6,
     "author": "irrelephant",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-lesson-user-synonyms-v2/21960",
     "script_url": "https://greasyfork.org/en/scripts/34839-wanikani-lesson-user-synonyms-2",
@@ -1380,7 +1380,7 @@
     "description": "Adds User Synonyms to the lessons page. Adds User Synonyms and Notes to unlearned item pages. This is an update of the version that was originally provided by @kobayashi (Takuya Kobayashi) and has been adapted to work with a newer version of WaniKani. The original &quot;WaniKani Lesson User Synonyms&quot; in version 0.1.2 has been broken since November 2017.",
     "installs": 26,
     "version": "0.2.2",
-    "globalVariables": [
+    "global_variables": [
       "keyTTL",
       "managedNotes",
       "type",
@@ -1408,7 +1408,7 @@
     ]
   },
   {
-    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/c/2/c2d1555ef0f9a96c764d360b218529ad0928342b_1_690x410.png",
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/9/b/9bcbf9bb4fa9c7091b101746ff397313c324eaa2_1_690x370.png",
     "likes": 0,
     "author": "polv",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-hide-buttons-in-review/22228",
@@ -1418,7 +1418,7 @@
     "description": "Hide overly clunky buttons in Review and account for the size",
     "installs": 2,
     "version": "0.1.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1433,7 +1433,7 @@
     "description": "Replaces vocabulary on English Websites with Japanese vocabulary learned from WaniKani",
     "installs": 181,
     "version": "1.0.0",
-    "globalVariables": [
+    "global_variables": [
       "autoRun",
       "downloading",
       "json",
@@ -1451,7 +1451,7 @@
     "description": "Adds an option to add and review your own custom vocabulary",
     "installs": 453,
     "version": "0.2.3",
-    "globalVariables": [
+    "global_variables": [
       "debugging",
       "APIkey",
       "generateReviewList",
@@ -1505,7 +1505,7 @@
     "description": "Adds a link to the alc.co.jp results to vocab pages",
     "installs": 266,
     "version": "1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1520,7 +1520,7 @@
     "description": "Stops Wanikani from marking answers that are &#39;a bit off&#39; as correct, makes you try again until you are right or wrong.",
     "installs": 590,
     "version": "0.9",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1535,7 +1535,7 @@
     "description": "Adds an &quot;I don&#39;t know the answer&quot; button to reviews. When clicked it will submit an incorrect answer.",
     "installs": 463,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1550,7 +1550,7 @@
     "description": "This script allows WaniKani members to contribute their own mnemonics which appear on any page that includes item info.",
     "installs": 790,
     "version": "0.9.7.8",
-    "globalVariables": [
+    "global_variables": [
       "CMVersion",
       "CMIsReview",
       "CMIsLesson",
@@ -1617,7 +1617,7 @@
     "description": "Replaces numbers over 42 with 42+ on the main parts of the Dashboard.",
     "installs": 15,
     "version": "1.0",
-    "globalVariables": [
+    "global_variables": [
       "splitString",
       "newData"
     ]
@@ -1633,7 +1633,7 @@
     "description": "Changes the text of the Review or Lesson Quiz question. Specifies ON or KUN reading for Kanji. Options to have the text in English or Japanese.",
     "installs": 875,
     "version": "0.4.3",
-    "globalVariables": [
+    "global_variables": [
       "bIsReview",
       "eventListenerSupported"
     ]
@@ -1649,7 +1649,7 @@
     "description": "Never get a review wrong again* (*even if you do)",
     "installs": 80,
     "version": "0.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1664,7 +1664,7 @@
     "description": "enter something useful",
     "installs": 5,
     "version": "0.2",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1679,7 +1679,7 @@
     "description": "Makes Wanikani Review font smaller",
     "installs": 16,
     "version": "1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1694,7 +1694,7 @@
     "description": "Make the dashboard look like you&#39;re level 60 and have burnt everything.",
     "installs": 22,
     "version": "1.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1709,7 +1709,7 @@
     "description": "Learn in the order you want to.",
     "installs": 151,
     "version": "2.1.1",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1724,7 +1724,7 @@
     "description": "Display detailed level progress.",
     "installs": 4308,
     "version": "1.4.1",
-    "globalVariables": [
+    "global_variables": [
       "wkdpp",
       "MM",
       "DD",
@@ -1748,7 +1748,7 @@
     "description": "Makes the audio button 30x30 and bordered so it&#39;s easier to press",
     "installs": 46,
     "version": "1.0.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1763,7 +1763,7 @@
     "description": "Adds a delay after wrong answers to prevent double-tapping &lt;enter&gt;",
     "installs": 63,
     "version": "2.0.4",
-    "globalVariables": [
+    "global_variables": [
       "wkdoublecheck",
       "state",
       "msg",
@@ -1784,7 +1784,7 @@
     "description": "Anki mode for Wanikani",
     "installs": 128,
     "version": "1.2",
-    "globalVariables": [
+    "global_variables": [
       "answerShown"
     ]
   },
@@ -1799,7 +1799,7 @@
     "description": "Shows available information while waiting for the server response",
     "installs": 63,
     "version": "0.2",
-    "globalVariables": [
+    "global_variables": [
       "htmlify",
       "r",
       "n",
@@ -1819,7 +1819,7 @@
     "description": "check that the okurigana matches the answer.",
     "installs": 275,
     "version": "0.7",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1834,7 +1834,7 @@
     "description": "Change the colours for SRS Levels/Progress percentages to increase contrast for colour blindness.",
     "installs": 12,
     "version": "0.2",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1849,7 +1849,7 @@
     "description": "Adds a section to your Dashboard to play Language Point Connctions fridge magnet poetry.",
     "installs": 105,
     "version": "0.1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1864,7 +1864,7 @@
     "description": "Easier to read and view corrections in the &quot;All Corrections&quot; viewer, especially for Japanese.",
     "installs": 18,
     "version": "1.4",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1879,7 +1879,7 @@
     "description": "Reports review counts.",
     "installs": 348,
     "version": "0.1.0",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1894,7 +1894,7 @@
     "description": "Svg Canvas used to draw Kanji on reviews and lessons, using website code.",
     "installs": 356,
     "version": "0.9",
-    "globalVariables": [
+    "global_variables": [
 
     ]
   },
@@ -1909,7 +1909,7 @@
     "description": "enter something useful",
     "installs": 17,
     "version": "0.2",
-    "globalVariables": [
+    "global_variables": [
       "mic"
     ]
   }
