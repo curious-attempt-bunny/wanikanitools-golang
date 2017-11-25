@@ -14,7 +14,6 @@
       "wklightning",
       "lightning",
       "ignore",
-      "observer",
       "advance"
     ]
   },
@@ -31,15 +30,12 @@
     "version": "6.5.1",
     "global_variables": [
       "wktimeln",
-      "str",
       "x",
       "y",
       "tstamp",
       "label",
       "timeline",
-      "types",
-      "arr",
-      "promise"
+      "types"
     ]
   },
   {
@@ -69,8 +65,7 @@
     "installs": 34,
     "version": "1.0.3",
     "global_variables": [
-      "wkgotopost",
-      "observer"
+      "wkgotopost"
     ]
   },
   {
@@ -115,7 +110,6 @@
     "installs": 67,
     "version": "1.2.3.4",
     "global_variables": [
-      "settings",
       "currentReviewAmount"
     ]
   },
@@ -222,7 +216,6 @@
     "installs": 111,
     "version": "1.1.1",
     "global_variables": [
-      "settings",
       "saveValue",
       "isIgnored"
     ]
@@ -339,7 +332,6 @@
       "dictSize",
       "numBits",
       "entry",
-      "data",
       "bits",
       "maxpower",
       "power",
@@ -360,25 +352,17 @@
     "version": "1.0.2",
     "global_variables": [
       "wkburnmgr",
-      "promise",
-      "next",
       "simul",
-      "completed",
       "mode",
       "func",
-      "list",
       "p",
       "args",
-      "str",
       "n2",
       "n1",
-      "apikey",
       "busy",
       "ref",
-      "state",
       "elem",
       "needed",
-      "total",
       "done",
       "percent"
     ]
@@ -396,21 +380,13 @@
     "version": "2.0.20",
     "global_variables": [
       "wkselfstudy",
-      "d",
       "sel",
       "ssgrp",
-      "temp",
-      "order",
       "round",
       "incorrect",
-      "answered",
       "sec",
-      "itype",
-      "apikey",
       "items",
       "idx",
-      "arr",
-      "qtype",
       "atype",
       "qlang",
       "qtext",
@@ -442,7 +418,6 @@
       "timeSinceUpdate",
       "timeUntilUpdate",
       "userInformation",
-      "vocabList",
       "lastUpdated",
       "homophones",
       "currentReadings",
@@ -460,7 +435,6 @@
       "timeoutID",
       "currentUrl",
       "pathname",
-      "key",
       "validKeyFound",
       "property"
     ]
@@ -487,11 +461,6 @@
       "reviewTypeTextEng",
       "reviewTypeTextJp",
       "itemTypeArray",
-      "fontSize",
-      "useCache",
-      "queueBRAnim",
-      "allowQueueBRAnim",
-      "BRLangJP",
       "BRIsChrome"
     ]
   },
@@ -556,8 +525,7 @@
       "apprentice",
       "guru",
       "master",
-      "enlighten",
-      "burned"
+      "enlighten"
     ]
   },
   {
@@ -572,8 +540,7 @@
     "installs": 47,
     "version": "2.3",
     "global_variables": [
-      "radicals",
-      "kanji"
+      "radicals"
     ]
   },
   {
@@ -618,8 +585,7 @@
     "installs": 126,
     "version": "1.6",
     "global_variables": [
-      "autostart",
-      "answerShown"
+      "autostart"
     ]
   },
   {
@@ -636,11 +602,9 @@
     "global_variables": [
       "nextTimes",
       "notification",
-      "burned",
       "currentLevel",
       "nextTime",
       "toCheck",
-      "levels",
       "overallNextTime",
       "date"
     ]
@@ -719,11 +683,8 @@
     "global_variables": [
       "skipRadicals",
       "skipKanji",
-      "questionType",
-      "answer",
       "rq",
       "count",
-      "answered",
       "fakeIsBlank",
       "newWordIsReady"
     ]
@@ -774,10 +735,8 @@
     "installs": 112,
     "version": "0.1.0",
     "global_variables": [
-      "questionType",
       "liElem",
       "buttonElem",
-      "audioAutoplay",
       "audioElem"
     ]
   },
@@ -793,7 +752,7 @@
     "installs": 1714,
     "version": "1.3.3",
     "global_variables": [
-      "id"
+
     ]
   },
   {
@@ -854,8 +813,7 @@
     "installs": 1,
     "version": "0.3",
     "global_variables": [
-      "start",
-      "order"
+      "start"
     ]
   },
   {
@@ -903,9 +861,7 @@
     "installs": 281,
     "version": "1.0.6",
     "global_variables": [
-      "chain",
-      "eventListenerSupported",
-      "levels"
+      "chain"
     ]
   },
   {
@@ -957,10 +913,6 @@
     "version": "1.1.7",
     "global_variables": [
       "previousWord",
-      "MM",
-      "DD",
-      "hh",
-      "mm",
       "levelList",
       "flag"
     ]
@@ -1063,8 +1015,7 @@
     "global_variables": [
       "scriptLog",
       "curAction",
-      "itemName",
-      "stackMessage"
+      "itemName"
     ]
   },
   {
@@ -1079,7 +1030,6 @@
     "installs": 108,
     "version": "3",
     "global_variables": [
-      "id",
       "method",
       "index"
     ]
@@ -1140,12 +1090,10 @@
       "vocabPitchType",
       "tmpKanaElem",
       "kanaElem",
-      "kana",
       "kanaLength",
       "digraphCount",
       "kanaPlusParticleLength",
       "pattern",
-      "fontSize",
       "appendHtml"
     ]
   },
@@ -1364,9 +1312,7 @@
       "onice",
       "leeches",
       "quiz",
-      "offset",
-      "temp",
-      "d"
+      "offset"
     ]
   },
   {
@@ -1401,7 +1347,6 @@
       "userSyn",
       "add",
       "keyName",
-      "completed",
       "currentQuizItem",
       "lastCompleted",
       "match"
@@ -1460,7 +1405,6 @@
       "fullList",
       "locked",
       "srsList2",
-      "vocabList",
       "review",
       "num",
       "tsvfile",
@@ -1469,29 +1413,23 @@
       "srslist",
       "newlist",
       "reviewActive",
-      "kanji",
-      "kana",
       "newkanji",
       "newkana",
-      "next",
       "soonest",
       "strReviews",
       "submit",
       "typeBgColor",
       "altText",
-      "list",
       "obj",
       "solution",
       "threshold",
       "returnvalue",
-      "stackMessage",
       "requestedItem",
       "kanjiList",
       "kanjiReady",
       "userGuppy",
       "matched",
-      "xhr",
-      "key"
+      "xhr"
     ]
   },
   {
@@ -1634,8 +1572,7 @@
     "installs": 875,
     "version": "0.4.3",
     "global_variables": [
-      "bIsReview",
-      "eventListenerSupported"
+      "bIsReview"
     ]
   },
   {
@@ -1726,14 +1663,8 @@
     "version": "1.4.1",
     "global_variables": [
       "wkdpp",
-      "MM",
-      "DD",
-      "hh",
-      "mm",
       "ul",
       "li",
-      "data",
-      "total",
       "colors"
     ]
   },
@@ -1765,12 +1696,7 @@
     "version": "2.0.4",
     "global_variables": [
       "wkdoublecheck",
-      "state",
-      "msg",
-      "itype",
-      "qtype",
-      "answer",
-      "audioAutoplay"
+      "msg"
     ]
   },
   {
@@ -1785,7 +1711,7 @@
     "installs": 128,
     "version": "1.2",
     "global_variables": [
-      "answerShown"
+
     ]
   },
   {
@@ -1801,11 +1727,7 @@
     "version": "0.2",
     "global_variables": [
       "htmlify",
-      "r",
-      "n",
-      "loading",
-      "u",
-      "l"
+      "loading"
     ]
   },
   {
