@@ -126,6 +126,7 @@ type Script struct {
     Version     string      `json:"version"`
     GlobalVariables []string `json:"global_variables"`
     PercentageOfUsers  float64 `json:"percentage_of_users"`
+    Categories  []string    `json:"categories"`
 }
 
 type ScriptIndex struct {
@@ -226,9 +227,6 @@ func listScripts(c *gin.Context) {
         }
 
         script.PercentageOfUsers = 100.0 * userCount / totalUsers
-
-        fmt.Printf("%s %g (%g) -> %g\n", scriptName, userCount, totalUsers, script.PercentageOfUsers)
-
     }
 
     c.JSON(200, result)

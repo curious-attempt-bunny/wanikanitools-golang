@@ -85,7 +85,6 @@ raw.lines.each do |line|
             topicIdToScript[topic_id]['categories'] = (topicIdToScript[topic_id]['categories'] << category).uniq
         end
     end
-    
 end
 
 File.write('data/scripts.json', JSON.generate({scripts: scripts}))
