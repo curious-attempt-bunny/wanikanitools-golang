@@ -41,9 +41,7 @@
       "types"
     ],
     "categories": [
-      "dashboard",
-      "reviews",
-      "lessons"
+      "dashboard"
     ]
   },
   {
@@ -99,7 +97,7 @@
       "doneReviews"
     ],
     "categories": [
-
+      "dashboard"
     ]
   },
   {
@@ -229,8 +227,7 @@
       "wkgoldburn"
     ],
     "categories": [
-      "dashboard",
-      "level-overview"
+      "dashboard"
     ]
   },
   {
@@ -625,7 +622,7 @@
       "enlighten"
     ],
     "categories": [
-
+      "dashboard"
     ]
   },
   {
@@ -1406,8 +1403,7 @@
       "html"
     ],
     "categories": [
-      "dashboard",
-      "reviews"
+      "dashboard"
     ]
   },
   {
@@ -1519,8 +1515,7 @@
 
     ],
     "categories": [
-      "dashboard",
-      "reviews"
+      "dashboard"
     ]
   },
   {
@@ -1692,8 +1687,7 @@
       "xhr"
     ],
     "categories": [
-      "dashboard",
-      "community"
+      "study"
     ]
   },
   {

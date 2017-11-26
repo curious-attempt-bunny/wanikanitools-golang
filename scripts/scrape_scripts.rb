@@ -87,6 +87,28 @@ raw.lines.each do |line|
     end
 end
 
+# https://community.wanikani.com/t/userscript-wanikani-self-study-plus-v-0113-unsupported-for-now/6444
+topicIdToScript[6444]['categories'] = ['study']
+
+# https://community.wanikani.com/t/userscript-wanikani-ultimate-timeline/10516
+topicIdToScript[10516]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/dashboard-userscript-leech-apprentice-and-guru-detail-aka-srs-level-progress/19353
+topicIdToScript[19353]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-dashboard-level-progress-detail-srs-stages-on-progress-bars/21119
+topicIdToScript[21119]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-golden-burn/11464
+topicIdToScript[11464]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-wk-real-numbers/10713
+topicIdToScript[10713]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-srs-grid-details/14250
+topicIdToScript[14250]['categories'] = ['dashboard']
+
+
 File.write('data/scripts.json', JSON.generate({scripts: scripts}))
 
 # excluded scripts
