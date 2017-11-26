@@ -88,7 +88,7 @@ raw.lines.each do |line|
 end
 
 # https://community.wanikani.com/t/userscript-wanikani-self-study-plus-v-0113-unsupported-for-now/6444
-topicIdToScript[6444]['categories'] = ['study']
+topicIdToScript[6444]['categories'] = ['level-overview']
 
 # https://community.wanikani.com/t/userscript-wanikani-ultimate-timeline/10516
 topicIdToScript[10516]['categories'] = ['dashboard']
