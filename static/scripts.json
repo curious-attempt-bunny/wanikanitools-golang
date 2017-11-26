@@ -15,6 +15,9 @@
       "lightning",
       "ignore",
       "advance"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -36,6 +39,11 @@
       "label",
       "timeline",
       "types"
+    ],
+    "categories": [
+      "dashboard",
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -51,6 +59,11 @@
     "version": "0.0.9.6",
     "global_variables": [
       "objCurItem"
+    ],
+    "categories": [
+      "level-overview",
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -66,6 +79,9 @@
     "version": "1.0.3",
     "global_variables": [
       "wkgotopost"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -81,6 +97,9 @@
     "version": "4",
     "global_variables": [
       "doneReviews"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -96,6 +115,11 @@
     "version": "1.0.3",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons",
+      "level-overview"
     ]
   },
   {
@@ -111,6 +135,9 @@
     "version": "1.2.3.4",
     "global_variables": [
       "currentReviewAmount"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -125,6 +152,9 @@
     "installs": 5,
     "version": "1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -141,6 +171,9 @@
     "version": "1.6.1",
     "global_variables": [
       "icon"
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -157,6 +190,9 @@
     "global_variables": [
       "cssDynamicWidth",
       "positionInList"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -172,6 +208,10 @@
     "version": "1.4",
     "global_variables": [
       "wkmdnotes"
+    ],
+    "categories": [
+      "level-overview",
+      "reviews"
     ]
   },
   {
@@ -187,6 +227,10 @@
     "version": "1.0.4",
     "global_variables": [
       "wkgoldburn"
+    ],
+    "categories": [
+      "dashboard",
+      "level-overview"
     ]
   },
   {
@@ -202,6 +246,10 @@
     "version": "1.0.1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -218,6 +266,9 @@
     "global_variables": [
       "saveValue",
       "isIgnored"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -233,6 +284,9 @@
     "version": "0.3",
     "global_variables": [
       "str2"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -247,6 +301,9 @@
     "installs": 23,
     "version": "0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -267,6 +324,9 @@
       "kanReorderExamplesOption",
       "kanReorderReadingOption",
       "kanReorderExamplesReadingOption"
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
@@ -282,6 +342,9 @@
     "version": "1.4.1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -297,6 +360,9 @@
     "version": "1.0.2",
     "global_variables": [
 
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -311,6 +377,9 @@
     "installs": 101,
     "version": "4.0",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -337,6 +406,11 @@
       "power",
       "resb",
       "w"
+    ],
+    "categories": [
+      "dashboard",
+      "reviews",
+      "level-overview"
     ]
   },
   {
@@ -365,6 +439,9 @@
       "needed",
       "done",
       "percent"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -393,6 +470,9 @@
       "ichar",
       "alang",
       "code"
+    ],
+    "categories": [
+      "level-overview"
     ]
   },
   {
@@ -437,6 +517,11 @@
       "pathname",
       "validKeyFound",
       "property"
+    ],
+    "categories": [
+      "level-overview",
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -462,6 +547,9 @@
       "reviewTypeTextJp",
       "itemTypeArray",
       "BRIsChrome"
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -476,6 +564,9 @@
     "installs": 28,
     "version": "0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -492,6 +583,9 @@
     "version": "0.3.2",
     "global_variables": [
 
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -507,6 +601,9 @@
     "version": "0.2.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
@@ -526,6 +623,9 @@
       "guru",
       "master",
       "enlighten"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -541,6 +641,9 @@
     "version": "2.3",
     "global_variables": [
       "radicals"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -555,6 +658,9 @@
     "installs": 12,
     "version": "0.7",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -571,6 +677,9 @@
     "version": "1.0.1",
     "global_variables": [
       "wkforumbar"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -586,6 +695,9 @@
     "version": "1.6",
     "global_variables": [
       "autostart"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -607,6 +719,9 @@
       "toCheck",
       "overallNextTime",
       "date"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -622,6 +737,9 @@
     "version": "4",
     "global_variables": [
 
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
@@ -637,6 +755,9 @@
     "version": "1.1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -652,6 +773,9 @@
     "version": "0.1",
     "global_variables": [
 
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -666,6 +790,9 @@
     "installs": 11,
     "version": "0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -687,6 +814,9 @@
       "count",
       "fakeIsBlank",
       "newWordIsReady"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -705,6 +835,9 @@
       "poplist",
       "pushlist",
       "reviewpop"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -721,6 +854,9 @@
     "global_variables": [
       "wrapUpActive",
       "numberOfItems"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -738,6 +874,9 @@
       "liElem",
       "buttonElem",
       "audioElem"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -753,6 +892,11 @@
     "version": "1.3.3",
     "global_variables": [
 
+    ],
+    "categories": [
+      "dashboard",
+      "level-overview",
+      "community"
     ]
   },
   {
@@ -769,6 +913,9 @@
     "global_variables": [
       "WKMAI",
       "wrong"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -783,6 +930,9 @@
     "installs": 99,
     "version": "1.3",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -799,6 +949,9 @@
     "version": "2.1",
     "global_variables": [
 
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -814,6 +967,9 @@
     "version": "0.3",
     "global_variables": [
       "start"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -831,6 +987,9 @@
       "isDisabled",
       "openingItemInfo",
       "overlay"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -847,6 +1006,9 @@
     "global_variables": [
       "wrongCount",
       "lastWrongCount"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -862,6 +1024,9 @@
     "version": "1.0.6",
     "global_variables": [
       "chain"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -876,6 +1041,9 @@
     "installs": 5,
     "version": "1.0",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -898,6 +1066,9 @@
       "english",
       "jvoc",
       "sentjhtml"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -915,6 +1086,9 @@
       "previousWord",
       "levelList",
       "flag"
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -929,6 +1103,9 @@
     "installs": 16,
     "version": "0.3",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -946,6 +1123,9 @@
     "global_variables": [
       "lc",
       "rc"
+    ],
+    "categories": [
+      "community"
     ]
   },
   {
@@ -962,6 +1142,9 @@
     "global_variables": [
       "people",
       "addToHideList"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -976,6 +1159,9 @@
     "installs": 7,
     "version": "1.0",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -999,6 +1185,9 @@
       "itemsByLevels",
       "usedUIDs",
       "previousLevel"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1016,6 +1205,9 @@
       "scriptLog",
       "curAction",
       "itemName"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1032,6 +1224,9 @@
     "global_variables": [
       "method",
       "index"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1047,6 +1242,9 @@
     "version": "0.12",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1061,6 +1259,9 @@
     "installs": 16,
     "version": "1.0",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1095,6 +1296,9 @@
       "kanaPlusParticleLength",
       "pattern",
       "appendHtml"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1110,6 +1314,9 @@
     "version": "1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1124,6 +1331,9 @@
     "installs": 3,
     "version": "0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1140,6 +1350,9 @@
     "version": "1.1.1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
@@ -1154,6 +1367,9 @@
     "installs": 5,
     "version": "1.0.2",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1170,6 +1386,9 @@
     "version": "0.1",
     "global_variables": [
       "autoLoadWrapUp"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1185,6 +1404,10 @@
     "version": "1.2.0",
     "global_variables": [
       "html"
+    ],
+    "categories": [
+      "dashboard",
+      "reviews"
     ]
   },
   {
@@ -1200,6 +1423,10 @@
     "version": "0.0.4",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1214,6 +1441,9 @@
     "installs": 12,
     "version": "0.0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1230,6 +1460,9 @@
     "version": "1.0.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1246,6 +1479,9 @@
     "global_variables": [
       "available",
       "learned"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1262,6 +1498,10 @@
     "global_variables": [
       "wkmistakedelay",
       "delay"
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1277,6 +1517,10 @@
     "version": "0.0.3",
     "global_variables": [
 
+    ],
+    "categories": [
+      "dashboard",
+      "reviews"
     ]
   },
   {
@@ -1295,11 +1539,14 @@
       "todo",
       "best",
       "bestUnlocks"
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 12,
+    "likes": 16,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -1313,6 +1560,9 @@
       "leeches",
       "quiz",
       "offset"
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -1350,6 +1600,10 @@
       "currentQuizItem",
       "lastCompleted",
       "match"
+    ],
+    "categories": [
+      "lessons",
+      "level-overview"
     ]
   },
   {
@@ -1364,6 +1618,9 @@
     "installs": 2,
     "version": "0.1.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1383,6 +1640,9 @@
       "downloading",
       "json",
       "wanikaniVocabLookup"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1430,6 +1690,10 @@
       "userGuppy",
       "matched",
       "xhr"
+    ],
+    "categories": [
+      "dashboard",
+      "community"
     ]
   },
   {
@@ -1445,6 +1709,9 @@
     "version": "1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "level-overview"
     ]
   },
   {
@@ -1460,6 +1727,10 @@
     "version": "0.9",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1475,6 +1746,9 @@
     "version": "1.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1542,6 +1816,11 @@
       "CMInitVotes",
       "CMUser",
       "CMVersionCheck"
+    ],
+    "categories": [
+      "level-overview",
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1558,6 +1837,9 @@
     "global_variables": [
       "splitString",
       "newData"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1573,6 +1855,10 @@
     "version": "0.4.3",
     "global_variables": [
       "bIsReview"
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1587,6 +1873,9 @@
     "installs": 80,
     "version": "0.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1603,6 +1892,9 @@
     "version": "0.2",
     "global_variables": [
 
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1618,6 +1910,10 @@
     "version": "1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1632,6 +1928,9 @@
     "installs": 22,
     "version": "1.1",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1648,6 +1947,10 @@
     "version": "2.1.1",
     "global_variables": [
 
+    ],
+    "categories": [
+      "lessons",
+      "reviews"
     ]
   },
   {
@@ -1666,6 +1969,9 @@
       "ul",
       "li",
       "colors"
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -1681,6 +1987,9 @@
     "version": "1.0.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "lessons"
     ]
   },
   {
@@ -1697,6 +2006,9 @@
     "global_variables": [
       "wkdoublecheck",
       "msg"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1711,6 +2023,9 @@
     "installs": 128,
     "version": "1.2",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1728,6 +2043,9 @@
     "global_variables": [
       "htmlify",
       "loading"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
@@ -1743,6 +2061,10 @@
     "version": "0.7",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1757,6 +2079,9 @@
     "installs": 12,
     "version": "0.2",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1773,6 +2098,9 @@
     "version": "0.1.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -1787,6 +2115,9 @@
     "installs": 18,
     "version": "1.4",
     "global_variables": [
+
+    ],
+    "categories": [
 
     ]
   },
@@ -1803,6 +2134,9 @@
     "version": "0.1.0",
     "global_variables": [
 
+    ],
+    "categories": [
+      "dashboard"
     ]
   },
   {
@@ -1818,6 +2152,10 @@
     "version": "0.9",
     "global_variables": [
 
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
     ]
   },
   {
@@ -1833,6 +2171,9 @@
     "version": "0.2",
     "global_variables": [
       "mic"
+    ],
+    "categories": [
+      "reviews"
     ]
   }
 ]

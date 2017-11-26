@@ -18,18 +18,18 @@ scripts.each do |url, script|
         script['version'] = m[4]
         topicIdToScript[script['topic_id']] = script
         script['global_variables'] = []
+        script['categories'] = []
     else
         puts "Failed regex! (#{script['script_url']})"
         `rm #{filename}`
     end
 end
 
-# raw = `grep -E '^\s*([a-zA-Z0-9]+\s*=\s*\{\})|(window\\.[a-zA-Z0-9]+\s*=)' data/*.js | grep -v window.appStoreRegistry | grep -v 'window.appStoreRegistry' | grep -v 'window.location' | grep -v 'window.onload' | grep -v 'window.onresize' | grep -v 'window.onbeforeunload' | grep -v 'window.onpopstate'`
-
 raw = `grep -E '^\s*(window\\.)?[a-zA-Z0-9]+\s*=\s*' data/*.js`
 
 raw.lines.each do |line|
-    filename, code = line.split(':')
+    filename = line[0...line.index(':')]
+    code = line[line.index(':')+1..-1]
     topic_id = filename.match(/^data\/script\.([0-9]+)\.js$/)[1].to_i
     var = code.strip.split('=')[0].strip.sub("window.", "")
 
@@ -55,6 +55,38 @@ scripts.each do |url, script|
     script['global_variables'].reject! { |var| sharedGlobalVariables.has_key?(var) || incognitoWanikaniWindowVariables.include?(var) }
 end
 
+raw = `grep @include data/*.js`
+
+keywords = {
+    kanji: 'level-overview',
+    vocabulary: 'level-overview',
+    radical: 'level-overview',
+    levels: 'level-overview',
+    lattice: 'level-overview',
+    lesson: 'lessons',
+    review: 'reviews',
+    dashboard: 'dashboard',
+    community: 'community'
+}
+
+raw.lines.each do |line|
+    filename = line[0...line.index(':')]
+    code = line[line.index(':')+1..-1]
+    topic_id = filename.match(/^data\/script\.([0-9]+)\.js$/)[1].to_i
+    included = code.strip.split('@include')[-1]
+
+    puts filename
+    puts code
+    puts "    #{included}"
+
+    keywords.each do |keyword, category|
+        if included.include?(keyword.to_s)
+            puts "    #{keyword}"
+            topicIdToScript[topic_id]['categories'] = (topicIdToScript[topic_id]['categories'] << category).uniq
+        end
+    end
+    
+end
 
 File.write('data/scripts.json', JSON.generate({scripts: scripts}))
 
