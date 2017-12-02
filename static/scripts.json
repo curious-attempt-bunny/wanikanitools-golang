@@ -21,6 +21,25 @@
     ]
   },
   {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/6/6c89149fba612aa1e9431c552be7df9a876865ee.png",
+    "likes": 0,
+    "author": "tomboy",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-pokemon-edition/10384",
+    "script_url": "https://greasyfork.org/en/scripts/13219-wanikani-pokemon-edition",
+    "topic_id": 10384,
+    "name": "WaniKani - Pokemon edition",
+    "description": "Wanikani &lt;3 Pokemon",
+    "installs": 39,
+    "version": "1.03",
+    "global_variables": [
+      "chr",
+      "hash"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
     "img_url": "http://i.imgur.com/mo1PVNr.png",
     "likes": 14,
     "author": "rfindley",
@@ -345,6 +364,24 @@
     ]
   },
   {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/e/efb860e84d53eb7a169421687385ccd311f445b0_1_690x354.gif",
+    "likes": 0,
+    "author": "MrRobot",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-dashboard-cumulatives/12628",
+    "script_url": "https://greasyfork.org/en/scripts/17928-wanikani-dashboard-cumulatives",
+    "topic_id": 12628,
+    "name": "Wanikani Dashboard Cumulatives",
+    "description": "Show more informative cummulatives on Wanikani dashboard",
+    "installs": 35,
+    "version": "1.0",
+    "global_variables": [
+      "srs"
+    ],
+    "categories": [
+      "dashboard"
+    ]
+  },
+  {
     "img_url": null,
     "likes": 0,
     "author": "Nuke",
@@ -508,7 +545,6 @@
       "mins",
       "secs",
       "currentStatus",
-      "res",
       "timeoutID",
       "currentUrl",
       "pathname",
@@ -1126,6 +1162,26 @@
     ]
   },
   {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/1/3/13c21e5725ebc28f15f5d689f085b74c1618b3d1.png",
+    "likes": 3,
+    "author": "Ethan",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-overlay-033/16621",
+    "script_url": "https://greasyfork.org/en/scripts/28109-wk-overlay",
+    "topic_id": 16621,
+    "name": "WK Overlay",
+    "description": "Overlays component information on reviews when show info is pressed.",
+    "installs": 41,
+    "version": "0.3.3",
+    "global_variables": [
+      "flipTopBottom",
+      "slug",
+      "masterRads"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/a/d/ada9c496e7f3a63d613b937a689c91c9a467dcc7_1_690x312.png",
     "likes": 4,
     "author": "DaisukeJigen",
@@ -1389,6 +1445,24 @@
     ]
   },
   {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/0/9/09f5677846081463fa8f44642eda899a464450a3_1_690x40.PNG",
+    "likes": 17,
+    "author": "finnra",
+    "topic_url": "https://community.wanikani.com/t/userscript-wk-anti-burnout/19298",
+    "script_url": "https://greasyfork.org/en/scripts/32173-wk-anti-burnout",
+    "topic_id": 19298,
+    "name": "WK Anti-burnout",
+    "description": "This script limits your lessons to avoid burnout, and displays some information at the top of the lessons page.",
+    "installs": 50,
+    "version": "0.0.5b",
+    "global_variables": [
+
+    ],
+    "categories": [
+
+    ]
+  },
+  {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/d/4/d425b415337c610c5b986818644035c2959d3e92.jpg",
     "likes": 18,
     "author": "hitechbunny",
@@ -1481,6 +1555,46 @@
     ]
   },
   {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/c/8/c8a8cec11f808a5072eba9610a913e355b51eccb_1_380x499.png",
+    "likes": 23,
+    "author": "DaisukeJigen",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-fast-abridged-wrongmultiple-answer/19984",
+    "script_url": "https://greasyfork.org/en/scripts/33818-wanikani-fast-abridged-wrong-answer",
+    "topic_id": 19984,
+    "name": "WaniKani Fast Abridged Wrong/Multiple Answer",
+    "description": "try to take over the world!",
+    "installs": 104,
+    "version": "1.0",
+    "global_variables": [
+      "wrongCountFAWA",
+      "onlyIfMultiples",
+      "customColorFAWA",
+      "wrongColorFAWA",
+      "multiplesColorFAWA"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/f/2/f22ab94741fe852557fcfe381f29dff7260675bb_1_690x35.png",
+    "likes": 2,
+    "author": "jakeoid",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-keyboard-shortcuts/20001",
+    "script_url": "https://greasyfork.org/en/scripts/33500-wanikani-titlebar",
+    "topic_id": 20001,
+    "name": "WaniKani Titlebar",
+    "description": "Shows amount of reviews/lessons in titlebar!",
+    "installs": 7,
+    "version": "0.0.1",
+    "global_variables": [
+
+    ],
+    "categories": [
+
+    ]
+  },
+  {
     "img_url": null,
     "likes": 16,
     "author": "rfindley",
@@ -1498,6 +1612,25 @@
     "categories": [
       "reviews",
       "lessons"
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/3/6/366a472d2783a9b982d04cf07b96c1dbc2c3d63b_1_690x337.gif",
+    "likes": 2,
+    "author": "hitechbunny",
+    "topic_url": "https://community.wanikani.com/t/progress-chart-script/20735",
+    "script_url": "https://greasyfork.org/en/scripts/35929-wanikani-progress-chart",
+    "topic_id": 20735,
+    "name": "WaniKani Progress Chart",
+    "description": "See your progress charted over time on the WaniKani dashboard page! Progress is broken down by SRS stage, and you can hover for detail.",
+    "installs": 0,
+    "version": "0.1.0",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "dashboard",
+      "reviews"
     ]
   },
   {
@@ -1541,7 +1674,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 16,
+    "likes": 20,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -1558,6 +1691,38 @@
     ],
     "categories": [
       "dashboard"
+    ]
+  },
+  {
+    "img_url": null,
+    "likes": 5,
+    "author": "valeth",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-lesson-cap/21865",
+    "script_url": "https://greasyfork.org/en/scripts/34927-wanikani-lesson-cap",
+    "topic_id": 21865,
+    "name": "WaniKani Lesson Cap",
+    "description": "Limits the amount of lessons you can do with your current review queue.",
+    "installs": 29,
+    "version": "0.5.11",
+    "global_variables": [
+      "log",
+      "batches",
+      "wklc",
+      "stats",
+      "classified",
+      "title",
+      "request",
+      "stage",
+      "batch",
+      "stages",
+      "round2",
+      "store",
+      "load",
+      "init",
+      "update"
+    ],
+    "categories": [
+
     ]
   },
   {
@@ -1633,7 +1798,6 @@
     "global_variables": [
       "autoRun",
       "downloading",
-      "json",
       "wanikaniVocabLookup"
     ],
     "categories": [
@@ -1709,6 +1873,62 @@
     ]
   },
   {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/2X/7/7fc642c1b77f69f01811166e15e891929be1ed2f_1_690x258.png",
+    "likes": 1,
+    "author": "Samuel-H",
+    "topic_url": "https://community.wanikani.com/t/outdateduserscript-scrollbox/6877",
+    "script_url": "https://greasyfork.org/en/scripts/7140-wanikani-scrollbox",
+    "topic_id": 6877,
+    "name": "Wanikani Scrollbox",
+    "description": "Adds a space on the dashboard that displays items randomly to help remember them without seeing them in &#39;the wild&#39;.",
+    "installs": 176,
+    "version": "0.9.1.3",
+    "global_variables": [
+      "SBPageTop",
+      "indexArray",
+      "iaLen",
+      "curSBI",
+      "indexArrayLoc",
+      "SBIType",
+      "SBIIndex",
+      "SBISrs",
+      "foundLoc",
+      "SBIy",
+      "SBPause",
+      "SBIP",
+      "newSBItemTimer",
+      "SBIR",
+      "colIndex",
+      "SBRadicalData",
+      "SBKanjiData",
+      "SBVocabData",
+      "SBLangJP",
+      "SBIndex",
+      "SBIndexCount",
+      "SBRadicalsEnabled",
+      "SBKanjiEnabled",
+      "SBVocabularyEnabled",
+      "SBApprenticeEnabled",
+      "SBGuruEnabled",
+      "SBMasterEnabled",
+      "SBEnlightenEnabled",
+      "SBBurnedEnabled",
+      "SBLockedEnabled",
+      "SBHeight",
+      "SBSpeed",
+      "SBUseCache",
+      "SBStart",
+      "SBColIndex",
+      "SBColTemp",
+      "SBICount",
+      "SBLevels",
+      "SBIndexBG"
+    ],
+    "categories": [
+      "dashboard"
+    ]
+  },
+  {
     "img_url": null,
     "likes": 2,
     "author": "Ethan",
@@ -1772,7 +1992,6 @@
       "CMSortMap",
       "CMPageMap",
       "CMTableData",
-      "newItem",
       "CMInitData",
       "CMData",
       "curItem",
@@ -2072,6 +2291,42 @@
     "description": "Change the colours for SRS Levels/Progress percentages to increase contrast for colour blindness.",
     "installs": 12,
     "version": "0.2",
+    "global_variables": [
+
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/2/6/260ada49f0af11117ad751bf36438f78bdbc5cf1.png",
+    "likes": 4,
+    "author": "tomboy",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-similar-kanji/8905",
+    "script_url": "https://greasyfork.org/en/scripts/10635-wanikani-similar-kanji",
+    "topic_id": 8905,
+    "name": "WaniKani Similar kanji",
+    "description": "Shows similar kanji&#39;s for the given kanji on its page.",
+    "installs": 1340,
+    "version": "1.4",
+    "global_variables": [
+      "thisPage"
+    ],
+    "categories": [
+      "level-overview"
+    ]
+  },
+  {
+    "img_url": "https://greasyfork.org/system/screenshots/screenshots/000/001/359/original/wk_sect_name_script_opt.png?1436316483",
+    "likes": 0,
+    "author": "tomboy",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-can-i-has-a-sect-name/9044",
+    "script_url": "https://greasyfork.org/en/scripts/10847-wanikani-can-i-has-a-sect-name",
+    "topic_id": 9044,
+    "name": "WaniKani Can I has a sect name?",
+    "description": "Always wanted a sect name but Koichi won&#39;t give you one? This is the solution :)",
+    "installs": 10,
+    "version": "1.0",
     "global_variables": [
 
     ],

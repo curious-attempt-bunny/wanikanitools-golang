@@ -18,6 +18,8 @@ Dir.glob('data/topic.*.json').each do |file|
         
         topic_url = "https://community.wanikani.com/t/#{topic['slug']}/#{topic['id']}"
         next if topic_url == "https://community.wanikani.com/t/the-new-and-improved-list-of-api-and-third-party-apps/7694"
+        next if topic_url == "https://community.wanikani.com/t/desktop-wk-app-with-included-userscripts/10051"
+        puts
         puts topic_url
 
         img_urls = post['cooked'].scan(/<img[^>]+src="([^"]+)"/m).flatten.map { |url| CGI::unescapeHTML(url).gsub('</em>', '_').sub(/^\/uploads/, '//community.wanikani.com/uploads') }
@@ -40,7 +42,7 @@ Dir.glob('data/topic.*.json').each do |file|
         # puts "#{script_url}, #{img_url}, #{post['username']}"
 
         entry = {img_url: img_url, likes: likes, author: post['username'], topic_url: topic_url, script_url: script_url, topic_id: topic['id'] }
-        # puts "ALREADY LISTED:\n  #{JSON.generate(scriptToForum[script_url])}\n  #{JSON.generate(entry)}" if scriptToForum[script_url]
+        puts "ALREADY LISTED:\n  #{JSON.generate(scriptToForum[script_url])}\n  #{JSON.generate(entry)}" if scriptToForum[script_url]
         next if scriptToForum[script_url]
         scriptToForum[script_url] = entry
     end

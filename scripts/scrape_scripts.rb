@@ -33,10 +33,14 @@ raw.lines.each do |line|
     topic_id = filename.match(/^data\/script\.([0-9]+)\.js$/)[1].to_i
     var = code.strip.split('=')[0].strip.sub("window.", "")
 
-    puts filename
-    puts code
-    puts "    #{var}"
+    # puts filename
+    # puts code
+    # puts "    #{var}"
 
+    unless topicIdToScript[topic_id]
+        puts "No script.html for: #{topic_id}" 
+        next
+    end
     topicIdToScript[topic_id]['global_variables'] = (topicIdToScript[topic_id]['global_variables'] << var).uniq
 end
 
@@ -75,13 +79,19 @@ raw.lines.each do |line|
     topic_id = filename.match(/^data\/script\.([0-9]+)\.js$/)[1].to_i
     included = code.strip.split('@include')[-1]
 
-    puts filename
-    puts code
-    puts "    #{included}"
+    # puts filename
+    # puts code
+    # puts "    #{included}"
+
+    unless topicIdToScript[topic_id]
+        puts "No script.html for: #{topic_id}" 
+        next
+    end
 
     keywords.each do |keyword, category|
         if included.include?(keyword.to_s)
-            puts "    #{keyword}"
+            # puts "    #{keyword}"
+
             topicIdToScript[topic_id]['categories'] = (topicIdToScript[topic_id]['categories'] << category).uniq
         end
     end
