@@ -19,6 +19,8 @@ Dir.glob('data/topic.*.json').each do |file|
         topic_url = "https://community.wanikani.com/t/#{topic['slug']}/#{topic['id']}"
         next if topic_url == "https://community.wanikani.com/t/the-new-and-improved-list-of-api-and-third-party-apps/7694"
         next if topic_url == "https://community.wanikani.com/t/desktop-wk-app-with-included-userscripts/10051"
+        next if topic_url == "https://community.wanikani.com/t/wanikani-level-duration-not-working/15149"
+        
         puts
         puts topic_url
 

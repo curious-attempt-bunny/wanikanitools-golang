@@ -119,6 +119,36 @@ topicIdToScript[10713]['categories'] = ['dashboard']
 # https://community.wanikani.com/t/userscript-srs-grid-details/14250
 topicIdToScript[14250]['categories'] = ['dashboard']
 
+# https://community.wanikani.com/t/userscript-wanikani-hide-buttons-in-review/22228
+topicIdToScript[22228]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/userscript-level-duration-display/4991
+topicIdToScript[4991]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-wanikani-wrap-up-button-enhancement/15088
+topicIdToScript[15088]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/userscript-wanikani-anki-mode-active-support/14399
+topicIdToScript[14399]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/userscript-wanikani-fast-abridged-wrongmultiple-answer/19984
+topicIdToScript[19984]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/userscript-wk-anti-burnout/19298
+topicIdToScript[19298]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/a-fix-for-the-dashboards-next-day-lies/17802
+topicIdToScript[17802]['categories'] = ['dashboard']
+
+# https://community.wanikani.com/t/userscript-wk-forums-hide-users-posts/16946
+topicIdToScript[16946]['categories'] = ['forum']
+
+# https://community.wanikani.com/t/userscript-wanikani-katakana-madness/15716
+topicIdToScript[15716]['categories'] = ['reviews']
+
+# https://community.wanikani.com/t/wanikani-denial-mode/8239
+topicIdToScript[8239]['categories'] = ['dashboard']
+
 
 File.write('data/scripts.json', JSON.generate({scripts: scripts}))
 
