@@ -12,7 +12,7 @@ scriptToForum = Hash.new
 Dir.glob('data/topic.*.json').each do |file|
     topic = JSON.parse(File.read(file))
     post = topic['post_stream']['posts'][0]
-    m = post['cooked'].match(/href="(https:\/\/greasyfork.org\/(?:[^\/]+\/)scripts\/[^\/"?]+)/m)
+    m = post['cooked'].match(/href="(https:\/\/greasyfork.org\/(?:[^\/]*\/)?scripts\/[^\/"?]+)/m)
     if m
         script_url = m[1]
         

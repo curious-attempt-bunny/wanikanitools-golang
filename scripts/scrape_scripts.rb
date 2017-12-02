@@ -22,6 +22,7 @@ scripts.each do |url, script|
     else
         puts "Failed regex! (#{script['script_url']})"
         `rm #{filename}`
+        scripts.delete(url)
     end
 end
 

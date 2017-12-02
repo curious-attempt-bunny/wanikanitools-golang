@@ -539,7 +539,6 @@
       "urlBuild",
       "jsonDataValid",
       "jsonData",
-      "time",
       "days",
       "hours",
       "mins",
@@ -747,7 +746,6 @@
     "global_variables": [
       "nextTimes",
       "notification",
-      "currentLevel",
       "nextTime",
       "toCheck",
       "overallNextTime",
@@ -1056,7 +1054,7 @@
     "installs": 281,
     "version": "1.0.6",
     "global_variables": [
-      "chain"
+
     ],
     "categories": [
 
@@ -1275,7 +1273,6 @@
     "installs": 108,
     "version": "3",
     "global_variables": [
-      "method",
       "index"
     ],
     "categories": [
@@ -1673,6 +1670,27 @@
     ]
   },
   {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/5/594807032422aaaf3d90a07f9689c425607e628a.png",
+    "likes": 0,
+    "author": "thenn42",
+    "topic_url": "https://community.wanikani.com/t/userscript-transform-onyomi-readings-into-katakana-214/2135",
+    "script_url": "https://greasyfork.org/scripts/747-wanikani-on-yomi-in-katakana",
+    "topic_id": 2135,
+    "name": "Wanikani On&#39;yomi in katakana",
+    "description": "Transforms any onyomi reading into katakana on Wanikani",
+    "installs": 496,
+    "version": "2.1.5",
+    "global_variables": [
+      "Node",
+      "targetNodes",
+      "btargetsFound",
+      "timeControl"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
     "likes": 20,
     "author": "hitechbunny",
@@ -1737,29 +1755,7 @@
     "installs": 26,
     "version": "0.2.2",
     "global_variables": [
-      "keyTTL",
-      "managedNotes",
-      "type",
-      "synKey",
-      "btnAdd",
-      "wrapper",
-      "inputLi",
-      "inputForm",
-      "inputInput",
-      "inputBtnAdd",
-      "inputBtnRemove",
-      "newSynText",
-      "synLiElems",
-      "newLen",
-      "newSynElem",
-      "synEls",
-      "userSynStr",
-      "userSyn",
-      "add",
-      "keyName",
-      "currentQuizItem",
-      "lastCompleted",
-      "match"
+      "synEls"
     ],
     "categories": [
       "lessons",
@@ -1785,6 +1781,24 @@
     ]
   },
   {
+    "img_url": "http://img33.imageshack.us/img33/6550/nha8.png",
+    "likes": 0,
+    "author": "alucardeck",
+    "topic_url": "https://community.wanikani.com/t/wanikani-review-order-radicalkanjivocab-order-userscript-extension/2928",
+    "script_url": "https://greasyfork.org/scripts/9695-wanikani-review-order",
+    "topic_id": 2928,
+    "name": "WaniKani Review Order",
+    "description": "WaniKani Review Order by Alucardeck",
+    "installs": 1525,
+    "version": "0.35",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "reviews"
+    ]
+  },
+  {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/3X/6/d/6d0f5c908c658ce5cdd2a4c35fd4c5a057b538da_1_521x500.png",
     "likes": 0,
     "author": "looki",
@@ -1802,6 +1816,188 @@
     ],
     "categories": [
 
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/1/1fc421172af1f57bab5d21384d5d80acce885d20.png",
+    "likes": 0,
+    "author": "gth99",
+    "topic_url": "https://community.wanikani.com/t/wanikani-lesson-ordering-ii/4812",
+    "script_url": "https://greasyfork.org/scripts/232",
+    "topic_id": 4812,
+    "name": "WaniKani Lesson Ordering II",
+    "description": "This allows you to sort the items in your WaniKani lessons, either putting the Radicals and Kanji first, or the Vocabulary first. By RhosVeedcy, based on scripts originally by Alucardeck.",
+    "installs": 4151,
+    "version": "1.3.4",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "lessons"
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/2X/3/38f31a7e27f83f2a4547589b40c375ce32682760.jpg",
+    "likes": 3,
+    "author": "gth99",
+    "topic_url": "https://community.wanikani.com/t/userscript-level-up-celebrator/4894",
+    "script_url": "https://greasyfork.org/scripts/233-wanikani-levelup-celebrator",
+    "topic_id": 4894,
+    "name": "WaniKani LevelUP Celebrator",
+    "description": "This will display a &quot;level-up&quot; notification on your WK Dashboard after you level up.  You can customize the image and text of the display.  Other achievements are also noted.  By RhosVeedcy.",
+    "installs": 1410,
+    "version": "2.1.3",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "dashboard"
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/8/8fad8d5eca7e607172605c9aef62a5775e7a7aca_1_690x94.jpg",
+    "likes": 0,
+    "author": "gth99",
+    "topic_url": "https://community.wanikani.com/t/userscript-turtle-total/4929",
+    "script_url": "https://greasyfork.org/scripts/219",
+    "topic_id": 4929,
+    "name": "WaniKani Turtle Total",
+    "description": "This will optionally add the cumulative turtle counts for each category to the srs-progress display. It will also mark increases and decreases in all the counts since the last display (for example, right after a review session.)  By RhosVeedcy.",
+    "installs": 253,
+    "version": "3.1.1",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "dashboard"
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/b/b806f0a23d713df06e6b1ccc5fdc1665d9742ed2_1_690x150.jpg",
+    "likes": 1,
+    "author": "gth99",
+    "topic_url": "https://community.wanikani.com/t/userscript-level-duration-display/4991",
+    "script_url": "https://greasyfork.org/scripts/235",
+    "topic_id": 4991,
+    "name": "WaniKani Level Duration",
+    "description": "This will display the number of days since your last level-up. Two display options are offered.  By RhosVeedcy.",
+    "installs": 1774,
+    "version": "1.3.3",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "dashboard",
+      "level-overview",
+      "community"
+    ]
+  },
+  {
+    "img_url": null,
+    "likes": 0,
+    "author": "gth99",
+    "topic_url": "https://community.wanikani.com/t/userscript-speedier-search-during-reviews/4994",
+    "script_url": "https://greasyfork.org/scripts/290",
+    "topic_id": 4994,
+    "name": "WaniKani Review Search",
+    "description": "Do a WaniKani Search on your review answer.  By RhosVeedcy.",
+    "installs": 76,
+    "version": "1.4",
+    "global_variables": [
+      "sText",
+      "sWindow"
+    ],
+    "categories": [
+      "reviews"
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/5/6/5647b8f9c1e042d7762f1d0b5d27c3dfff439c5d.png",
+    "likes": 5,
+    "author": "looki",
+    "topic_url": "https://community.wanikani.com/t/userscript-highlight-kanji-based-on-wk-level-in-websites/4998",
+    "script_url": "https://greasyfork.org/scripts/722-kanji-highlighter",
+    "topic_id": 4998,
+    "name": "Kanji Highlighter",
+    "description": "Highlights all kanji on a website using a specific color, depending on the &#39;level&#39; that it can be found in (optimized for WaniKani users).",
+    "installs": 1532,
+    "version": "1.7.1.1",
+    "global_variables": [
+      "dictionary",
+      "ii",
+      "bgCol",
+      "kanjiMap",
+      "kanjiDict",
+      "dict",
+      "filter",
+      "scannedBefore",
+      "levelThreshold",
+      "output",
+      "className",
+      "previousClass"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/a/a85d0244fcc6e149b075d2d19a111c6a87b3f9fa_1_690x284.png",
+    "likes": 8,
+    "author": "looki",
+    "topic_url": "https://community.wanikani.com/t/userscript-stroke-order-diagram/5040",
+    "script_url": "https://greasyfork.org/scripts/723-wanikani-stroke-order",
+    "topic_id": 5040,
+    "name": "WaniKani Stroke Order",
+    "description": "Shows a kanji&#39;s stroke order on its page and during lessons and reviews.",
+    "installs": 3079,
+    "version": "1.1.1",
+    "global_variables": [
+      "curPage"
+    ],
+    "categories": [
+      "level-overview",
+      "reviews",
+      "lessons"
+    ]
+  },
+  {
+    "img_url": "https://drive.google.com/uc?id=0B5GwMqllQD1oVEVCaW1mV2dzT2M",
+    "likes": 1,
+    "author": "kobayashi",
+    "topic_url": "https://community.wanikani.com/t/wanikani-dotdotdot-expander/6339",
+    "script_url": "https://greasyfork.org/scripts/5584-wanikani-dotdotdot-expander",
+    "topic_id": 6339,
+    "name": "WaniKani DotDotDot Expander",
+    "description": "expand *... english text to full length",
+    "installs": 400,
+    "version": "0.1.6",
+    "global_variables": [
+      "enLi",
+      "en",
+      "enFull",
+      "removeResults"
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "https://drive.google.com/uc?id=0B5GwMqllQD1oUUg0R2tRU0RkQkU",
+    "likes": 0,
+    "author": "kobayashi",
+    "topic_url": "https://community.wanikani.com/t/no-longer-working-wanikani-lesson-user-synonyms/6373",
+    "script_url": "https://greasyfork.org/scripts/5656-wanikani-lesson-user-synonyms",
+    "topic_id": 6373,
+    "name": "WaniKani Lesson User Synonyms",
+    "description": "adds User Synonyms to the lesson page. adds User Synonyms and Notes to unlearned item pages.",
+    "installs": 494,
+    "version": "0.1.2",
+    "global_variables": [
+      "synList"
+    ],
+    "categories": [
+      "lessons",
+      "level-overview"
     ]
   },
   {
@@ -2188,6 +2384,25 @@
     ]
   },
   {
+    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/e/e5ab6cbcad1bf469dc87c83e25e462fe665e624a_1_690x187.png",
+    "likes": 1,
+    "author": "alucardeck",
+    "topic_url": "https://community.wanikani.com/t/wanikani-sfw-userscript-extension/8377",
+    "script_url": "https://greasyfork.org/scripts/9698-wanikani-sfw",
+    "topic_id": 8377,
+    "name": "WaniKani SFW",
+    "description": "WaniKani SFW by Alucardeck",
+    "installs": 180,
+    "version": "0.02",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "reviews",
+      "lessons"
+    ]
+  },
+  {
     "img_url": null,
     "likes": 0,
     "author": "teeth7",
@@ -2278,6 +2493,29 @@
     "categories": [
       "reviews",
       "lessons"
+    ]
+  },
+  {
+    "img_url": null,
+    "likes": 0,
+    "author": "chazychaz",
+    "topic_url": "https://community.wanikani.com/t/how-much-i-need-to-pay-for-a-userscript/8447",
+    "script_url": "https://greasyfork.org/scripts/8432-wk-reviews-timer",
+    "topic_id": 8447,
+    "name": "WK Reviews Timer",
+    "description": "Adds a timer counter with pause option during the reviews for WankiKani",
+    "installs": 43,
+    "version": "0.3",
+    "global_variables": [
+      "startAt",
+      "lapTime",
+      "m",
+      "ms",
+      "newTime",
+      "clocktimer"
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
