@@ -1661,10 +1661,7 @@
     "installs": 496,
     "version": "2.1.5",
     "global_variables": [
-      "Node",
-      "targetNodes",
-      "btargetsFound",
-      "timeControl"
+      "Node"
     ],
     "categories": [
 
@@ -1772,7 +1769,43 @@
     "installs": 4,
     "version": "0.3.3",
     "global_variables": [
-      "word"
+
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/5/c/5cd411590101f0620de903c2ae0bfd7309ee8d6e.jpg",
+    "likes": 2,
+    "author": "hitechbunny",
+    "topic_url": "https://community.wanikani.com/t/levels-by-stage-script/22964",
+    "script_url": "https://greasyfork.org/en/scripts/36076-wanikani-levels-by-stage",
+    "topic_id": 22964,
+    "name": "WaniKani Levels By Stage",
+    "description": "See what level you are at for each stage (Apprentice/Guru/Master/Englightened/Burned).",
+    "installs": 0,
+    "version": "0.0.1",
+    "global_variables": [
+      "options"
+    ],
+    "categories": [
+      "dashboard"
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/5/9/591ea3e8126b3e41a79347002d7f301e1be6ffb7_1_690x397.png",
+    "likes": 0,
+    "author": "polv",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-disable-default-answers/22982",
+    "script_url": "https://greasyfork.org/en/scripts/36070-wanikani-disable-default-answers",
+    "topic_id": 22982,
+    "name": "WaniKani Disable Default Answers",
+    "description": "Prevent default answers from being marked as correct. Answer in your synonyms.",
+    "installs": 0,
+    "version": "0.1",
+    "global_variables": [
+
     ],
     "categories": [
 
