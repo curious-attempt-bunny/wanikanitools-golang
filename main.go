@@ -619,10 +619,14 @@ func buildStageLevel(stageCount []int, levelMax []int) *StageLevel {
         fmt.Printf("%d / %d : ", stageCount[level], levelMax[level])
         percentage = float64(stageCount[level])/float64(levelMax[level])
         fmt.Printf("%g\n", percentage)
-        if percentage < 0.9 || level == 60 {
+        if percentage < 0.9 {
             break
         }
         level += 1
+        if level == 61 {
+            percentage = 0
+            break
+        }
     }
 
     return &StageLevel{Level:level-1, PercentageNextLevel:percentage}
