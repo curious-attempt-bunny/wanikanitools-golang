@@ -524,10 +524,17 @@ func levelProgress(c *gin.Context) {
     levelToTypeToProgress[user.Data.Level]["vocabulary"] = &ProgressType{Level:user.Data.Level, Type:"vocabulary", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
     levelToTypeToProgress[user.Data.Level]["kanji"] = &ProgressType{Level:user.Data.Level, Type:"kanji", SrsLevelTotals: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
     
+    levelToMax :=         []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    apprenticeToCount :=  []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    guruToCount :=        []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    masterToCount :=      []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    enlightenedToCount := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    burnedToCount :=      []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
     for i := 0; i<len(assignments.Data); i++ {
         assignment := assignments.Data[i].Data
 
-        _, isSubjectCached := subjectsDataMap[assignment.SubjectID]
+        subject, isSubjectCached := subjectsDataMap[assignment.SubjectID]
         if !isSubjectCached {
             fmt.Printf("Cache miss for subject ID %d - reloading\n", assignment.SubjectID)
             chSubjects := make(chan *Subjects)
@@ -539,6 +546,22 @@ func levelProgress(c *gin.Context) {
             }
         }
 
+        if assignment.SrsStage >= 1 {
+            apprenticeToCount[subject.Data.Level] =  apprenticeToCount[subject.Data.Level] + 1
+        }
+        if assignment.SrsStage >= 5 {
+            guruToCount[subject.Data.Level] =        guruToCount[subject.Data.Level] + 1
+        }
+        if assignment.SrsStage >= 7 {
+            masterToCount[subject.Data.Level] =      masterToCount[subject.Data.Level] + 1   
+        }
+        if assignment.SrsStage >= 8 {
+            enlightenedToCount[subject.Data.Level] = enlightenedToCount[subject.Data.Level] + 1
+        }
+        if assignment.SrsStage == 9 {
+            burnedToCount[subject.Data.Level] =      burnedToCount[subject.Data.Level] + 1
+        }
+        
         typeToProgress, exists := levelToTypeToProgress[assignment.Level]
         if (!exists) {
             continue
@@ -553,6 +576,8 @@ func levelProgress(c *gin.Context) {
     }
 
     for _, subject := range subjectsDataMap {
+        levelToMax[subject.Data.Level] = levelToMax[subject.Data.Level] + 1
+
         typeToProgress, exists := levelToTypeToProgress[subject.Data.Level]
         if (!exists) {
             continue
@@ -563,6 +588,13 @@ func levelProgress(c *gin.Context) {
     }
 
     var progress Progress
+
+    progress.StageLevels = make(map[string]*StageLevel)
+    progress.StageLevels["Apprentice"]  = buildStageLevel(apprenticeToCount, levelToMax)
+    progress.StageLevels["Guru"]        = buildStageLevel(guruToCount, levelToMax)
+    progress.StageLevels["Master"]      = buildStageLevel(masterToCount, levelToMax)
+    progress.StageLevels["Enlightened"] = buildStageLevel(enlightenedToCount, levelToMax)
+    progress.StageLevels["Burned"]      = buildStageLevel(burnedToCount, levelToMax)
 
     progress.Progresses = []*ProgressType{
         levelToTypeToProgress[user.Data.Level - 1]["radical"],
@@ -578,6 +610,22 @@ func levelProgress(c *gin.Context) {
     if txn != nil {
         txn.AddAttribute("assignmentsTotal", len(assignments.Data))
     }
+}
+
+func buildStageLevel(stageCount []int, levelMax []int) *StageLevel {
+    var level int = 1
+    var percentage float64 = 0
+    for {
+        fmt.Printf("%d / %d : ", stageCount[level], levelMax[level])
+        percentage = float64(stageCount[level])/float64(levelMax[level])
+        fmt.Printf("%g\n", percentage)
+        if percentage < 0.9 || level == 60 {
+            break
+        }
+        level += 1
+    }
+
+    return &StageLevel{Level:level-1, PercentageNextLevel:percentage}
 }
 
 func leechesScreensaver(c *gin.Context) {
