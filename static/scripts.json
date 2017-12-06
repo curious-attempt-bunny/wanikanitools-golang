@@ -1369,7 +1369,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/b/2/b2ced52813c77ab67704469779f2ca0a4bff09b0.PNG",
-    "likes": 9,
+    "likes": 10,
     "author": "seanblue",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-lesson-filter/19023",
     "script_url": "https://greasyfork.org/en/scripts/31659-wanikani-lesson-filter",
@@ -1441,7 +1441,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/d/4/d425b415337c610c5b986818644035c2959d3e92.jpg",
-    "likes": 18,
+    "likes": 20,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/dashboard-userscript-leech-apprentice-and-guru-detail-aka-srs-level-progress/19353",
     "script_url": "https://greasyfork.org/en/scripts/32344-wanikani-srs-level-progress",
@@ -1672,7 +1672,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 20,
+    "likes": 21,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -1758,6 +1758,24 @@
     ],
     "categories": [
       "reviews"
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/d/9/d93b7fc8c8d7e70c70bc9bd8375e31552b3a64d8_1_690x406.png",
+    "likes": 0,
+    "author": "polv",
+    "topic_url": "https://community.wanikani.com/t/userscript-wanikani-external-definition-from-weblio-jp-and-kanjipedia/22834",
+    "script_url": "https://greasyfork.org/en/scripts/35970-wanikani-external-definition",
+    "topic_id": 22834,
+    "name": "WaniKani External Definition",
+    "description": "Get External Definition from Weblio, Kanjipedia",
+    "installs": 4,
+    "version": "0.3.3",
+    "global_variables": [
+      "word"
+    ],
+    "categories": [
+
     ]
   },
   {
