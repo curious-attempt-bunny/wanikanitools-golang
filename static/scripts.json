@@ -1253,7 +1253,7 @@
     "installs": 108,
     "version": "3",
     "global_variables": [
-      "index"
+
     ],
     "categories": [
       "reviews"
@@ -1451,7 +1451,7 @@
     "installs": 303,
     "version": "1.2.0",
     "global_variables": [
-      "html"
+
     ],
     "categories": [
       "dashboard"
@@ -1669,7 +1669,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 21,
+    "likes": 22,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -1759,7 +1759,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/d/9/d93b7fc8c8d7e70c70bc9bd8375e31552b3a64d8_1_690x406.png",
-    "likes": 0,
+    "likes": 1,
     "author": "polv",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-external-definition-from-weblio-jp-and-kanjipedia/22834",
     "script_url": "https://greasyfork.org/en/scripts/35970-wanikani-external-definition",
@@ -1776,7 +1776,7 @@
     ]
   },
   {
-    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/5/c/5cd411590101f0620de903c2ae0bfd7309ee8d6e.jpg",
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/4/1/41c89359fdd71023591c61f891783782ea23a76c_1_690x103.jpg",
     "likes": 2,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/levels-by-stage-script/22964",
@@ -1787,7 +1787,7 @@
     "installs": 0,
     "version": "0.0.1",
     "global_variables": [
-      "options"
+
     ],
     "categories": [
       "dashboard"
@@ -1809,6 +1809,42 @@
     ],
     "categories": [
 
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/e/6/e6afe6da90169df01288606a4cabbf7cd5176a55_1_345x240.png",
+    "likes": 9,
+    "author": "Kumirei",
+    "topic_url": "https://community.wanikani.com/t/userscript-spongebob-time-cards/23006",
+    "script_url": "https://greasyfork.org/en/scripts/35422-wanikani-forums-spongebob-time-cards",
+    "topic_id": 23006,
+    "name": "Wanikani Forums: Spongebob Time Cards",
+    "description": "Changes the &quot;[time] later&quot; message when a thread is revived to Spongebob time cards",
+    "installs": 8,
+    "version": "1.1.",
+    "global_variables": [
+
+    ],
+    "categories": [
+
+    ]
+  },
+  {
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/4/e/4edbe48c44d43763976e31301b84ac0d18d18fb6_1_690x480.gif",
+    "likes": 0,
+    "author": "hitechbunny",
+    "topic_url": "https://community.wanikani.com/t/beta-test-this/23072",
+    "script_url": "https://greasyfork.org/en/scripts/36134-wanikani-study-review-mistakes",
+    "topic_id": 23072,
+    "name": "WaniKani Study Review Mistakes",
+    "description": "Just made a mistake in a review? Study the mnemonics again to strengthen your recall!",
+    "installs": 0,
+    "version": "0.0.1",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "reviews"
     ]
   },
   {
