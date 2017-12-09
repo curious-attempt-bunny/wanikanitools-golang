@@ -449,7 +449,7 @@
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/7/9/79ee8369aec7d0f9ee256dc086556f3bc449ccd3.png",
-    "likes": 2,
+    "likes": 3,
     "author": "rfindley",
     "topic_url": "https://community.wanikani.com/t/userscript-burn-manager-review-resurrect-retire/13001",
     "script_url": "https://greasyfork.org/en/scripts/18822-wanikani-burn-manager",
@@ -1831,9 +1831,9 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/4/e/4edbe48c44d43763976e31301b84ac0d18d18fb6_1_690x480.gif",
-    "likes": 0,
+    "likes": 2,
     "author": "hitechbunny",
-    "topic_url": "https://community.wanikani.com/t/beta-test-this/23072",
+    "topic_url": "https://community.wanikani.com/t/study-review-mistakes-script-beta/23072",
     "script_url": "https://greasyfork.org/en/scripts/36134-wanikani-study-review-mistakes",
     "topic_id": 23072,
     "name": "WaniKani Study Review Mistakes",
