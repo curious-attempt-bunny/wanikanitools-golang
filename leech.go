@@ -21,6 +21,23 @@ type Leech struct {
     ReviewOrder        int     `json:"-"`
 }
 
+type LeechLesson struct {
+    LeechesAvailable   int               `json:"leeches_available"`
+    LeechLessonItems   []LeechLessonItem `json:"leech_lesson_items"`
+}
+
+type LeechLessonItem struct {
+    Name                string   `json:"name"`
+    SubjectType         string   `json:"type"`
+    TrainType           string   `json:"train_type"`
+    CorrectAnswers      []string `json:"correct_answers"`
+    TryAgainAnswers     []string `json:"try_again_answers"`
+    Leech               struct {
+        Key             string   `json:"key"`
+        WorstIncorrect  int      `json:"worst_incorrect"`
+    }                            `json:"leech"`
+}
+
 func getLeeches(apiKey string) (LeechList, *ReviewStatistics, *Assignments, *ResourceError) {
     leeches := make(LeechList, 0)
 

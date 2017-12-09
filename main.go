@@ -10,6 +10,7 @@ import (
     "io"
     "io/ioutil"
     "net/http"
+    "math/rand"
     "sort"
     "strings"
     "time"
@@ -96,6 +97,7 @@ func main() {
             withApiKey.GET("/leeches.json", leechesJson)
             withApiKey.GET("/level/progress", levelProgress)
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
+            withApiKey.GET("/leeches/lesson", leechesLesson)
             withApiKey.GET("/leeches", leechesList)
             withApiKey.POST("/scripts/installed", postScriptsInstalled)
             withApiKey.GET("/scripts", listScripts)
@@ -674,6 +676,54 @@ func leechesList(c *gin.Context) {
     sort.Sort(leeches)
     
     c.HTML(http.StatusOK, "leeches.list.tmpl.html", TemplateContext{User:user, Data:leeches})
+}
+
+func leechesLesson(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+
+    leeches, _, _, resourceError := getLeeches(apiKey)
+    if (resourceError != nil) {
+        renderError(c, resourceError.Category, resourceError.ErrorMessage)
+        return
+    }
+
+    result := LeechLesson{LeechesAvailable:len(leeches), LeechLessonItems:make([]LeechLessonItem, 0)}
+
+    shuffleIndexes := rand.Perm(len(leeches))
+
+    for i := 0; i < len(shuffleIndexes) && i < 10; i++ {
+        leech := leeches[shuffleIndexes[i]]
+        correctAnswers := make([]string, 0)
+        tryAgainAnswers := make([]string, 0)
+
+        subject := subjectsDataMap[leech.SubjectID]
+        if leech.WorstType == "reading" {
+            for _, reading := range subject.Data.Readings {
+                if leech.SubjectType != "kanji" || reading.Primary {
+                    correctAnswers = append(correctAnswers, reading.Reading)
+                } else {
+                    tryAgainAnswers = append(tryAgainAnswers, reading.Reading)
+                }
+            }
+        } else {
+            for _, meaning := range subject.Data.Meanings {
+                correctAnswers = append(correctAnswers, meaning.Meaning)
+            }
+        }
+
+        item := LeechLessonItem{
+            Name:            leech.Name,
+            SubjectType:     leech.SubjectType,
+            TrainType:       leech.WorstType,
+            CorrectAnswers:  correctAnswers,
+            TryAgainAnswers: tryAgainAnswers}
+        item.Leech.Key = fmt.Sprintf("%s/%s", leech.SubjectType, leech.Name)
+        item.Leech.WorstIncorrect = leech.WorstIncorrect
+
+        result.LeechLessonItems = append(result.LeechLessonItems, item)
+    }
+
+    c.JSON(200, result)
 }
 
 type LeechList []Leech
