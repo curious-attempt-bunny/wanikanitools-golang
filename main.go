@@ -681,10 +681,29 @@ func leechesList(c *gin.Context) {
 func leechesLesson(c *gin.Context) {
     apiKey := c.MustGet("apiKey").(string)
 
-    leeches, _, _, resourceError := getLeeches(apiKey)
+    chStudyMaterials := make(chan *StudyMaterials)
+    go getStudyMaterials(apiKey, chStudyMaterials)
+
+    leeches, _, assignments, resourceError := getLeeches(apiKey)
     if (resourceError != nil) {
         renderError(c, resourceError.Category, resourceError.ErrorMessage)
         return
+    }
+
+    studyMaterials := <-chStudyMaterials
+    if len(studyMaterials.Error) > 0 {
+        renderError(c, "studyMaterials", studyMaterials.Error)
+        return
+    }
+
+    studyMaterialsDataMap := make(map[int]StudyMaterialsData)
+    for i := 0; i<len(studyMaterials.Data); i++ {
+        studyMaterialsDataMap[studyMaterials.Data[i].Data.SubjectID] = studyMaterials.Data[i]
+    }
+
+    assignmentsDataMap := make(map[int]AssignmentsData)
+    for i := 0; i<len(assignments.Data); i++ {
+        assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
     }
 
     result := LeechLesson{LeechesAvailable:len(leeches), LeechLessonItems:make([]LeechLessonItem, 0)}
@@ -721,6 +740,60 @@ func leechesLesson(c *gin.Context) {
         item.Leech.WorstIncorrect = leech.WorstIncorrect
 
         result.LeechLessonItems = append(result.LeechLessonItems, item)
+        result.LeechLessonItems = append(result.LeechLessonItems, item)
+        result.LeechLessonItems = append(result.LeechLessonItems, item)
+
+        fmt.Printf("%s\n", subjectKey(subject))
+
+        similars := similar[subjectKey(subject)]
+        shuffleIndexes2 := rand.Perm(len(similars))
+
+        k := 0
+        for j := 0; j < len(shuffleIndexes2) && k < 3; j++ {
+            key := similars[shuffleIndexes2[j]]
+            // fmt.Printf("  %s\n", key)
+            subject, ok := subjectsKeyMap[key]
+            if (!ok) {
+                fmt.Printf("Nothing in map for %s\n", key)
+                continue
+            }
+            _, unlocked := assignmentsDataMap[subject.ID]
+            fmt.Printf("  %s %t\n", key, unlocked)
+            if unlocked {
+                correctAnswers := make([]string, 0)
+                tryAgainAnswers := make([]string, 0)
+
+                if leech.WorstType == "reading" {
+                    for _, reading := range subject.Data.Readings {
+                        if subject.Object != "kanji" || reading.Primary {
+                            correctAnswers = append(correctAnswers, reading.Reading)
+                        } else {
+                            tryAgainAnswers = append(tryAgainAnswers, reading.Reading)
+                        }
+                    }
+                } else {
+                    for _, meaning := range subject.Data.Meanings {
+                        correctAnswers = append(correctAnswers, meaning.Meaning)
+                    }
+                }
+
+                item := LeechLessonItem{
+                    SubjectType:     subject.Object,
+                    TrainType:       leech.WorstType,
+                    CorrectAnswers:  correctAnswers,
+                    TryAgainAnswers: tryAgainAnswers}
+                if subject.Data.Character == "" {
+                    item.Name = subject.Data.Characters
+                } else {
+                    item.Name = subject.Data.Character
+                }
+                item.Leech.Key = fmt.Sprintf("%s/%s", leech.SubjectType, leech.Name)
+                item.Leech.WorstIncorrect = leech.WorstIncorrect
+
+                result.LeechLessonItems = append(result.LeechLessonItems, item)
+                k++
+            }
+        }
     }
 
     c.JSON(200, result)

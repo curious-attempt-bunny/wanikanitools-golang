@@ -1,7 +1,14 @@
 package main
 
-import "math"
+import "bufio"
 import "fmt"
+// import "io"
+// import "io/ioutil"
+import "log"
+import "math"
+import "os"
+import "strings"
+
 
 type Leech struct {
     Name               string  `json:"name"`
@@ -36,6 +43,29 @@ type LeechLessonItem struct {
         Key             string   `json:"key"`
         WorstIncorrect  int      `json:"worst_incorrect"`
     }                            `json:"leech"`
+}
+
+var similar map[string][]string
+
+func init() {
+    similar = make(map[string][]string)
+
+    file, err := os.Open("static/similar.csv")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer file.Close()
+
+    scanner := bufio.NewScanner(file)
+    for scanner.Scan() {
+        parts := strings.Split(scanner.Text(), ",")
+        // fmt.Printf("%q\n", parts)
+        similar[parts[0]] = parts[1:]
+    }
+
+    if err := scanner.Err(); err != nil {
+        log.Fatal(err)
+    }
 }
 
 func getLeeches(apiKey string) (LeechList, *ReviewStatistics, *Assignments, *ResourceError) {

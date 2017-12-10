@@ -7,6 +7,7 @@ import "net/url"
 
 var subjectsCache *Subjects
 var subjectsDataMap map[int]SubjectsData = make(map[int]SubjectsData)
+var subjectsKeyMap map[string]SubjectsData = make(map[string]SubjectsData)
 
 type Subjects struct {
     Data []SubjectsData `json:"data"`
@@ -48,6 +49,14 @@ type SubjectsData struct {
     URL           string `json:"url"`
 } 
 
+func subjectKey(subject SubjectsData) string {
+    if subject.Data.Character == "" {
+        return fmt.Sprintf("%s/%s", subject.Object, subject.Data.Characters)
+    } else {
+        return fmt.Sprintf("%s/%s", subject.Object, subject.Data.Character)
+    }
+}
+
 func getSubjects(apiKey string, chResult chan *Subjects) {
     if subjectsCache != nil {
         chResult <- subjectsCache
@@ -70,6 +79,11 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
             chResult <- &Subjects{Error: err.Error()}
             return
         }
+        for _, subject := range subjects.Data {
+            // fmt.Printf("Adding to map: %s\n", subjectKey(subject))
+            subjectsKeyMap[subjectKey(subject)] = subject
+        }
+
         v := url.Values{}
         v.Set("updated_after", subjects.DataUpdatedAt)
         subjects.Pages.NextURL = "https://wanikani.com/api/v2/subjects?"+v.Encode()
@@ -117,6 +131,11 @@ func getSubjectsPage(apiKey string, pageUrl string) (*Subjects, error) {
     err = json.Unmarshal(body, &subjects)
     if err != nil {
         return nil, err
+    }
+
+    for _, subject := range subjects.Data {
+        // fmt.Printf("Adding to map: %s\n", subjectKey(subject))
+        subjectsKeyMap[subjectKey(subject)] = subject
     }
 
     return &subjects, nil
