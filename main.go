@@ -69,7 +69,7 @@ func main() {
     	withSessionApiKeyRedirect.GET("/", func(c *gin.Context) {
             apiKey := c.Query("api_key")
 
-            fmt.Printf("%s, %-v\n", apiKey)
+            //fmt.Printf("%s, %-v\n", apiKey)
 
             if len(apiKey) > 0 {
                 ch := make(chan *User)
@@ -79,7 +79,7 @@ func main() {
                     renderError(c, "user", user.Error)
                     return
                 }
-                fmt.Printf("%-v\n", user)
+                //fmt.Printf("%-v\n", user)
 
     		    c.HTML(http.StatusOK, "index.tmpl.html", TemplateContext{User:user})
             } else {                
@@ -655,9 +655,9 @@ func buildStageLevel(stageCount []int, levelMax []int) *StageLevel {
     var level int = 1
     var percentage float64 = 0
     for {
-        fmt.Printf("%d / %d : ", stageCount[level], levelMax[level])
+        //fmt.Printf("%d / %d : ", stageCount[level], levelMax[level])
         percentage = float64(stageCount[level])/float64(levelMax[level])
-        fmt.Printf("%g\n", percentage)
+        //fmt.Printf("%g\n", percentage)
         if percentage < 0.9 {
             break
         }
@@ -743,6 +743,48 @@ func leechesLesson(c *gin.Context) {
         assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
     }
 
+    // exclude trained items
+    leechMap := make(map[string]Leech)
+    for _, leech := range leeches {
+        leechMap[fmt.Sprintf("%s/%s", leech.SubjectType, leech.Name)] = leech
+    }
+
+    db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+    defer db.Close()
+
+    rows, err := db.Query("SELECT key, worst_incorrect FROM leech_train WHERE api_key = $1", apiKey)
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    for rows.Next() {
+        var key string;
+        var worst_incorrect int;
+        if err := rows.Scan(&key, &worst_incorrect); err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+
+        leech, present := leechMap[key]
+        if present {
+            if leech.WorstIncorrect <= worst_incorrect {
+                delete(leechMap, key)
+            }
+        }
+    }
+
+    leeches = make([]Leech, len(leechMap))
+    var i int = 0
+    for _, leech := range leechMap {
+        leeches[i] = leech
+        i++
+    }
+
     result := LeechLesson{LeechesAvailable:len(leeches), LeechLessonItems:make([]LeechLessonItem, 0)}
 
     shuffleIndexes := rand.Perm(len(leeches))
@@ -780,7 +822,7 @@ func leechesLesson(c *gin.Context) {
         result.LeechLessonItems = append(result.LeechLessonItems, item)
         result.LeechLessonItems = append(result.LeechLessonItems, item)
 
-        fmt.Printf("%s\n", subjectKey(subject))
+        //fmt.Printf("%s\n", subjectKey(subject))
 
         similars := similar[subjectKey(subject)]
         shuffleIndexes2 := rand.Perm(len(similars))
@@ -795,7 +837,7 @@ func leechesLesson(c *gin.Context) {
                 continue
             }
             _, unlocked := assignmentsDataMap[subject.ID]
-            fmt.Printf("  %s %t\n", key, unlocked)
+            //fmt.Printf("  %s %t\n", key, unlocked)
             if unlocked {
                 correctAnswers := make([]string, 0)
                 tryAgainAnswers := make([]string, 0)
