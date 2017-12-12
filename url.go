@@ -37,7 +37,7 @@ func getUrl(apiKey string, url string) ([]byte, error) {
         return nil, err
     }
 
-    if resp.StatusCode == 403 && strings.Contains(string(body), "Rate Limit Exceeded") {
+    if resp.StatusCode == 429 && strings.Contains(string(body), "Rate Limit Exceeded") {
         fmt.Printf("Rate Limit Exceeded failing: %s\n", url)
         return nil, errors.New("Rate Limit Exceeded")
     }
@@ -48,7 +48,7 @@ func getUrl(apiKey string, url string) ([]byte, error) {
 
     secs2 := time.Since(start).Seconds()
   
-    fmt.Printf("%f: %s\n", secs2, url)
+    fmt.Printf("%f: %s (%s)\n", secs2, url, apiKey)
 
     return body, nil
 }
