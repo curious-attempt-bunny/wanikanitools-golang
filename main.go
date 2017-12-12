@@ -98,6 +98,7 @@ func main() {
             withApiKey.GET("/level/progress", levelProgress)
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
             withApiKey.GET("/leeches/lesson", leechesLesson)
+            withApiKey.POST("/leeches/trained", postLeechesTrained)
             withApiKey.GET("/leeches", leechesList)
             withApiKey.POST("/scripts/installed", postScriptsInstalled)
             withApiKey.GET("/scripts", listScripts)
@@ -288,6 +289,42 @@ func postScriptsInstalled(c *gin.Context) {
     }
 
     c.JSON(200, gin.H{"uploaded": installed})
+}
+
+func postLeechesTrained(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+    
+    var leechesTrained []LeechTrain
+
+    err := c.BindJSON(&leechesTrained)
+    if (err != nil) {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+    defer db.Close()
+
+    for _, leechTrain := range leechesTrained {
+        _, err = db.Exec("DELETE FROM leech_train WHERE api_key = $1 AND key = $2", apiKey, leechTrain.Key)
+        if err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+
+        _, err = db.Exec("INSERT INTO leech_train (api_key, key, worst_incorrect) VALUES ($1, $2, $3)",
+            apiKey, leechTrain.Key, leechTrain.WorstIncorrect)
+        if err != nil {
+            c.JSON(500, gin.H{"error": err.Error()})
+            return
+        }
+    }
+
+    c.JSON(200, gin.H{"uploaded": leechesTrained})
 }
 
 func dbMigrate() {

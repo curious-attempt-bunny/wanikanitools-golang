@@ -34,15 +34,17 @@ type LeechLesson struct {
 }
 
 type LeechLessonItem struct {
-    Name                string   `json:"name"`
-    SubjectType         string   `json:"type"`
-    TrainType           string   `json:"train_type"`
-    CorrectAnswers      []string `json:"correct_answers"`
-    TryAgainAnswers     []string `json:"try_again_answers"`
-    Leech               struct {
-        Key             string   `json:"key"`
-        WorstIncorrect  int      `json:"worst_incorrect"`
-    }                            `json:"leech"`
+    Name                string     `json:"name"`
+    SubjectType         string     `json:"type"`
+    TrainType           string     `json:"train_type"`
+    CorrectAnswers      []string   `json:"correct_answers"`
+    TryAgainAnswers     []string   `json:"try_again_answers"`
+    Leech               LeechTrain `json:"leech"`
+}
+
+type LeechTrain struct {
+    Key             string   `json:"key"`
+    WorstIncorrect  int      `json:"worst_incorrect"`
 }
 
 var similar map[string][]string
