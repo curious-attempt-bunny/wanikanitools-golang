@@ -99,6 +99,7 @@ func main() {
             withApiKey.GET("/leeches/screensaver", leechesScreensaver)
             withApiKey.GET("/leeches/lesson", leechesLesson)
             withApiKey.POST("/leeches/trained", postLeechesTrained)
+            withApiKey.DELETE("/leeches/trained", deleteLeechesTrained)
             withApiKey.GET("/leeches", leechesList)
             withApiKey.POST("/scripts/installed", postScriptsInstalled)
             withApiKey.GET("/scripts", listScripts)
@@ -325,6 +326,25 @@ func postLeechesTrained(c *gin.Context) {
     }
 
     c.JSON(200, gin.H{"uploaded": leechesTrained})
+}
+
+func deleteLeechesTrained(c *gin.Context) {
+    apiKey := c.MustGet("apiKey").(string)
+    
+    db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+    defer db.Close()
+
+    _, err = db.Exec("DELETE FROM leech_train WHERE api_key = $1", apiKey)
+    if err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
+
+    c.JSON(200, gin.H{"success": true})
 }
 
 func dbMigrate() {
