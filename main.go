@@ -856,9 +856,9 @@ func leechesLesson(c *gin.Context) {
                 fmt.Printf("Nothing in map for %s\n", key)
                 continue
             }
-            _, unlocked := assignmentsDataMap[subject.ID]
+            assignment, unlocked := assignmentsDataMap[subject.ID]
             //fmt.Printf("  %s %t\n", key, unlocked)
-            if unlocked {
+            if unlocked && assignment.Data.SrsStage > 0 {
                 correctAnswers := make([]string, 0)
                 tryAgainAnswers := make([]string, 0)
 
