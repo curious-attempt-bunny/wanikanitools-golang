@@ -232,8 +232,8 @@
     ]
   },
   {
-    "img_url": "//community.wanikani.com/uploads/wanikani_community/optimized/2X/4/4c5337ca5b2c3927752d6850aba564c4a318f939_1_690x425.png",
-    "likes": 1,
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/6/4/64cc8e970f7dc04ef6824ea11792b4f3bfcecf9c.png",
+    "likes": 2,
     "author": "rfindley",
     "topic_url": "https://community.wanikani.com/t/userscript-golden-burn/11464",
     "script_url": "https://greasyfork.org/en/scripts/15781-wanikani-golden-burn",
@@ -449,7 +449,7 @@
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/7/9/79ee8369aec7d0f9ee256dc086556f3bc449ccd3.png",
-    "likes": 3,
+    "likes": 4,
     "author": "rfindley",
     "topic_url": "https://community.wanikani.com/t/userscript-burn-manager-review-resurrect-retire/13001",
     "script_url": "https://greasyfork.org/en/scripts/18822-wanikani-burn-manager",
@@ -1612,7 +1612,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/b/0/b031817a6a5fa9f789e334ed8b7d82ac77b0d550_1_690x176.gif",
-    "likes": 8,
+    "likes": 9,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/userscript-dashboard-level-progress-detail-srs-stages-on-progress-bars/21119",
     "script_url": "https://greasyfork.org/en/scripts/34866-wanikani-dashboard-level-progress-detail",
@@ -1629,7 +1629,7 @@
     ]
   },
   {
-    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/b/f/bf2b4e97ed59a81477a8e03b45891ae9ad7436d1_1_690x160.png",
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/3X/0/f/0f7d3ce527814c03acd9f9212d88c25efafb54dc.png",
     "likes": 1,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/wanikani-lesson-balance-script/21136",
@@ -1669,7 +1669,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/6/5/65e5b2be7d90e64e51dd37051c98f1f253287b40_1_559x500.gif",
-    "likes": 22,
+    "likes": 25,
     "author": "hitechbunny",
     "topic_url": "https://community.wanikani.com/t/leech-training-script/21699",
     "script_url": "https://greasyfork.org/en/scripts/35031-wanikani-leech-trainer",
@@ -1689,8 +1689,8 @@
     ]
   },
   {
-    "img_url": null,
-    "likes": 5,
+    "img_url": "https://img.shields.io/badge/dynamic/json.svg?label=UserScript&colorB=&prefix=v&suffix=&query=%24.version&uri=https%3A%2F%2Fgitlab.com%2Fvaleth%2Fwanikani-lesson-cap%2Fraw%2Fmaster%2Fpackage.json",
+    "likes": 7,
     "author": "valeth",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-lesson-cap/21865",
     "script_url": "https://greasyfork.org/en/scripts/34927-wanikani-lesson-cap",
@@ -1721,8 +1721,8 @@
     ]
   },
   {
-    "img_url": null,
-    "likes": 6,
+    "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/optimized/3X/5/1/518eba6f3a0496bc81a4d676fbd9ecee0dfc12e0_1_690x437.jpg",
+    "likes": 7,
     "author": "irrelephant",
     "topic_url": "https://community.wanikani.com/t/userscript-wanikani-lesson-user-synonyms-v2/21960",
     "script_url": "https://greasyfork.org/en/scripts/34839-wanikani-lesson-user-synonyms-2",
@@ -1840,6 +1840,24 @@
     "description": "Just made a mistake in a review? Study the mnemonics again to strengthen your recall!",
     "installs": 0,
     "version": "0.0.1",
+    "global_variables": [
+
+    ],
+    "categories": [
+      "reviews"
+    ]
+  },
+  {
+    "img_url": null,
+    "likes": 0,
+    "author": "BlueRaja",
+    "topic_url": "https://community.wanikani.com/t/wanikani-greasemonkey-scripts-all-broken/23320",
+    "script_url": "https://greasyfork.org/en/scripts/9732-wk-double-check",
+    "topic_id": 23320,
+    "name": "WK Double Check",
+    "description": "Toggle the mark given by WaniKani",
+    "installs": 757,
+    "version": "0.2",
     "global_variables": [
 
     ],
@@ -1978,7 +1996,7 @@
   },
   {
     "img_url": "//community.wanikani.com/uploads/wanikani_community/original/3X/5/6/5647b8f9c1e042d7762f1d0b5d27c3dfff439c5d.png",
-    "likes": 5,
+    "likes": 7,
     "author": "looki",
     "topic_url": "https://community.wanikani.com/t/userscript-highlight-kanji-based-on-wk-level-in-websites/4998",
     "script_url": "https://greasyfork.org/scripts/722-kanji-highlighter",
@@ -2410,7 +2428,7 @@
   },
   {
     "img_url": "https://discourse-cdn-sjc1.com/business2/uploads/wanikani_community/original/2X/1/116097843ec9a4963ff028e67e3bf26a505315ed.png",
-    "likes": 14,
+    "likes": 15,
     "author": "xMunch",
     "topic_url": "https://community.wanikani.com/t/wanikani-reorder-ultimate/8269",
     "script_url": "https://greasyfork.org/en/scripts/19088-wanikani-reorder-ultimate-2",
