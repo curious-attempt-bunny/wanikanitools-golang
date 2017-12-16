@@ -23,7 +23,7 @@ type StudyMaterialsData struct {
     Data struct {
         CreatedAt       string        `json:"created_at"`
         MeaningNote     string        `json:"meaning_note"`
-        MeaningSynonyms []interface{} `json:"meaning_synonyms"`
+        MeaningSynonyms []string      `json:"meaning_synonyms"`
         ReadingNote     string        `json:"reading_note"`
         SubjectID       int           `json:"subject_id"`
         SubjectType     string        `json:"subject_type"`

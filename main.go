@@ -775,7 +775,7 @@ func leechesLesson(c *gin.Context) {
             if (err == nil) {
                 // nothing in the last 24 hours
                 if time.Since(updatedAt).Hours() < 24 {
-                    fmt.Printf("Skipping %s since it's too recent (%d hours < 24).\n", leech.Name, int(time.Since(updatedAt).Hours()))
+                    //fmt.Printf("Skipping %s since it's too recent (%d hours < 24).\n", leech.Name, int(time.Since(updatedAt).Hours()))
                     continue
                 }
             }
@@ -785,7 +785,7 @@ func leechesLesson(c *gin.Context) {
                 // not too close for the srsStage
                 hoursFromNow := int(availableAt.Sub(time.Now()).Hours())
                 if hoursPerLevel[assignment.Data.SrsStage]/2 < hoursFromNow {
-                    fmt.Printf("Skipping %s since it's too soon to the review (stage %s, hours away %d < %d/2).\n", leech.Name, assignment.Data.SrsStageName, hoursFromNow, hoursPerLevel[assignment.Data.SrsStage])
+                    //fmt.Printf("Skipping %s since it's too soon to the review (stage %s, hours away %d < %d/2).\n", leech.Name, assignment.Data.SrsStageName, hoursFromNow, hoursPerLevel[assignment.Data.SrsStage])
                     continue
                 }    
             }
@@ -849,6 +849,12 @@ func leechesLesson(c *gin.Context) {
                 }
             }
         } else {
+            studyMaterials, ok := studyMaterialsDataMap[subject.ID]
+            if ok {
+                for _, synonym := range studyMaterials.Data.MeaningSynonyms {
+                    correctAnswers = append(correctAnswers, synonym)
+                }                
+            }
             for _, meaning := range subject.Data.Meanings {
                 correctAnswers = append(correctAnswers, meaning.Meaning)
             }
@@ -896,6 +902,12 @@ func leechesLesson(c *gin.Context) {
                         }
                     }
                 } else {
+                    studyMaterials, ok := studyMaterialsDataMap[subject.ID]
+                    if ok {
+                        for _, synonym := range studyMaterials.Data.MeaningSynonyms {
+                            correctAnswers = append(correctAnswers, synonym)
+                        }                
+                    }                    
                     for _, meaning := range subject.Data.Meanings {
                         correctAnswers = append(correctAnswers, meaning.Meaning)
                     }
