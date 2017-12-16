@@ -763,9 +763,34 @@ func leechesLesson(c *gin.Context) {
         assignmentsDataMap[assignments.Data[i].Data.SubjectID] = assignments.Data[i]
     }
 
-    // exclude trained items
+    // exclude items
+
+    hoursPerLevel := []int { 0, 4, 8, 24, 3*24, 7*24, 2*7*24, 30*24, 4*30*24, 0}
     leechMap := make(map[string]Leech)
     for _, leech := range leeches {
+        // remove recently reviewed, or soon-by-level to be reviewed
+        assignment, ok := assignmentsDataMap[leech.SubjectID]
+        if (ok) {
+            updatedAt, err := time.Parse(time.RFC3339, assignment.DataUpdatedAt)
+            if (err == nil) {
+                // nothing in the last 24 hours
+                if time.Since(updatedAt).Hours() < 24 {
+                    fmt.Printf("Skipping %s since it's too recent (%d hours < 24).\n", leech.Name, int(time.Since(updatedAt).Hours()))
+                    continue
+                }
+            }
+
+            availableAt, err := time.Parse(time.RFC3339, assignment.Data.AvailableAt)
+            if (err == nil) {
+                // not too close for the srsStage
+                hoursFromNow := int(availableAt.Sub(time.Now()).Hours())
+                if hoursPerLevel[assignment.Data.SrsStage]/2 < hoursFromNow {
+                    fmt.Printf("Skipping %s since it's too soon to the review (stage %s, hours away %d < %d/2).\n", leech.Name, assignment.Data.SrsStageName, hoursFromNow, hoursPerLevel[assignment.Data.SrsStage])
+                    continue
+                }    
+            }
+        }
+
         leechMap[fmt.Sprintf("%s/%s", leech.SubjectType, leech.Name)] = leech
     }
 
