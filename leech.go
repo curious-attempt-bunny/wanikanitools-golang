@@ -30,6 +30,9 @@ type Leech struct {
 
 type LeechLesson struct {
     LeechesAvailable   int               `json:"leeches_available"`
+    TooRecentCount     int               `json:"too_recent_count"`
+    TooSoonCount       int               `json:"too_soon_count"`
+    TrainedCount       int               `json:"trained_count"`
     LeechLessonItems   []LeechLessonItem `json:"leech_lesson_items"`
 }
 

@@ -765,6 +765,8 @@ func leechesLesson(c *gin.Context) {
 
     // exclude items
 
+    var tooRecentCount int = 0
+    var tooSoonCount int = 0
     hoursPerLevel := []int { 0, 4, 8, 24, 3*24, 7*24, 2*7*24, 30*24, 4*30*24, 0}
     leechMap := make(map[string]Leech)
     for _, leech := range leeches {
@@ -776,6 +778,7 @@ func leechesLesson(c *gin.Context) {
                 // nothing in the last 24 hours
                 if time.Since(updatedAt).Hours() < 24 {
                     //fmt.Printf("Skipping %s since it's too recent (%d hours < 24).\n", leech.Name, int(time.Since(updatedAt).Hours()))
+                    tooRecentCount++
                     continue
                 }
             }
@@ -786,6 +789,7 @@ func leechesLesson(c *gin.Context) {
                 hoursFromNow := int(availableAt.Sub(time.Now()).Hours())
                 if hoursPerLevel[assignment.Data.SrsStage]/2 < hoursFromNow {
                     //fmt.Printf("Skipping %s since it's too soon to the review (stage %s, hours away %d < %d/2).\n", leech.Name, assignment.Data.SrsStageName, hoursFromNow, hoursPerLevel[assignment.Data.SrsStage])
+                    tooSoonCount++
                     continue
                 }    
             }
@@ -807,6 +811,7 @@ func leechesLesson(c *gin.Context) {
         return
     }
 
+    var trainedCount int = 0
     for rows.Next() {
         var key string;
         var worst_incorrect int;
@@ -818,6 +823,7 @@ func leechesLesson(c *gin.Context) {
         leech, present := leechMap[key]
         if present {
             if leech.WorstIncorrect <= worst_incorrect {
+                trainedCount++
                 delete(leechMap, key)
             }
         }
@@ -830,7 +836,7 @@ func leechesLesson(c *gin.Context) {
         i++
     }
 
-    result := LeechLesson{LeechesAvailable:len(leeches), LeechLessonItems:make([]LeechLessonItem, 0)}
+    result := LeechLesson{LeechesAvailable:len(leeches), TooRecentCount:tooRecentCount, TooSoonCount:tooSoonCount, TrainedCount:trainedCount, LeechLessonItems:make([]LeechLessonItem, 0)}
 
     shuffleIndexes := rand.Perm(len(leeches))
 
