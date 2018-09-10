@@ -67,7 +67,7 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
     raw, err := ioutil.ReadFile(GetCacheDir()+"/subjects.json")
     if (err != nil) {
         // cache miss
-        subjects, err = getSubjectsPage(apiKey, "https://wanikani.com/api/v2/subjects")
+        subjects, err = getSubjectsPage(apiKey, "https://api.wanikani.com/v2/subjects")
         if err != nil {
             chResult <- &Subjects{Error: err.Error()}
             return
@@ -86,7 +86,7 @@ func getSubjects(apiKey string, chResult chan *Subjects) {
 
         v := url.Values{}
         v.Set("updated_after", subjects.DataUpdatedAt)
-        subjects.Pages.NextURL = "https://wanikani.com/api/v2/subjects?"+v.Encode()
+        subjects.Pages.NextURL = "https://api.wanikani.com/v2/subjects?"+v.Encode()
     }
 
     lastResult := subjects

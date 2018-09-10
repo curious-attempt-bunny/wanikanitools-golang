@@ -18,7 +18,7 @@ type User struct {
 }
 
 func getUser(apiKey string, chResult chan *User) {
-    body, err := getUrl(apiKey, "https://wanikani.com/api/v2/user")
+    body, err := getUrl(apiKey, "https://api.wanikani.com/v2/user")
     if err != nil {
         chResult <- &User{Error: err.Error()}
         return

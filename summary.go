@@ -18,7 +18,7 @@ type Summary struct {
 }
 
 func getSummary(apiKey string, chResult chan *Summary) {
-    body, err := getUrl(apiKey, "https://wanikani.com/api/v2/summary")
+    body, err := getUrl(apiKey, "https://api.wanikani.com/v2/summary")
     if err != nil {
         chResult <- &Summary{Error: err.Error()}
         return

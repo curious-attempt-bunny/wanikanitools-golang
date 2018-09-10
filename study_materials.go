@@ -16,7 +16,7 @@ type StudyMaterials struct {
     } `json:"pages"`
     TotalCount int       `json:"total_count"`
     URL        string    `json:"url"`
-    Error      string    `json:"-"`    
+    Error      string    `json:"-"`
 }
 
 type StudyMaterialsData struct {
@@ -38,7 +38,7 @@ func getStudyMaterials(apiKey string, chResult chan *StudyMaterials) {
     var results *StudyMaterials
 
     apiEntity := "study_materials"
-    uri := "https://wanikani.com/api/v2/"+apiEntity
+    uri := "https://api.wanikani.com/v2/"+apiEntity
     cacheFile := fmt.Sprintf("%s/%s_%s.json", GetCacheDir(), apiKey, apiEntity)
     raw, err := ioutil.ReadFile(cacheFile)
     if (err != nil) {
@@ -47,7 +47,7 @@ func getStudyMaterials(apiKey string, chResult chan *StudyMaterials) {
         if err != nil {
             chResult <- &StudyMaterials{Error: err.Error()}
             return
-        }    
+        }
     } else {
         // cache hit
         err = json.Unmarshal(raw, &results)
@@ -82,7 +82,7 @@ func getStudyMaterials(apiKey string, chResult chan *StudyMaterials) {
     for _, item := range itemDataMap {
         results.Data = append(results.Data, item)
     }
-    
+
     chResult <- results
 
     raw, err = json.MarshalIndent(results, "", "  ")
@@ -105,7 +105,7 @@ func getStudyMaterialsPage(apiKey string, pageUrl string) (*StudyMaterials, erro
     }
 
     var results StudyMaterials
-    
+
     err = json.Unmarshal(body, &results)
     if err != nil {
         return nil, err

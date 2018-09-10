@@ -42,7 +42,7 @@ func getAssignments(apiKey string, chResult chan *Assignments) {
     var results *Assignments
 
     apiEntity := "assignments"
-    uri := "https://wanikani.com/api/v2/"+apiEntity
+    uri := "https://api.wanikani.com/v2/"+apiEntity
     cacheFile := fmt.Sprintf("%s/%s_%s.json", GetCacheDir(), apiKey, apiEntity)
     raw, err := ioutil.ReadFile(cacheFile)
     if (err != nil) {
